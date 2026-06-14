@@ -1,1 +1,44 @@
-[]
+[
+    {
+        "id": "user_01",
+        "email": "ivan@example.com",
+        "password": "12345",
+        "fullName": "Иван",
+        "sex": "men",
+        "birthday": "1992-01-01",
+        "avatarUrl": "/avatars/men/1_men.jpg",
+        "location": "Санкт-Петербург",
+        "role": "user",
+        "createdAt": "2025-01-01T08:00:00Z",
+        "bio": "Привет! Люблю ритм, кофе по утрам и людей, которые не боятся пробовать новое",
+        "fullBio": "Привет! Я играю на барабанах уже больше 10 лет — от репетиций в гараже до выступлений на сцене с живыми группами. Научу основам техники (и как не отбить себe пальцы), играть любимые ритмы и разбирать песни, импровизировать и звучать уверенно даже без паритуры"
+    },
+    {
+        "id": "user_02",
+        "email": "anna@example.com",
+        "password": "56789",
+        "fullName": "Анна",
+        "sex": "women",
+        "birthday": "2000-02-02",
+        "avatarUrl": "/avatars/woman/1_woman.jpg",
+        "location": "Казань",
+        "role": "user",
+        "createdAt": "2023-02-02T09:00:00Z",
+        "bio": "Здравствуй! Преподаватель английского языка, хочу научиться медитировать.",
+        "fullBio": "Здравствуй! Я преподаю английский язык 5 лет. Мои ученики добиваются высоких результатов. Научу с нуля до уровня носителя."
+    },
+    {
+        "id": "user_03",
+        "email": "test@example.com",
+        "password": "test123",
+        "fullName": "Тест",
+        "sex": "not_specified",
+        "birthday": "2000-03-03",
+        "avatarUrl": "/avatars/1_test.jpg",
+        "location": "Тест",
+        "role": "admin",
+        "createdAt": "2000-03-02T00:00:00Z",
+        "bio": "Test test test",
+        "fullBio": "testtesttesttesttest"
+    }
+]
