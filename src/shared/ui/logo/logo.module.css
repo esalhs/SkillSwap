@@ -1,0 +1,23 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.text {
+  font-family: Jost, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -1.1%;
+  vertical-align: middle;
+}
