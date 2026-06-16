@@ -3,7 +3,7 @@ type LikeProps = {
     active?: boolean;
 }
 
-export function Like({color = "#253017", active = false}: LikeProps) {
+export function Like({color = "#253017", active = true}: LikeProps) {
     return (
         <>
             {!active && (
@@ -20,9 +20,9 @@ export function Like({color = "#253017", active = false}: LikeProps) {
                     <path 
                         fill={color} 
                         stroke={color} 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        stroke-width="2" d="M7.95 4C5.216 4 3 6.152 3 8.807 3 13.614 8.85 17.983 12 19c3.15-1.017 9-5.386 9-10.193C21 6.152 18.784 4 16.05 4A4.99 4.99 0 0 0 12 6.042 4.99 4.99 0 0 0 7.95 4"
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth="2" d="M7.95 4C5.216 4 3 6.152 3 8.807 3 13.614 8.85 17.983 12 19c3.15-1.017 9-5.386 9-10.193C21 6.152 18.784 4 16.05 4A4.99 4.99 0 0 0 12 6.042 4.99 4.99 0 0 0 7.95 4"
                     />
                 </svg>
             )}
