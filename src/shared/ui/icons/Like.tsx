@@ -3,7 +3,7 @@ type LikeProps = {
     active?: boolean;
 }
 
-export function Like({color = "#253017", active = true}: LikeProps) {
+export function Like({color = "#253017", active = false}: LikeProps) {
     return (
         <>
             {!active && (
