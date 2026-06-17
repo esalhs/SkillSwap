@@ -1,0 +1,124 @@
+:root {
+	--button-text: #253017;
+  --button-accent: #abd27a;
+  --button-hover: #deebc5;
+  --button-pressed: #508826;
+  --caption: #69735d;
+  --secondary-background-color: #fff;
+  --tertiary-background-color: #fff;
+  --button-disabled: #e4e8df;
+  --disabled-text: #9ca197;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg, 12px);
+  padding: 12px 24px;
+  color: var(--button-text, #253017);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-weight: 400;
+  font-size: var(--font-size-base, 16px);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  min-inline-size: fit-content;
+  max-inline-size: 100%;
+}
+
+/* Направления иконки */
+.iconBefore {
+  flex-direction: row;
+}
+
+.iconAfter {
+  flex-direction: row-reverse;
+}
+
+.iconWrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--button-pressed,#508826);
+  outline-offset: 2px;
+}
+
+/* Вариант Primary (Светло-зеленая кнопка) */
+.primary {
+  background-color: var(--button-accent,#abd27a);
+}
+
+.primary:hover,
+.primary:focus-visible {
+  outline: none;
+  background-color: var(--button-hover,#deebc5);
+}
+
+.primary:active {
+  color: #fff;
+  background-color: var(--button-pressed,#508826);
+}
+
+.primary:disabled {
+  color: var(--caption,#69735d);
+  background-color: var(--button-disabled, #e4e8df);
+  cursor: not-allowed;
+}
+
+/* Вариант Secondary */
+.secondary {
+  border-color: var(--button-accent,#abd27a);
+  background-color: var(--secondary-background-color, #fff);
+}
+
+.secondary:hover,
+.secondary:focus-visible {
+  border-color: var(--button-hover,#deebc5);
+  color: var(--caption,#69735d);
+}
+
+.secondary:active {
+  border-color: var(--button-pressed,#508826);
+}
+
+.secondary:disabled {
+  border-color: var(--button-disabled, #e4e8df);
+  color: var(--disabled-text,#9ca197);
+  cursor: not-allowed;
+}
+
+/* Вариант Tertiary */
+.tertiary {
+  border: none;
+  background-color: var(--tertiary-background-color,#fff);
+}
+
+.tertiary:hover,
+.tertiary:focus-visible {
+  background-color: var(--button-hover,#deebc5);
+}
+
+.tertiary:active {
+  background-color: var(--button-hover,#deebc5);
+}
+
+.tertiary:disabled {
+  border-color: var(--button-disabled, #e4e8df);
+  color: var(--disabled-text,#9ca197);
+  cursor: not-allowed;
+}
