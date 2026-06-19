@@ -1,1 +1,142 @@
-[]
+[
+  {
+    "id": "1",
+    "name": "Анна Волкова",
+    "email": "anna.volkova@mail.ru",
+    "avatarUrl": "/avatars/01-anna-volkova.jpg",
+    "createdAt": "2024-03-12T09:15:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "Дмитрий Козлов",
+    "email": "dmitry.kozlov@gmail.com",
+    "avatarUrl": "/avatars/02-dmitry-kozlov.jpg",
+    "createdAt": "2024-03-18T14:22:00.000Z"
+  },
+  {
+    "id": "3",
+    "name": "Елена Смирнова",
+    "email": "elena.smirnova@yandex.ru",
+    "avatarUrl": "/avatars/03-elena-smirnova.jpg",
+    "createdAt": "2024-04-02T11:40:00.000Z"
+  },
+  {
+    "id": "4",
+    "name": "Максим Орлов",
+    "email": "maxim.orlov@mail.ru",
+    "avatarUrl": "/avatars/04-maxim-orlov.jpg",
+    "createdAt": "2024-04-15T16:05:00.000Z"
+  },
+  {
+    "id": "5",
+    "name": "Ольга Новикова",
+    "email": "olga.novikova@gmail.com",
+    "avatarUrl": "/avatars/05-olga-novikova.jpg",
+    "createdAt": "2024-05-01T08:30:00.000Z"
+  },
+  {
+    "id": "6",
+    "name": "Алексей Морозов",
+    "email": "alexey.morozov@yandex.ru",
+    "avatarUrl": "/avatars/06-alexey-morozov.jpg",
+    "createdAt": "2024-05-20T13:18:00.000Z"
+  },
+  {
+    "id": "7",
+    "name": "Наталья Лебедева",
+    "email": "natalya.lebedeva@mail.ru",
+    "avatarUrl": "/avatars/07-natalya-lebedeva.jpg",
+    "createdAt": "2024-06-08T10:55:00.000Z"
+  },
+  {
+    "id": "8",
+    "name": "Игорь Соколов",
+    "email": "igor.sokolov@gmail.com",
+    "avatarUrl": "/avatars/08-igor-sokolov.jpg",
+    "createdAt": "2024-06-25T17:42:00.000Z"
+  },
+  {
+    "id": "9",
+    "name": "Мария Кузнецова",
+    "email": "maria.kuznetsova@yandex.ru",
+    "avatarUrl": "/avatars/09-maria-kuznetsova.jpg",
+    "createdAt": "2024-07-10T12:00:00.000Z"
+  },
+  {
+    "id": "10",
+    "name": "Павел Егоров",
+    "email": "pavel.egorov@mail.ru",
+    "avatarUrl": "/avatars/10-pavel-egorov.jpg",
+    "createdAt": "2024-07-28T09:28:00.000Z"
+  },
+  {
+    "id": "11",
+    "name": "Татьяна Павлова",
+    "email": "tatyana.pavlova@gmail.com",
+    "avatarUrl": "/avatars/11-tatyana-pavlova.jpg",
+    "createdAt": "2024-08-14T15:33:00.000Z"
+  },
+  {
+    "id": "12",
+    "name": "Сергей Фёдоров",
+    "email": "sergey.fedorov@yandex.ru",
+    "avatarUrl": "/avatars/12-sergey-fedorov.jpg",
+    "createdAt": "2024-09-03T11:12:00.000Z"
+  },
+  {
+    "id": "13",
+    "name": "Юлия Романова",
+    "email": "yulia.romanova@mail.ru",
+    "avatarUrl": "/avatars/13-yulia-romanova.jpg",
+    "createdAt": "2024-09-22T14:47:00.000Z"
+  },
+  {
+    "id": "14",
+    "name": "Андрей Власов",
+    "email": "andrey.vlasov@gmail.com",
+    "avatarUrl": "/avatars/14-andrey-vlasov.jpg",
+    "createdAt": "2024-10-05T08:20:00.000Z"
+  },
+  {
+    "id": "15",
+    "name": "Екатерина Медведева",
+    "email": "ekaterina.medvedeva@yandex.ru",
+    "avatarUrl": "/avatars/15-ekaterina-medvedeva.jpg",
+    "createdAt": "2024-10-19T16:58:00.000Z"
+  },
+  {
+    "id": "16",
+    "name": "Николай Зайцев",
+    "email": "nikolay.zaytsev@mail.ru",
+    "avatarUrl": "/avatars/16-nikolay-zaytsev.jpg",
+    "createdAt": "2024-11-02T10:35:00.000Z"
+  },
+  {
+    "id": "17",
+    "name": "Виктория Степанова",
+    "email": "victoria.stepanova@gmail.com",
+    "avatarUrl": "/avatars/17-victoria-stepanova.jpg",
+    "createdAt": "2024-11-25T13:09:00.000Z"
+  },
+  {
+    "id": "18",
+    "name": "Роман Григорьев",
+    "email": "roman.grigoriev@yandex.ru",
+    "avatarUrl": "/avatars/18-roman-grigoriev.jpg",
+    "createdAt": "2024-12-10T09:44:00.000Z"
+  },
+  {
+    "id": "19",
+    "name": "Светлана Никитина",
+    "email": "svetlana.nikitina@mail.ru",
+    "avatarUrl": "/avatars/19-svetlana-nikitina.jpg",
+    "createdAt": "2025-01-08T12:27:00.000Z"
+  },
+  {
+    "id": "20",
+    "name": "Артём Борисов",
+    "email": "artem.borisov@gmail.com",
+    "avatarUrl": "/avatars/20-artem-borisov.jpg",
+    "createdAt": "2025-02-14T18:16:00.000Z"
+  }
+]
