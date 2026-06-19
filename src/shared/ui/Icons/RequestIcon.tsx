@@ -1,5 +1,14 @@
-export const RequestIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+import type { SVGProps } from 'react'
+
+export const RequestIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
     <path
       fill="#253017"
       d="M16.651 20.21H7.35C3.953 20.21 2 18.255 2 14.86V8.35C2 4.953 3.953 3 7.349 3h9.302C20.047 3 22 4.953 22 8.349v6.512c0 3.395-1.953 5.348-5.349 5.348M7.35 4.394c-2.66 0-3.954 1.293-3.954 3.954v6.512c0 2.66 1.293 3.953 3.954 3.953h9.302c2.66 0 3.954-1.293 3.954-3.953V8.349c0-2.66-1.293-3.954-3.954-3.954z"

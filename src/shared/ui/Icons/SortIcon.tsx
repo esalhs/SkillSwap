@@ -1,5 +1,14 @@
-export const SortIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+import type { SVGProps } from 'react'
+
+export const SortIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
     <path
       fill="#253017"
       d="M10.564 7.822a.69.69 0 0 1-.49-.203L7.127 4.672 4.18 7.62a.697.697 0 0 1-.98 0 .697.697 0 0 1 0-.98l3.437-3.436a.69.69 0 0 1 .98 0l3.436 3.437a.697.697 0 0 1 0 .979.69.69 0 0 1-.49.203"
