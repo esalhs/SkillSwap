@@ -1,0 +1,11 @@
+export { default as Done } from './Done';
+export { default as PlusCircle } from './PlusCircle';
+export { default as GalleryAdd } from './GalleryAdd';
+export { default as GalleryEdit } from './GalleryEdit';
+export { default as Home } from './Home';
+export { default as Global } from './Global';
+export { default as Briefcase } from './Briefcase';
+export { default as Book } from './Book';
+export { default as Logout } from './Logout';
+export { default as Lifestyle } from './Lifestyle';
+export { default as Palette } from './Palette';
