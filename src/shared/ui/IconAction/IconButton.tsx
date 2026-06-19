@@ -14,6 +14,7 @@ export function IconButton({ icon, ariaLabel, className = '', onClick }: IconBut
       className={`${styles.container} ${className}`.trim()}
       aria-label={ariaLabel}
       onClick={onClick}
+      type="button"
     >
       {icon}
     </button>
