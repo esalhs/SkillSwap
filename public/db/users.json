@@ -1,1 +1,50 @@
-[]
+[
+    {
+        "id": "user_01",
+        "email": "ivan@example.com",
+        "password": "12345",
+        "fullName": "Иван",
+        "sex": "men",
+        "birthday": "1992-01-01",
+        "avatarUrl": "/avatars/men/1_men.jpg",
+        "location": "Санкт-Петербург",
+        "role": "user",
+        "createdAt": "2025-01-01T08:00:00Z",
+        "bio": "Привет! Люблю ритм, кофе по утрам и людей, которые не боятся пробовать новое",
+        "idSkill": "skill_01",
+        "favoriteCategories": ["cat_01", "cat_05"],
+        "favoriteSkills": ["skill_05", "skill_12", "skill_07"]
+    },
+    {
+        "id": "user_02",
+        "email": "anna@example.com",
+        "password": "56789",
+        "fullName": "Анна",
+        "sex": "women",
+        "birthday": "2000-02-02",
+        "avatarUrl": "/avatars/woman/1_woman.jpg",
+        "location": "Казань",
+        "role": "user",
+        "createdAt": "2023-02-02T09:00:00Z",
+        "bio": "Здравствуй! Преподаватель английского языка, хочу научиться медитировать.",
+        "idSkill": "skill_02",
+        "favoriteCategories": ["cat_01", "cat_03"],
+        "favoriteSkills": ["skill_05", "skill_12", "skill_07"]
+    },
+    {
+        "id": "user_03",
+        "email": "test@example.com",
+        "password": "test123",
+        "fullName": "Тест",
+        "sex": "not_specified",
+        "birthday": "2000-03-03",
+        "avatarUrl": "/avatars/1_test.jpg",
+        "location": "Тест",
+        "role": "admin",
+        "createdAt": "2000-03-02T00:00:00Z",
+        "bio": "Test test test",
+        "idSkill": "skill_03",
+        "favoriteCategories": ["cat_01", "cat_03"],
+        "favoriteSkills": ["skill_05", "skill_12", "skill_07"]
+    }
+]
