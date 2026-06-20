@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 
 type MoonProps = SVGProps<SVGSVGElement>
 
-export const Moon = (props: MoonProps) => {
+export const MoonIcon = (props: MoonProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ export const Moon = (props: MoonProps) => {
   )
 }
 
-export default Moon
+export default MoonIcon

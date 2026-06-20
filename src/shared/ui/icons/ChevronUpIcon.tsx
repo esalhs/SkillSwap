@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 
 type ChevronUpProps = SVGProps<SVGSVGElement>
 
-export const ChevronUp = (props: ChevronUpProps) => {
+export const ChevronUpIcon = (props: ChevronUpProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ export const ChevronUp = (props: ChevronUpProps) => {
   )
 }
 
-export default ChevronUp
+export default ChevronUpIcon

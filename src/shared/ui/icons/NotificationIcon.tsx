@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 
 type NotificationProps = SVGProps<SVGSVGElement>
 
-export const Notification = (props: NotificationProps) => {
+export const NotificationIcon = (props: NotificationProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ export const Notification = (props: NotificationProps) => {
   )
 }
 
-export default Notification
+export default NotificationIcon

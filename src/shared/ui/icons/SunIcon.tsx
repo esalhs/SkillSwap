@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 
 type SunProps = SVGProps<SVGSVGElement>
 
-export const Sun = (props: SunProps) => {
+export const SunIcon = (props: SunProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ export const Sun = (props: SunProps) => {
   )
 }
 
-export default Sun
+export default SunIcon

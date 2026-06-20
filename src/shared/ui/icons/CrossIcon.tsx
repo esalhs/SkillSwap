@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 
 type CrossProps = SVGProps<SVGSVGElement>
 
-export const Cross = (props: CrossProps) => {
+export const CrossIcon = (props: CrossProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,4 +24,4 @@ export const Cross = (props: CrossProps) => {
   )
 }
 
-export default Cross
+export default CrossIcon

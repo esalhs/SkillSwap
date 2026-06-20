@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 
 type MoreSquareProps = SVGProps<SVGSVGElement>
 
-export const MoreSquare = (props: MoreSquareProps) => {
+export const MoreSquareIcon = (props: MoreSquareProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,4 +24,4 @@ export const MoreSquare = (props: MoreSquareProps) => {
   )
 }
 
-export default MoreSquare
+export default MoreSquareIcon
