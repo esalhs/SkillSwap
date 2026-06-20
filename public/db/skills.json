@@ -1,13 +1,46 @@
 {
-  "role": "user",
-  "createdAt": "2025-01-01T08:00:00Z",
-  "bio": "Привет! Люблю ритм, кофе по утрам и людей, которые не боятся пробовать новое",
-  "idSkills": [
+  "skillDomains": [
     {
-      "skillId": 102,
-      "fullBio": "Привет! Я играю на барабанах уже больше 10 лет — от репетиций в гараже до выступлений на сцене с живыми группами. Научу основам техники (и как не отбить себе пальцы), играть любимые ритмы и разбирать песни, импровизировать и звучать уверенно даже без партитуры"
+      "id": 1,
+      "name": "Творчество и искусство",
+      "categories": [
+        {
+          "id": 10,
+          "name": "Музыка и звук",
+          "skills": [
+            {
+              "id": 100,
+              "name": "Гитара",
+              "description": "",
+              "skillImages": [],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            },
+            {
+              "id": 101,
+              "name": "Пианино",
+              "description": "",
+              "skillImages": [],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            },
+            {
+              "id": 102,
+              "name": "Игра на барабанах",
+              "description": "Привет! Я играю на барабанах уже больше 10 лет — от репетиций в гараже до выступлений на сцене с живыми группами. Научу основам техники (и как не отбить себе пальцы), играть любимые ритмы и разбирать песни, импровизировать и звучать уверенно даже без партитуры",
+              "skillImages": [
+                "https://example.com/images/drums-1.jpg",
+                "https://example.com/images/drums-2.jpg"
+              ],
+              "likedByUserIds": [12, 47, 89],
+              "learningUserIds": [23, 56],
+              "wantToLearnUserIds": [31, 78, 99]
+            }
+          ]
+        }
+      ]
     }
-  ],
-  "favoriteCategories": [10],
-  "favoriteSkills": [101]
+  ]
 }
