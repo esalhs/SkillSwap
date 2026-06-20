@@ -1,6 +1,6 @@
 [
     {
-        "id": "user_01",
+        "id": "1",
         "email": "ivan@example.com",
         "password": "12345",
         "fullName": "Иван",
@@ -11,12 +11,11 @@
         "role": "user",
         "createdAt": "2025-01-01T08:00:00Z",
         "bio": "Привет! Люблю ритм, кофе по утрам и людей, которые не боятся пробовать новое",
-        "idSkill": "skill_01",
-        "favoriteCategories": ["cat_01", "cat_05"],
-        "favoriteSkills": ["skill_05", "skill_12", "skill_07"]
+        "idSkill": "100",
+        "favoriteCategories": ["10", "13"]
     },
     {
-        "id": "user_02",
+        "id": "2",
         "email": "anna@example.com",
         "password": "56789",
         "fullName": "Анна",
@@ -27,12 +26,11 @@
         "role": "user",
         "createdAt": "2023-02-02T09:00:00Z",
         "bio": "Здравствуй! Преподаватель английского языка, хочу научиться медитировать.",
-        "idSkill": "skill_02",
-        "favoriteCategories": ["cat_01", "cat_03"],
-        "favoriteSkills": ["skill_05", "skill_12", "skill_07"]
+        "idSkill": "101",
+        "favoriteCategories": ["14", "11"]
     },
     {
-        "id": "user_03",
+        "id": "3",
         "email": "test@example.com",
         "password": "test123",
         "fullName": "Тест",
@@ -43,8 +41,7 @@
         "role": "admin",
         "createdAt": "2000-03-02T00:00:00Z",
         "bio": "Test test test",
-        "idSkill": "skill_03",
-        "favoriteCategories": ["cat_01", "cat_03"],
-        "favoriteSkills": ["skill_05", "skill_12", "skill_07"]
+        "idSkill": "102",
+        "favoriteCategories": ["12"]
     }
 ]
