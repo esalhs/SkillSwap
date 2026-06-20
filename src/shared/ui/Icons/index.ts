@@ -11,3 +11,4 @@ export { MessageTextIcon } from './MessageTextIcon';
 export { RequestIcon } from './RequestIcon';
 export { CountIcon } from './CountIcon';
 export { CalendarIcon } from './CalendarIcon';
+export { LogoIcon } from './LogoIcon';
