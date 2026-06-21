@@ -11,6 +11,27 @@
   --color-error: #ef4444;
   --color-success: #22c55e;
 
+    /* Colors-var */
+  --color-caption: #69735d;
+  --color-toggle: #b2b9a9;
+  --color-disabled-text: #9ca197;
+  --color-disabled: #e4e8df;
+  --color-text-link: #508826;
+  --color-button-pressed: #508826;
+  --color-color-accent: #abd27a;
+  --color-button-hover: #deebc5;
+  --color-tag-biznes-i-karera: #eee7f7;
+  --color-tag-tvorchestvo-i-iskusstvo: #f7e7f2;
+  --color-tag-inostrannye-yazyki: #ebe5c5;
+  --color-tag-obrazovanie-i-razvitie: #e7f2f6;
+  --color-tag-dom-i-uyut: #f7ebe5;
+  --color-tag-zdorove-i-layfstayl: #e9f7e7;
+  --color-tag-add: #e8ecf7;
+  --color-background: #f9faf7;
+  --color-card: #fff;
+  --color-input: #fff;
+  --color-alarm: #e0796e;
+
   /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
