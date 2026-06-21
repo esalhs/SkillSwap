@@ -1,4 +1,77 @@
 .header {
-    width: 100%;
-    height: 104px;
+  width: 100%;
+  min-height: 104px;
+  background-color: #f9faf7;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px 36px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.leftSection, .rightSection {
+  display: flex;
+  align-items: center;
+}
+
+.leftSection {
+  gap: 32px;
+}
+
+.rightSection {
+  gap: 32px;
+}
+
+.centerSection {
+   display: flex;
+  flex-grow: 1;
+  margin: 0 32px;
+  max-width: 100%;
+}
+
+.centerSection > * {
+  width: 100%;
+}
+
+.iconSection {
+  display: flex;
+  gap: 20px; 
+}
+
+.buttonSection {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 400;
+  color: #253017;
+}
+
+.userAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Стили для временных заглушек */
+.stub {
+  padding: 6px 12px;
+  background-color: #ffe4e6;
+  border: 1px dashed #f43f5e;
+  border-radius: 4px;
+  color: #f43f5e;
+  font-size: 12px;
+  cursor: default;
 }
