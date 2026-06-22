@@ -59,10 +59,19 @@
 }
 
 .userAvatar {
-  width: 48px;
+  width: 48px !important;
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+  .headerLogo {
+  color: var(--color-accent, #abd27a)!important;
+}
+
+.textLogo
+{
+  color: var(--color-text, #253017)!important;
 }
 
 /* Стили для временных заглушек */
