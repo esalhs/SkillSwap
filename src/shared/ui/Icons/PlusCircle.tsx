@@ -5,7 +5,7 @@ interface PlusCircleIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const PlusCircleIcon: React.FC<PlusCircleIconProps> = ({
+export const PlusCircleIcon: React.FC<PlusCircleIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -34,5 +34,3 @@ const PlusCircleIcon: React.FC<PlusCircleIconProps> = ({
     </svg>
   );
 };
-
-export default PlusCircleIcon;

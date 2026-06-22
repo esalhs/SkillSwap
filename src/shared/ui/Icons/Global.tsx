@@ -5,7 +5,7 @@ interface GlobalIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const GlobalIcon: React.FC<GlobalIconProps> = ({
+export const GlobalIcon: React.FC<GlobalIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -34,5 +34,3 @@ const GlobalIcon: React.FC<GlobalIconProps> = ({
     </svg>
   );
 };
-
-export default GlobalIcon;

@@ -5,7 +5,7 @@ interface PaletteIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const PaletteIcon: React.FC<PaletteIconProps> = ({
+export const PaletteIcon: React.FC<PaletteIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -32,5 +32,3 @@ const PaletteIcon: React.FC<PaletteIconProps> = ({
     </svg>
   );
 };
-
-export default PaletteIcon;

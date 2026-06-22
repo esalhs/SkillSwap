@@ -5,7 +5,7 @@ interface DoneIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const DoneIcon: React.FC<DoneIconProps> = ({
+export const DoneIcon: React.FC<DoneIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -27,5 +27,3 @@ const DoneIcon: React.FC<DoneIconProps> = ({
     </svg>
   );
 };
-
-export default DoneIcon;

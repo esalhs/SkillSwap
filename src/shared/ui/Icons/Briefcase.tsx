@@ -5,7 +5,7 @@ interface BriefcaseIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const BriefcaseIcon: React.FC<BriefcaseIconProps> = ({
+export const BriefcaseIcon: React.FC<BriefcaseIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -42,5 +42,3 @@ const BriefcaseIcon: React.FC<BriefcaseIconProps> = ({
     </svg>
   );
 };
-
-export default BriefcaseIcon;

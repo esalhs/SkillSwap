@@ -5,7 +5,7 @@ interface LifestyleIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const LifestyleIcon: React.FC<LifestyleIconProps> = ({
+export const LifestyleIcon: React.FC<LifestyleIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -28,5 +28,3 @@ const LifestyleIcon: React.FC<LifestyleIconProps> = ({
     </svg>
   );
 };
-
-export default LifestyleIcon;

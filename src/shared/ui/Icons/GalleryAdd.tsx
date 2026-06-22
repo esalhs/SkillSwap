@@ -5,7 +5,7 @@ interface GalleryAddIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const GalleryAddIcon: React.FC<GalleryAddIconProps> = ({
+export const GalleryAddIcon: React.FC<GalleryAddIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -42,5 +42,3 @@ const GalleryAddIcon: React.FC<GalleryAddIconProps> = ({
     </svg>
   );
 };
-
-export default GalleryAddIcon;

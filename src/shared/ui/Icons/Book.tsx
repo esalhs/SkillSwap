@@ -5,7 +5,7 @@ interface BookIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const BookIcon: React.FC<BookIconProps> = ({
+export const BookIcon: React.FC<BookIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -38,5 +38,3 @@ const BookIcon: React.FC<BookIconProps> = ({
     </svg>
   );
 };
-
-export default BookIcon;

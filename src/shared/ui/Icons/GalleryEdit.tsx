@@ -5,7 +5,7 @@ interface GalleryEditIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const GalleryEditIcon: React.FC<GalleryEditIconProps> = ({
+export const GalleryEditIcon: React.FC<GalleryEditIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -42,5 +42,3 @@ const GalleryEditIcon: React.FC<GalleryEditIconProps> = ({
     </svg>
   );
 };
-
-export default GalleryEditIcon;

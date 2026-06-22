@@ -5,7 +5,7 @@ interface HomeIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const HomeIcon: React.FC<HomeIconProps> = ({
+export const HomeIcon: React.FC<HomeIconProps> = ({
   size = 24,
   color = 'currentColor',
   ...restProps
@@ -30,5 +30,3 @@ const HomeIcon: React.FC<HomeIconProps> = ({
     </svg>
   );
 };
-
-export default HomeIcon;
