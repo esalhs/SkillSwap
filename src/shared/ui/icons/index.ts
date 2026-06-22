@@ -1,0 +1,6 @@
+export { EyeIcon } from './EyeIcon'
+export { LikeIcon } from './LikeIcon'
+export { CheckboxCategoryIcon } from './CheckboxCategoryIcon'
+export { CheckboxSubcategoryIcon } from './CheckboxSubcategoryIcon'
+export { NotificationActiveIcon } from './NotificationActiveIcon'
+export { VuesaxIcon } from './VuesaxIcon'
