@@ -1,11 +1,28 @@
-export { default as Done } from './Done';
-export { default as PlusCircle } from './PlusCircle';
-export { default as GalleryAdd } from './GalleryAdd';
-export { default as GalleryEdit } from './GalleryEdit';
-export { default as Home } from './Home';
-export { default as Global } from './Global';
-export { default as Briefcase } from './Briefcase';
-export { default as Book } from './Book';
-export { default as Logout } from './Logout';
-export { default as Lifestyle } from './Lifestyle';
-export { default as Palette } from './Palette';
+export { EyeIcon } from './EyeIcon'
+export { LikeIcon } from './LikeIcon'
+export { CheckboxCategoryIcon } from './CheckboxCategoryIcon'
+export { CheckboxSubcategoryIcon } from './CheckboxSubcategoryIcon'
+export { NotificationActiveIcon } from './NotificationActiveIcon'
+export { VuesaxIcon } from './VuesaxIcon'
+export { DoneIcon } from './Done';
+export { PlusCircleIcon } from './PlusCircle';
+export { GalleryAddIcon } from './GalleryAdd';
+export { GalleryEditIcon } from './GalleryEdit';
+export { HomeIcon } from './Home';
+export { GlobalIcon } from './Global';
+export { BriefcaseIcon } from './Briefcase';
+export { BookIcon } from './Book';
+export { LogoutIcon } from './Logout';
+export { LifestyleIcon } from './Lifestyle';
+export { PaletteIcon } from './Palette';
+export { ChevronDownIcon } from './ChevronDownIcon'
+export { ChevronRightIcon } from './ChevronRightIcon'
+export { ChevronUpIcon } from './ChevronUpIcon'
+export { CrossIcon } from './CrossIcon'
+export { SunIcon } from './SunIcon'
+export { MoonIcon } from './MoonIcon'
+export { NotificationIcon } from './NotificationIcon'
+export { MoreSquareIcon } from './MoreSquareIcon'
+export { SearchIcon } from './SearchIcon'
+export { LogoIcon } from './LogoIcon'
+export { NavigationIcon } from './NavigationIcon'

@@ -1,2 +1,0 @@
-export { LogoIcon } from './LogoIcon';
-export { NavigationIcon } from './NavigationIcon';
