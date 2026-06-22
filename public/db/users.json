@@ -1,1 +1,47 @@
-[]
+[
+    {
+        "id": "1",
+        "email": "ivan@example.com",
+        "password": "12345",
+        "fullName": "Иван",
+        "sex": "men",
+        "birthday": "1992-01-01",
+        "avatarUrl": "/avatars/men/1_men.jpg",
+        "location": "Санкт-Петербург",
+        "role": "user",
+        "createdAt": "2025-01-01T08:00:00Z",
+        "bio": "Привет! Люблю ритм, кофе по утрам и людей, которые не боятся пробовать новое",
+        "idSkill": "100",
+        "favoriteCategories": ["10", "13"]
+    },
+    {
+        "id": "2",
+        "email": "anna@example.com",
+        "password": "56789",
+        "fullName": "Анна",
+        "sex": "women",
+        "birthday": "2000-02-02",
+        "avatarUrl": "/avatars/woman/1_woman.jpg",
+        "location": "Казань",
+        "role": "user",
+        "createdAt": "2023-02-02T09:00:00Z",
+        "bio": "Здравствуй! Преподаватель английского языка, хочу научиться медитировать.",
+        "idSkill": "101",
+        "favoriteCategories": ["14", "11"]
+    },
+    {
+        "id": "3",
+        "email": "test@example.com",
+        "password": "test123",
+        "fullName": "Тест",
+        "sex": "not_specified",
+        "birthday": "2000-03-03",
+        "avatarUrl": "/avatars/1_test.jpg",
+        "location": "Тест",
+        "role": "admin",
+        "createdAt": "2000-03-02T00:00:00Z",
+        "bio": "Test test test",
+        "idSkill": "102",
+        "favoriteCategories": ["12"]
+    }
+]
