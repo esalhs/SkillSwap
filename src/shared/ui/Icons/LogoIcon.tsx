@@ -1,19 +1,25 @@
 import type { SVGProps } from 'react'
 
-export function LogoIcon(props: SVGProps<SVGSVGElement>) {
+export type LogoIconProps = SVGProps<SVGSVGElement>
+
+export const LogoIcon = (props: LogoIconProps) => {
   return (
     <svg
-      width={40}
-      height={40}
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
       {...props}
     >
-      <rect width={40} height={40} rx={20} fill="#ABD27A" />
-      <path
-        d="M20 10C20 10 20.5518 15.1499 22.7009 17.2991C24.8501 19.4482 30 20 30 20C30 20 24.8501 20.5518 22.7009 22.7009C20.5518 24.8501 20 30 20 30C20 30 19.4482 24.8501 17.2991 22.7009C15.1499 20.5518 10 20 10 20C10 20 15.1499 19.4482 17.2991 17.2991C19.4482 15.1499 20 10 20 10Z"
-        fill="#F9FAF7"
+      <rect 
+        width="40" 
+        height="40" 
+        fill="currentColor" 
+        rx="20" 
+      />
+      <path 
+        fill="#f9faf7" 
+        d="M20 10s.552 5.15 2.7 7.3C24.85 19.447 30 20 30 20s-5.15.552-7.3 2.7C20.553 24.85 20 30 20 30s-.552-5.15-2.7-7.3C15.15 20.553 10 20 10 20s5.15-.552 7.3-2.7C19.447 15.15 20 10 20 10" 
       />
     </svg>
   )
