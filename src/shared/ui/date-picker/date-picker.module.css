@@ -109,6 +109,7 @@
   --rdp-day_button-border-radius: 50%;
   --rdp-font-family: roboto, sans-serif;
   --rdp-today-color: var(--color-primary);
+
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.02em;
