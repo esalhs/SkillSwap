@@ -1,0 +1,1 @@
+export { SchoolBoard } from './SchoolBoard'
