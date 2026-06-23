@@ -2,11 +2,11 @@
   "skillDomains": [
     {
       "id": "1",
-      "name": "Творчество и медиа",
+      "name": "Творчество и искусство",
       "categories": [
         {
           "id": "10",
-          "name": "Музыка и звук",
+          "name": "Музыка",
           "skills": [
             {
               "id": "107",
@@ -21,103 +21,7 @@
         },
         {
           "id": "11",
-          "name": "Дизайн и визуал",
-          "skills": [
-            {
-              "id": "106",
-              "name": "Основы UI/UX-дизайна",
-              "description": "Расскажу про визуальную иерархию, работу с макетами и базовые принципы проектирования интерфейсов.",
-              "skillImages": ["/images/skills/106-osnovy-ui-ux-dizayna.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": [],
-              "wantToLearnUserIds": []
-            }
-          ]
-        },
-        {
-          "id": "12",
-          "name": "Фото и видео",
-          "skills": [
-            {
-              "id": "103",
-              "name": "Основы фотографии",
-              "description": "Научу работать с композицией, светом и настройками камеры. Подойдёт для начинающих фотографов-любителей.",
-              "skillImages": ["/images/skills/103-osnovy-fotografii.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": [],
-              "wantToLearnUserIds": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "name": "Технологии и карьера",
-      "categories": [
-        {
-          "id": "13",
-          "name": "Программирование и IT",
-          "skills": [
-            {
-              "id": "101",
-              "name": "Наставничество в IT",
-              "description": "Помогу разобраться с основами разработки, карьерным ростом в IT и подготовкой к собеседованиям.",
-              "skillImages": ["/images/skills/101-nastavnichestvo-v-it.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": [],
-              "wantToLearnUserIds": []
-            }
-          ]
-        },
-        {
-          "id": "14",
-          "name": "Маркетинг и коммуникации",
-          "skills": [
-            {
-              "id": "109",
-              "name": "SMM и контент-маркетинг",
-              "description": "Научу вести соцсети, создавать контент-план и продвигать проекты с помощью современных маркетинговых инструментов.",
-              "skillImages": ["/images/skills/109-smm-kontent-marketing.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": [],
-              "wantToLearnUserIds": []
-            },
-            {
-              "id": "112",
-              "name": "Самопрезентация",
-              "description": "Помогу уверенно рассказывать о себе, готовиться к собеседованиям и выступлениям перед аудиторией.",
-              "skillImages": ["/images/skills/112-samoprezentatsiya.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": [],
-              "wantToLearnUserIds": []
-            }
-          ]
-        },
-        {
-          "id": "15",
-          "name": "Личная эффективность",
-          "skills": [
-            {
-              "id": "100",
-              "name": "Тайм-менеджмент",
-              "description": "Научу планировать день, расставлять приоритеты и работать без выгорания с помощью простых и проверенных техник.",
-              "skillImages": ["/images/skills/100-taym-menedzhment.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": [],
-              "wantToLearnUserIds": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Языки и обучение",
-      "categories": [
-        {
-          "id": "16",
-          "name": "Иностранные языки",
+          "name": "Языки",
           "skills": [
             {
               "id": "102",
@@ -138,17 +42,35 @@
               "wantToLearnUserIds": []
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "name": "Здоровье и активность",
-      "categories": [
+        },
         {
-          "id": "17",
-          "name": "Спорт и активный отдых",
+          "id": "12",
+          "name": "Программирование",
           "skills": [
+            {
+              "id": "101",
+              "name": "Наставничество в IT",
+              "description": "Помогу разобраться с основами разработки, карьерным ростом в IT и подготовкой к собеседованиям.",
+              "skillImages": ["/images/skills/101-nastavnichestvo-v-it.jpg"],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            }
+          ]
+        },
+        {
+          "id": "13",
+          "name": "Здоровье и спорт",
+          "skills": [
+            {
+              "id": "104",
+              "name": "Медитация",
+              "description": "Покажу дыхательные практики, техники осознанности и простые упражнения для снятия стресса и концентрации внимания.",
+              "skillImages": ["/images/skills/104-meditatsiya.jpg"],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            },
             {
               "id": "111",
               "name": "Ориентирование на местности",
@@ -170,29 +92,38 @@
           ]
         },
         {
-          "id": "18",
-          "name": "Осознанность и wellbeing",
+          "id": "14",
+          "name": "Дизайн",
           "skills": [
             {
-              "id": "104",
-              "name": "Медитация",
-              "description": "Покажу дыхательные практики, техники осознанности и простые упражнения для снятия стресса и концентрации внимания.",
-              "skillImages": ["/images/skills/104-meditatsiya.jpg"],
+              "id": "106",
+              "name": "Основы UI/UX-дизайна",
+              "description": "Расскажу про визуальную иерархию, работу с макетами и базовые принципы проектирования интерфейсов.",
+              "skillImages": ["/images/skills/106-osnovy-ui-ux-dizayna.jpg"],
               "likedByUserIds": [],
               "learningUserIds": [],
               "wantToLearnUserIds": []
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "5",
-      "name": "Быт и хобби",
-      "categories": [
+        },
         {
-          "id": "19",
-          "name": "Кулинария и напитки",
+          "id": "15",
+          "name": "Фото и видео",
+          "skills": [
+            {
+              "id": "103",
+              "name": "Основы фотографии",
+              "description": "Научу работать с композицией, светом и настройками камеры. Подойдёт для начинающих фотографов-любителей.",
+              "skillImages": ["/images/skills/103-osnovy-fotografii.jpg"],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            }
+          ]
+        },
+        {
+          "id": "16",
+          "name": "Кулинария",
           "skills": [
             {
               "id": "108",
@@ -215,8 +146,41 @@
           ]
         },
         {
-          "id": "20",
-          "name": "Рукоделие и DIY",
+          "id": "17",
+          "name": "Бизнес",
+          "skills": [
+            {
+              "id": "100",
+              "name": "Тайм-менеджмент",
+              "description": "Научу планировать день, расставлять приоритеты и работать без выгорания с помощью простых и проверенных техник.",
+              "skillImages": ["/images/skills/100-taym-menedzhment.jpg"],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            },
+            {
+              "id": "109",
+              "name": "SMM и контент-маркетинг",
+              "description": "Научу вести соцсети, создавать контент-план и продвигать проекты с помощью современных маркетинговых инструментов.",
+              "skillImages": ["/images/skills/109-smm-kontent-marketing.jpg"],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            },
+            {
+              "id": "112",
+              "name": "Самопрезентация",
+              "description": "Помогу уверенно рассказывать о себе, готовиться к собеседованиям и выступлениям перед аудиторией.",
+              "skillImages": ["/images/skills/112-samoprezentatsiya.jpg"],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
+            }
+          ]
+        },
+        {
+          "id": "18",
+          "name": "Рукоделие и хобби",
           "skills": [
             {
               "id": "105",
@@ -235,12 +199,21 @@
               "likedByUserIds": [],
               "learningUserIds": [],
               "wantToLearnUserIds": []
+            },
+            {
+              "id": "118",
+              "name": "Уход за комнатными растениями",
+              "description": "Расскажу, как выбирать растения, поливать, пересаживать и спасать их от типичных проблем.",
+              "skillImages": ["/images/skills/118-uhod-za-rasteniyami.jpg"],
+              "likedByUserIds": [],
+              "learningUserIds": [],
+              "wantToLearnUserIds": []
             }
           ]
         },
         {
-          "id": "21",
-          "name": "Практические навыки и интересы",
+          "id": "19",
+          "name": "Другое",
           "skills": [
             {
               "id": "113",
@@ -256,15 +229,6 @@
               "name": "Шахматы",
               "description": "Научу дебютам, тактике и стратегическому мышлению. Подойдёт новичкам и игрокам среднего уровня.",
               "skillImages": ["/images/skills/115-shahmaty.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": [],
-              "wantToLearnUserIds": []
-            },
-            {
-              "id": "118",
-              "name": "Уход за комнатными растениями",
-              "description": "Расскажу, как выбирать растения, поливать, пересаживать и спасать их от типичных проблем.",
-              "skillImages": ["/images/skills/118-uhod-za-rasteniyami.jpg"],
               "likedByUserIds": [],
               "learningUserIds": [],
               "wantToLearnUserIds": []
