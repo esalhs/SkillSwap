@@ -13,16 +13,16 @@
   min-height: 0;
 }
 
-.gallery :global(.swiper) {
+.gallery .swiper {
   width: 100%;
   height: 100%;
 }
 
-.gallery :global(.swiper-slide) {
+.gallery .swiper-slide {
   height: 324px;
 }
 
-.gallery :global(.swiper-slide) img {
+.gallery .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
