@@ -20,8 +20,7 @@ import { ROUTES } from '@/shared/lib/constants'
 export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) => {
   // Страница логина / регистрации
   const [searchQuery, setSearchQuery] = useState('')
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
-
+ // const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   if (isAuthPage) {
     return (
       <header className={styles.header}>
@@ -82,11 +81,12 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
               <IconButton
                 icon={<NotificationActiveIcon />}
                 ariaLabel="Уведомления"
-                onClick={() => setIsNotificationsOpen(true)}
+                onClick={() => console.log('Открытие уведомлений: клик зафиксирован')}
+                // onClick={() => setIsNotificationsOpen(true)}
               />
               {/* {isNotificationsOpen && (
         <NotificationsModal onClose={() => setIsNotificationsOpen(false)} />
-      )} */}
+      )}  */}
               <Link to={ROUTES.FAVORITES}>
                 <IconButton
                   icon={<LikeIcon />}
