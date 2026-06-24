@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { useState, useEffect } from 'react';
 import styles from './SkillsMenu.module.css';
 import { domainConfig } from '@/shared/lib/domainConfig';
+import { Skill } from '@/shared/types';
 
 interface SkillDomain {
   id: string;
@@ -11,7 +12,7 @@ interface SkillDomain {
   categories: {
     id: string;
     name: string;
-    skills: any[];
+    skills: Skill[];
   }[];
 }
 
@@ -46,7 +47,7 @@ export const SkillsMenu: React.FC<SkillsMenuProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen, loaded, loading]);
 
- 
+
   if (!isOpen) return null;
   if (loading || !loaded || domains.length === 0) return null;
 
