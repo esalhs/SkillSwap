@@ -13,9 +13,8 @@
               "name": "Основы фотографии",
               "description": "Научу работать с композицией, светом и настройками камеры. Подойдёт для начинающих фотографов-любителей.",
               "skillImages": ["/images/skills/103-osnovy-fotografii.jpg"],
-              "likedByUserIds": ["1", "2", "8", "13"],
-              "learningUserIds": ["4", "9"],
-              "wantToLearnUserIds": ["1", "13", "19"]
+              "authorId": "4",
+              "likedByUserIds": ["1", "2", "8", "13"]
             }
           ]
         },
@@ -28,9 +27,8 @@
               "name": "Игра на барабанах",
               "description": "Научу основам игры на барабанной установке: ритм, координация рук и ног, простые биты и импровизация.",
               "skillImages": ["/images/skills/107-igra-na-barabanah.jpg"],
-              "likedByUserIds": ["3", "5", "17"],
-              "learningUserIds": ["2", "5"],
-              "wantToLearnUserIds": ["3", "11", "18"]
+              "authorId": "8",
+              "likedByUserIds": ["3", "5", "17"]
             }
           ]
         },
@@ -43,9 +41,8 @@
               "name": "Основы UI/UX-дизайна",
               "description": "Расскажу про визуальную иерархию, работу с макетами и базовые принципы проектирования интерфейсов.",
               "skillImages": ["/images/skills/106-osnovy-ui-ux-dizayna.jpg"],
-              "likedByUserIds": ["2", "6", "20"],
-              "learningUserIds": ["7", "17"],
-              "wantToLearnUserIds": ["1", "6", "14"]
+              "authorId": "7",
+              "likedByUserIds": ["2", "6", "20"]
             }
           ]
         },
@@ -58,9 +55,8 @@
               "name": "Вязание",
               "description": "Покажу базовые петли, узоры и секреты, с которых удобно начать вязать для себя и в подарок.",
               "skillImages": ["/images/skills/110-vyazanie.jpg"],
-              "likedByUserIds": ["1", "3", "5", "11", "12", "15", "20"],
-              "learningUserIds": ["3", "9"],
-              "wantToLearnUserIds": ["7", "12", "15"]
+              "authorId": "11",
+              "likedByUserIds": ["1", "3", "5", "11", "12", "15", "20"]
             }
           ]
         }
@@ -79,18 +75,16 @@
               "name": "Английский язык",
               "description": "Помогу улучшить разговорный английский, грамматику и произношение. Подходит для уровней от beginner до upper-intermediate.",
               "skillImages": ["/images/skills/102-angliyskiy-yazyk.jpg"],
-              "likedByUserIds": ["4", "7"],
-              "learningUserIds": ["1", "6", "14"],
-              "wantToLearnUserIds": ["2", "9", "16"]
+              "authorId": "3",
+              "likedByUserIds": ["4", "7"]
             },
             {
               "id": "116",
               "name": "Иностранные языки",
               "description": "Помогу освоить основы и разговорную практику на нескольких языках, объясню грамматику доступным языком.",
               "skillImages": ["/images/skills/116-inostrannye-yazyki.jpg"],
-              "likedByUserIds": ["4", "7"],
-              "learningUserIds": ["5", "11"],
-              "wantToLearnUserIds": ["1", "4", "8"]
+              "authorId": "17",
+              "likedByUserIds": ["4", "7"]
             }
           ]
         },
@@ -103,9 +97,8 @@
               "name": "Наставничество в IT",
               "description": "Помогу разобраться с основами разработки, карьерным ростом в IT и подготовкой к собеседованиям.",
               "skillImages": ["/images/skills/101-nastavnichestvo-v-it.jpg"],
-              "likedByUserIds": ["4", "10"],
-              "learningUserIds": ["1", "10", "20"],
-              "wantToLearnUserIds": ["4", "9", "15"]
+              "authorId": "2",
+              "likedByUserIds": ["4", "10"]
             }
           ]
         },
@@ -118,9 +111,8 @@
               "name": "Шахматы",
               "description": "Научу дебютам, тактике и стратегическому мышлению. Подойдёт новичкам и игрокам среднего уровня.",
               "skillImages": ["/images/skills/115-shahmaty.jpg"],
-              "likedByUserIds": ["5", "9", "18"],
-              "learningUserIds": ["8", "13"],
-              "wantToLearnUserIds": ["3", "7", "19"]
+              "authorId": "16",
+              "likedByUserIds": ["5", "9", "18"]
             }
           ]
         },
@@ -133,9 +125,8 @@
               "name": "Самопрезентация",
               "description": "Помогу уверенно рассказывать о себе, готовиться к собеседованиям и выступлениям перед аудиторией.",
               "skillImages": ["/images/skills/112-samoprezentatsiya.jpg"],
-              "likedByUserIds": ["8", "10", "13", "16", "19"],
-              "learningUserIds": ["8", "2"],
-              "wantToLearnUserIds": ["4", "11", "20"]
+              "authorId": "13",
+              "likedByUserIds": ["8", "10", "13", "16", "19"]
             }
           ]
         }
@@ -154,9 +145,8 @@
               "name": "Медитация",
               "description": "Покажу дыхательные практики, техники осознанности и простые упражнения для снятия стресса и концентрации внимания.",
               "skillImages": ["/images/skills/104-meditatsiya.jpg"],
-              "likedByUserIds": ["6", "11", "17", "19"],
-              "learningUserIds": ["3", "7"],
-              "wantToLearnUserIds": ["1", "8", "12"]
+              "authorId": "5",
+              "likedByUserIds": ["6", "11", "17", "19"]
             }
           ]
         },
@@ -169,9 +159,8 @@
               "name": "Плавание и дайвинг",
               "description": "Проведу занятия по плаванию для начинающих и расскажу основы безопасного погружения с аквалангом.",
               "skillImages": ["/images/skills/114-plavanie-i-dayving.jpg"],
-              "likedByUserIds": ["12", "14", "16"],
-              "learningUserIds": ["1", "6"],
-              "wantToLearnUserIds": ["4", "10", "16"]
+              "authorId": "15",
+              "likedByUserIds": ["12", "14", "16"]
             }
           ]
         },
@@ -184,9 +173,8 @@
               "name": "Ориентирование на местности",
               "description": "Научу читать карту, ориентироваться по солнцу и приметам без GPS — полезно в походах и путешествиях.",
               "skillImages": ["/images/skills/111-orientirovanie-na-mestnosti.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["4", "15"],
-              "wantToLearnUserIds": ["2", "9", "17"]
+              "authorId": "12",
+              "likedByUserIds": []
             }
           ]
         }
@@ -205,18 +193,16 @@
               "name": "Выпечка пирожков",
               "description": "Поделюсь рецептами пирожков и приёмами, которые помогут готовить вкусно и экспериментировать на кухне без страха.",
               "skillImages": ["/images/skills/108-vypechka-pirozhkov.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["1", "12"],
-              "wantToLearnUserIds": ["3", "7", "14"]
+              "authorId": "9",
+              "likedByUserIds": []
             },
             {
               "id": "117",
               "name": "Приготовление кофе",
               "description": "Научу варить эспрессо, альтернативу и латте-арт: от выбора зерна до настройки оборудования.",
               "skillImages": ["/images/skills/117-prigotovlenie-kofe.jpg"],
-              "likedByUserIds": ["1", "9", "13", "20"],
-              "learningUserIds": ["5", "10"],
-              "wantToLearnUserIds": ["2", "6", "15"]
+              "authorId": "18",
+              "likedByUserIds": ["1", "9", "13", "20"]
             }
           ]
         },
@@ -229,9 +215,8 @@
               "name": "Уход за комнатными растениями",
               "description": "Расскажу, как выбирать растения, поливать, пересаживать и спасать их от типичных проблем.",
               "skillImages": ["/images/skills/118-uhod-za-rasteniyami.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["1", "19"],
-              "wantToLearnUserIds": ["4", "8", "12"]
+              "authorId": "19",
+              "likedByUserIds": []
             }
           ]
         },
@@ -244,18 +229,16 @@
               "name": "Сборка мебели своими руками",
               "description": "Научу читать инструкции, подбирать инструменты и собирать мебель без лишних деталей и нервов.",
               "skillImages": ["/images/skills/105-sborka-mebeli.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["2", "11"],
-              "wantToLearnUserIds": ["7", "10", "18"]
+              "authorId": "6",
+              "likedByUserIds": []
             },
             {
               "id": "113",
               "name": "Авторемонт",
               "description": "Научу диагностировать типичные неисправности, обслуживать автомобиль и выполнять базовый ремонт своими руками.",
               "skillImages": ["/images/skills/113-avtoremont.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["2", "14"],
-              "wantToLearnUserIds": ["1", "9", "13"]
+              "authorId": "14",
+              "likedByUserIds": []
             }
           ]
         }
@@ -274,9 +257,8 @@
               "name": "SMM и контент-маркетинг",
               "description": "Научу вести соцсети, создавать контент-план и продвигать проекты с помощью современных маркетинговых инструментов.",
               "skillImages": ["/images/skills/109-smm-kontent-marketing.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["4", "9"],
-              "wantToLearnUserIds": ["2", "11", "16"]
+              "authorId": "10",
+              "likedByUserIds": []
             }
           ]
         },
@@ -289,9 +271,8 @@
               "name": "Тайм-менеджмент",
               "description": "Научу планировать день, расставлять приоритеты и работать без выгорания с помощью простых и проверенных техник.",
               "skillImages": ["/images/skills/100-taym-menedzhment.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["6", "15"],
-              "wantToLearnUserIds": ["3", "8", "19"]
+              "authorId": "1",
+              "likedByUserIds": []
             }
           ]
         }
@@ -310,9 +291,8 @@
               "name": "Владение гигантским мечом",
               "description": "Освою с вами базовые стойки, замахи и защиту двуручным мечом. Вместе мы одолеем Гриффита!",
               "skillImages": ["/images/skills/119-gigantskiy-mech.jpg"],
-              "likedByUserIds": [],
-              "learningUserIds": ["1", "7"],
-              "wantToLearnUserIds": ["2", "12", "15"]
+              "authorId": "20",
+              "likedByUserIds": []
             }
           ]
         }
