@@ -41,6 +41,10 @@
   width: 100%;
 }
 
+.searchWrapper input {
+  border-color: transparent !important;
+}
+
 .iconSection {
   display: flex;
   gap: 20px; 
@@ -55,7 +59,7 @@
 .userName {
   font-size: 16px;
   font-weight: 400;
-  color: #253017;
+  color: var(--color-text, #253017);
 }
 
 .userAvatar {
