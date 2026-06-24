@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Button } from '@/shared/ui/Button'
 import { SkillsMenu } from './SkillsMenu'
 import styles from './NavBar.module.css'
+import { ChevronDownIcon } from '@/shared/ui/Icons/index'
 
 export const NavBar: React.FC = () => {
   const [isSkillsOpen, setIsSkillsOpen] = useState(false)
@@ -50,10 +51,10 @@ export const NavBar: React.FC = () => {
             variant="tertiary"
             onClick={toggleSkills}
             className={styles.skillsButton}
-            // TODO: добавить иконку-стрелку с prop icon и iconPosition="after"
           >
             Все навыки
           </Button>
+          <ChevronDownIcon color='#253017'/>
         </li>
       </ul>
 

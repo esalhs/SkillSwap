@@ -1,8 +1,8 @@
 .menu {
   position: fixed;
   top: 95px;
-  left: 36px;
-  width: 1136px;
+  left: 40px;
+  width: auto;
   background-color: #fff;
   padding: 60px;
   z-index: 1000;
@@ -19,7 +19,7 @@
 
 .categoryHeader {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 12px;
   margin-bottom: 12px;
 }
@@ -27,11 +27,15 @@
 .categoryIcon {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .categoryTitle {
-  /* font-family: 'Jost'; */
+  font-family: 'Jost';
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
@@ -49,7 +53,8 @@
 .subcategoryItem {
   padding: 2px;
   cursor: default;
-  transition: color 0.2s; /* font-family: 'Roboto'; */
+  transition: color 0.2s; 
+  font-family: 'Roboto';
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
