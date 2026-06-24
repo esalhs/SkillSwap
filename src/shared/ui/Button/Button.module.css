@@ -1,5 +1,5 @@
 :root {
-	--button-text: #253017;
+  --button-text: #253017;
   --button-accent: #abd27a;
   --button-hover: #deebc5;
   --button-pressed: #508826;
@@ -54,71 +54,71 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--button-pressed,#508826);
+  outline: 2px solid var(--button-pressed, #508826);
   outline-offset: 2px;
 }
 
 /* Вариант Primary (Светло-зеленая кнопка) */
 .primary {
-  background-color: var(--button-accent,#abd27a);
+  background-color: var(--button-accent, #abd27a);
 }
 
 .primary:hover,
 .primary:focus-visible {
   outline: none;
-  background-color: var(--button-hover,#deebc5);
+  background-color: var(--button-hover, #deebc5);
 }
 
 .primary:active {
   color: #fff;
-  background-color: var(--button-pressed,#508826);
+  background-color: var(--button-pressed, #508826);
 }
 
 .primary:disabled {
-  color: var(--caption,#69735d);
+  color: var(--caption, #69735d);
   background-color: var(--button-disabled, #e4e8df);
   cursor: not-allowed;
 }
 
 /* Вариант Secondary */
 .secondary {
-  border-color: var(--button-accent,#abd27a);
+  border-color: var(--button-accent, #abd27a);
   background-color: var(--secondary-background-color, #fff);
 }
 
 .secondary:hover,
 .secondary:focus-visible {
-  border-color: var(--button-hover,#deebc5);
-  color: var(--caption,#69735d);
+  border-color: var(--button-hover, #deebc5);
+  color: var(--caption, #69735d);
 }
 
 .secondary:active {
-  border-color: var(--button-pressed,#508826);
+  border-color: var(--button-pressed, #508826);
 }
 
 .secondary:disabled {
   border-color: var(--button-disabled, #e4e8df);
-  color: var(--disabled-text,#9ca197);
+  color: var(--disabled-text, #9ca197);
   cursor: not-allowed;
 }
 
 /* Вариант Tertiary */
 .tertiary {
   border: none;
-  background-color: var(--tertiary-background-color,#fff);
+  background-color: var(--tertiary-background-color, #fff);
 }
 
 .tertiary:hover,
 .tertiary:focus-visible {
-  background-color: var(--button-hover,#deebc5);
+  background-color: var(--button-hover, #deebc5);
 }
 
 .tertiary:active {
-  background-color: var(--button-hover,#deebc5);
+  background-color: var(--button-hover, #deebc5);
 }
 
 .tertiary:disabled {
   border-color: var(--button-disabled, #e4e8df);
-  color: var(--disabled-text,#9ca197);
+  color: var(--disabled-text, #9ca197);
   cursor: not-allowed;
 }
