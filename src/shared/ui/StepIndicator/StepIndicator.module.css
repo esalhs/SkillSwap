@@ -1,0 +1,31 @@
+.stepIndicator {
+  display: flex;
+  justify-content: center;
+  width: 212px;
+  height: 44px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stepContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.progressLine {
+  width: 60px;
+  height: 4px;
+  border-radius: 8px;
+  background-color: var(--color-disabled);
+}
+
+.active {
+  background-color: var(--color-accent);
+}
+
+.stepsText {
+  font-family: Jost, sans-serif;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.011em;
+}
