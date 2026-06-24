@@ -1,7 +1,7 @@
 .nav {
   display: flex;
   align-items: center;
-  color: #253017;
+  color: var(--color-text);
 }
 
 .list {
@@ -24,7 +24,7 @@
 }
 
 .item:hover {
-  color: #508826;
+  color: var(--color-text-link);
   background-color: transparent;
   cursor: pointer;
 }
@@ -32,7 +32,7 @@
 .link {
   font-family: Roboto, sans-serif;
   text-decoration: none;
-  color: #253017;
+  color: var(--color-text);
   border-bottom: 2px solid transparent;
   transition:
     border-color 0.2s,
@@ -43,7 +43,7 @@
 }
 
 .link:hover {
-  color: #508826;
+  color: var(--color-text-link);
 }
 
 .nav .skillsButton {
@@ -59,7 +59,7 @@
 }
 
 .nav .skillsButton:hover {
-  color: #508826;
+  color: var(--color-button-pressed);
   background-color: transparent;
 }
 
@@ -69,6 +69,5 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(48 72 41 / 10%);
   z-index: 999;
 }

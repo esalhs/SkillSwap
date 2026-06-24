@@ -51,10 +51,11 @@ export const NavBar: React.FC = () => {
             variant="tertiary"
             onClick={toggleSkills}
             className={styles.skillsButton}
+            icon={<ChevronDownIcon color='var(--color-text)'/>}
+            iconPosition="after"
           >
             Все навыки
           </Button>
-          <ChevronDownIcon color='#253017'/>
         </li>
       </ul>
 

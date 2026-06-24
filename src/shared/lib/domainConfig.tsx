@@ -11,27 +11,27 @@ import {
 
 export const domainConfig: Record<string, { icon: React.ReactNode; bgColor: string }> = {
   '1': {
-    icon: <PaletteIcon size={18} color="#253017" />,
-    bgColor: '#F7E7F2'
+    icon: <PaletteIcon size={18} color="var(--color-text)" />,
+    bgColor: 'var(--color-tag-art)'
   },
   '2': {
-    icon: <BookIcon size={19} color="#253017" />,
-    bgColor: '#E7F2F6',
+    icon: <BookIcon size={19} color="var(--color-text)" />,
+    bgColor: 'var(--color-tag-education)'
   },
   '3': {
-    icon: <GlobalIcon size={19} color="#253017" />,
-    bgColor: '#EBE5C5', // Дом и уют
+    icon: <GlobalIcon size={19} color="var(--color-text)" />,
+    bgColor: 'var(--color-tag-languages)'
   },
   '4': {
-    icon: <HomeIcon size={19} color="#253017" />,
-    bgColor: '#F7EBE5', // Творчество (можно заменить)
+    icon: <HomeIcon size={19} color="var(--color-text)" />,
+    bgColor: 'var(--color-tag-home)'
   },
   '5': {
-    icon: <BriefcaseIcon size={19} color="#253017" />,
-    bgColor: '#EEE7F7', // Образование и развитие
+    icon: <BriefcaseIcon size={19} color="var(--color-text)" />,
+    bgColor: 'var(--color-tag-business)'
   },
   '6': {
-    icon: <LifestyleIcon size={19} color="#253017" />,
-    bgColor: '#E9F7E7', // Здоровье и лайфстайл
+    icon: <LifestyleIcon size={19} color="var(--color-text)" />,
+    bgColor: 'var(--color-tag-health)'
   },
 };
