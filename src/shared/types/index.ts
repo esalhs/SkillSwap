@@ -3,14 +3,23 @@ export type SkillType = 'teach' | 'learn'
 
 export interface Skill {
   id: string
-  title: string
+  name: string
   description: string
-  type: SkillType
-  category: string
-  tags: string[]
-  imageUrl: string | null
+  skillImages: string[]
   authorId: string
-  createdAt: string
+  likedByUserIds: string[]
+}
+
+export interface SkillCategory {
+  id: string
+  name: string
+  skills: Skill[]
+}
+
+export interface SkillDomain {
+  id: string
+  name: string
+  categories: SkillCategory[]
 }
 
 // ─── User ────────────────────────────────────────────────

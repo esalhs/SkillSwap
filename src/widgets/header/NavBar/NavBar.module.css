@@ -1,0 +1,73 @@
+.nav {
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 24px;
+  align-items: center;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.item:hover {
+  color: var(--color-text-link);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.link {
+  font-family: Roboto, sans-serif;
+  text-decoration: none;
+  color: var(--color-text);
+  border-bottom: 2px solid transparent;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.link:hover {
+  color: var(--color-text-link);
+}
+
+.nav .skillsButton {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav .skillsButton:hover {
+  color: var(--color-button-pressed);
+  background-color: transparent;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+}

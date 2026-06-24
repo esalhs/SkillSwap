@@ -14,7 +14,7 @@ export const LogoIcon = (props: LogoIconProps) => {
       <rect 
         width="40" 
         height="40" 
-        fill="currentColor" 
+        style={{ fill: 'var(--color-accent)' }}
         rx="20" 
       />
       <path 

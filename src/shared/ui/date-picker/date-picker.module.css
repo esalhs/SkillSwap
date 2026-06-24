@@ -1,0 +1,141 @@
+.date-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.date-picker__label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.date-picker__label--error {
+  color: var(--color-error);
+}
+
+.date-picker__input-wrapper {
+  position: relative;
+}
+
+.date-picker__input {
+  width: 100%;
+  height: 44px;
+  padding: 0 40px 0 var(--space-md);
+  font-size: var(--font-size-base);
+  font-family: Roboto, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid rgb(171 210 122 / 100%);
+  border-radius: var(--radius-md);
+  outline: none;
+  cursor: pointer;
+}
+
+.date-picker__input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.date-picker__input--error {
+  border-color: var(--color-error);
+}
+
+.date-picker__input--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.date-picker__icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--color-text-secondary);
+}
+
+.date-picker__error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+.date-picker__popover {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  z-index: 1000;
+  padding: var(--space-md);
+  background: var(--color-bg);
+  border: 1px solid rgb(171 210 122 / 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.date-picker__footer {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.date-picker__btn {
+  flex: 1;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-family: Roboto, sans-serif;
+  cursor: pointer;
+}
+
+.date-picker__btn--cancel {
+  background: var(--color-bg);
+  color: rgb(37 48 23 / 100%);
+  border: 1px solid rgb(171 210 122 / 100%);
+}
+
+.date-picker__btn--select {
+  background: rgb(171 210 122 / 100%);
+  color: rgb(37 48 23 / 100%);
+  border: none;
+}
+
+.date-picker__popover :global(.rdp-root) {
+  --rdp-accent-color: var(--color-primary);
+  --rdp-accent-background-color: rgb(171 210 122 / 12%);
+  --rdp-day-height: 36px;
+  --rdp-day-width: 36px;
+  --rdp-day_button-border-radius: 50%;
+  --rdp-font-family: roboto, sans-serif;
+  --rdp-today-color: var(--color-primary);
+
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+}
+
+.date-picker__popover :global(.rdp-chevron) {
+  fill: #000;
+}
+
+.date-picker__popover :global(.rdp-month_caption) {
+  justify-content: center;
+  font-weight: 400;
+  font-size: inherit;
+}
+
+.date-picker__popover :global(.rdp-dropdown) {
+  text-transform: capitalize;
+}
+
+.date-picker__popover :global(.rdp-selected) {
+  font-weight: 400;
+  font-size: inherit;
+}
+
+.date-picker__popover :global(.rdp-selected) :global(.rdp-day_button) {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+}
