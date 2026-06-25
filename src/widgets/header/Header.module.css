@@ -1,10 +1,7 @@
 .header {
   width: 100%;
   min-height: 104px;
-  background-color: #f9faf7;
-  display: flex;
-  gap: 32px;
-  align-items: center;
+  background-color: var(--color-background,#f9faf7);
 }
 
 .container {
@@ -14,18 +11,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 32px;
 }
 
 .leftSection, .rightSection {
   display: flex;
   align-items: center;
-}
-
-.leftSection {
-  gap: 32px;
-}
-
-.rightSection {
+  flex-shrink: 0; 
   gap: 32px;
 }
 
@@ -40,8 +32,8 @@
   width: 100%;
 }
 
-.searchWrapper input {
-  border-color: transparent !important;
+.container .searchWrapper input {
+  border-color: transparent;
 }
 
 .iconSection {
@@ -59,6 +51,7 @@
   font-size: 16px;
   font-weight: 400;
   color: var(--color-text, #253017);
+  white-space: nowrap;
 }
 
 .userAvatar {
@@ -69,21 +62,10 @@
 }
 
   .headerLogo {
-  color: var(--color-accent, #abd27a)!important;
+  color: var(--color-accent, #abd27a);
 }
 
 .textLogo
 {
-  color: var(--color-text, #253017)!important;
-}
-
-/* Стили для временных заглушек */
-.stub {
-  padding: 6px 12px;
-  background-color: #ffe4e6;
-  border: 1px dashed #f43f5e;
-  border-radius: 4px;
-  color: #f43f5e;
-  font-size: 12px;
-  cursor: default;
+  color: var(--color-text, #253017);
 }

@@ -1,6 +1,6 @@
 export interface UserData {
   name: string;
-  avatarUrl: string;
+  avatarUrl: string | null;
 }
 
 export interface HeaderProps {
