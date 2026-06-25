@@ -18,6 +18,9 @@ import { UserIcon } from '@/shared/ui/UserIcon'
 import { ROUTES } from '@/shared/lib/constants'
 
 export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) => {
+  const [searchQuery, setSearchQuery] = useState('')
+  // const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+
   if (isAuthPage) {
     return (
       <header className={styles.header}>
@@ -37,9 +40,6 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
       </header>
     )
   }
-
-  const [searchQuery, setSearchQuery] = useState('')
-  // const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
 
   return (
     <header className={styles.header}>
