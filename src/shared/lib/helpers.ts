@@ -1,4 +1,5 @@
 import skillsData from '../../../public/db/skills.json'
+import type { TagProps } from '../ui/Tag'
 /** Форматирует дату в читаемый вид */
 export function formatDate(dateString: string): string {
   return new Intl.DateTimeFormat('ru-RU', {
@@ -68,4 +69,46 @@ export function getYearDeclension(age: number): string {
     default:
       return 'лет'
   }
+}
+
+// Преобразование скиллов в категории
+const categoryMap: Record<string, TagProps['category']> = {
+  Фотография: 'art',
+  'Музыка и звук': 'art',
+  Дизайн: 'art',
+  Рукоделие: 'art',
+
+  'Иностранные языки': 'languages',
+  'Программирование и IT': 'plus',
+  'Логика и критическое мышление': 'education',
+  'Публичные выступления': 'education',
+
+  'Йога и медитация': 'health',
+  'Водные виды спорта': 'health',
+  'Походы и туризм': 'health',
+
+  Кулинария: 'home',
+  Садоводство: 'home',
+  'Ремонт и мастерство': 'home',
+
+  'Маркетинг и SMM': 'business',
+  'Тайм-менеджмент': 'business',
+
+  'Ролевые игры и фэнтези': 'plus',
+}
+
+export function getCategoryByCategoryName(categoryName: string): TagProps['category'] {
+  return categoryMap[categoryName] || 'plus'
+}
+
+export function getSkillCategoryBySkillName(skillName: string): TagProps['category'] {
+  const domain = skillsData.skillDomains.find((d) =>
+    d.categories.some((cat) => cat.skills.some((skill) => skill.name === skillName)),
+  )
+
+  const category = domain?.categories.find((cat) =>
+    cat.skills.some((skill) => skill.name === skillName),
+  )?.name
+
+  return categoryMap[category || ''] || 'plus'
 }

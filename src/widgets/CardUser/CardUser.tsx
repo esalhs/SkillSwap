@@ -4,7 +4,12 @@ import LikeIcon from '../../shared/ui/Icons/LikeIcon'
 import { UserIcon } from '../../shared/ui/UserIcon/UserIcon'
 import { useMemo } from 'react'
 import { Button } from '@/shared/ui/Button'
-import { getYearDeclension } from '../../shared/lib/helpers'
+import {
+  getYearDeclension,
+  getSkillCategoryBySkillName,
+  getCategoryByCategoryName,
+} from '../../shared/lib/helpers'
+import { Tag } from '@/shared/ui/Tag'
 
 export type CardUserProps = {
   avatarUrl: string | null
@@ -77,33 +82,31 @@ export function CardUser({
       <div className={styles.userCard__skills}>
         <div className={styles.userCard__skills__option}>
           <h4 className={styles.userCard__skill__heading}>Может научить:</h4>
-          {/* TODO: добавить настоящий компонент Tag */}
           <ul className={styles.userCard__skill__list}>
             <li className={`${styles.userCard__skill__list__item} ${styles.userCard__textStyle}`}>
-              {skillCan}
+              <Tag category={getSkillCategoryBySkillName(skillCan)}>{skillCan}</Tag>
             </li>
           </ul>
         </div>
         <div className={styles.userCard__skills__option}>
           <h4 className={styles.userCard__skill__heading}>Хочет научиться:</h4>
-          {/* TODO: добавить настоящий компонент Tag */}
           <ul className={styles.userCard__skill__list}>
             {visibleSkills.map((skill) => (
               <li
                 className={`${styles.userCard__skill__list__item} ${styles.userCard__textStyle}`}
                 key={skill}
               >
-                {skill}
+                <Tag category={getCategoryByCategoryName(skill)}>{skill}</Tag>
               </li>
             ))}
             {showMoreText && (
               <li className={`${styles.userCard__skill__list__item} ${styles.userCard__textStyle}`}>
-                {showMoreText}
+                <Tag category={'plus'}>{showMoreText}</Tag>
               </li>
             )}
           </ul>
         </div>
-        <Button className={styles.userCardButton} onClick={onDetailsClick}>
+        <Button className={styles.userCardButton} onClick={onDetailsClick} variant="primary">
           Подробнее
         </Button>
       </div>

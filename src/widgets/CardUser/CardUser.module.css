@@ -35,14 +35,14 @@
   font-size: 20px;
   line-height: 24px;
   font-weight: 600;
-  font-family: var(--font-sans);
+  font-family: var(--font-jost, Jost, sans-serif);
 }
 
 .userCard__textStyle {
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
-  font-family: var(--font-sans);
+  font-family: var(--font-jost, Jost, sans-serif);
 }
 
 .iconLike {
@@ -73,16 +73,14 @@
 
 .userCard__skill__list__item {
   list-style: none;
-  padding: 8px 12px;
-  border-radius: 20px;
-  background-color: yellow;
+  padding: 8px 0;
 }
 
 .userCard__skill__heading {
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
-  font-family: var(--font-sans);
+  font-family: var(--font-jost, Jost, sans-serif);
 }
 
 .userCardButton {
