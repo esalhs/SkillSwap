@@ -3,6 +3,7 @@ import styles from './NotFoundPage.module.css';
 import { Button } from '@/shared/ui/Button';
 import { Footer } from '@/widgets/Footer';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '@/shared/lib/constants';
 
 // TODO: заменить на реальный Header после мерджа feature/header
 const Header = () => <header>Header — в разработке</header>
@@ -11,7 +12,7 @@ export const NotFoundPage = () => {
   const navigate = useNavigate();
 
   const redirectHome = () => {
-    navigate('/');
+    navigate(ROUTES.HOME);
   };
 
   return (
