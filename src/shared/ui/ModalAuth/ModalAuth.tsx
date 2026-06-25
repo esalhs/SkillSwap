@@ -1,3 +1,4 @@
+import { Button } from '@/shared/ui/Button'
 import { UserCircleIcon } from '../Icons/UserCircleIcon'
 import styles from './ModalAuth.module.css'
 
@@ -14,12 +15,8 @@ export const ModalAuth = (props: ModalAuthProps) => {
         <h1 className={styles.title}>Войдите, чтобы предложить обмен</h1>
         <p className={styles.paragraph}>Создайте аккаунт или войдите в существующий</p>
         <div className={styles.btnContainer}>
-          <button className={styles.secondaryButton} onClick={props.onLogin}>
-            Войти
-          </button>
-          <button className={styles.primaryButton} onClick={props.onRegister}>
-            Зарегистрироваться
-          </button>
+          <Button variant="secondary" onClick={props.onLogin}>Войти</Button>
+          <Button variant="primary" onClick={props.onRegister}>Зарегистрироваться</Button>
         </div>
       </div>
     </div>

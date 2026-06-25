@@ -10,7 +10,7 @@
 }
 
 .title {
-  font-family: Jost, sans-serif;
+  font-family: var(--font-jost, Jost, sans-serif);
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
@@ -28,31 +28,7 @@
   gap: 10px;
 }
 
-.primaryButton {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  background-color: var(--color-accent);
-  color: white;
-  cursor: pointer;
-  font-family: Roboto, sans-serif;
-  letter-spacing: 0.02em;
-}
-
-.secondaryButton {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--color-accent);
-  background: none;
-  color: var(--color-accent);
-  cursor: pointer;
-  font-family: Roboto, sans-serif;
-  letter-spacing: 0.02em;
-}
-
 .paragraph {
-  font-family: Roboto, sans-serif;
+  font-family: var(--font-roboto, Roboto, sans-serif);
   letter-spacing: 0.02em;
 }
