@@ -1,0 +1,34 @@
+.tag {
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.750rem;
+  letter-spacing: 4%;
+}
+
+.business {
+  background-color: var(--color-tag-business);
+}
+
+.art {
+  background-color: var(--color-tag-art);
+}
+
+.languages {
+  background-color: var(--color-tag-languages);
+}
+
+.education {
+  background-color: var(--color-tag-education);
+}
+
+.home {
+  background-color: var(--color-tag-home);
+}
+
+.health {
+  background-color: var(--color-tag-health);
+}
+
+.plus {
+  background-color: var(--color-tag-plus);
+}
