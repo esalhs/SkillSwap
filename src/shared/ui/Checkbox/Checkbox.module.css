@@ -1,7 +1,7 @@
 .root {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-sm, 8px);
   cursor: pointer;
   user-select: none;
 }
@@ -27,10 +27,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  
-  /* Контур пустого чекбокса и галочки */
-  --checkbox-stroke-color: #253017;
-  --checkbox-fill-color: #abd27a; 
+
 }
 
 /* Общие стили для переключения видимости SVG */
@@ -48,12 +45,12 @@
 
 /* Настройка цветов для пустой иконки */
 .iconUnchecked {
-  color: var(--checkbox-stroke-color);
+  color: var(--color-text, #253017);
 }
 
 .iconCheck,
 .iconIndeterminate {
-  color: var(--checkbox-fill-color);
+  color: var(--color-accent, #abd27a);
 }
 
 /* Пустой чекбокс */
@@ -95,16 +92,14 @@
   opacity: 0.4;
 }
 
-/* вероятно нужно буlет заменить на переменные */
 .disabled .labelText {
-  color: #9ca197;
+  color: var(--color-disabled-text, #9ca197);
 }
 
-/* вероятно нужно буlет заменить на переменные */
 .labelText {
   font-size: 16px;
-  color: #253017; 
-  font-family: inherit;
+  color: var(--color-text, #253017); 
+  font-family: var(--font-roboto, "Roboto", sans-serif);
   line-height: 150%;
   letter-spacing: 0.02em;
 }
