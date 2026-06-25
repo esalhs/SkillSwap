@@ -1,0 +1,36 @@
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  text-align: center;
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-jost, Jost, sans-serif);
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 31px;
+  letter-spacing: -0.011em;
+  line-height: 34px;
+}
+
+.description {
+  font-family: var(--font-roboto, Roboto, sans-serif);
+  letter-spacing: 0.03em;
+  max-width: 460px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.fullButton {
+  width: 100%;
+}
