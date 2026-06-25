@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
 
-type ModalProps = {
+export type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
