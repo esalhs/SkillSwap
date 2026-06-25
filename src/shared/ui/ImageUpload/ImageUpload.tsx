@@ -52,8 +52,8 @@ export const ImageUpload = (props: ImageUploadProps) => {
       onDragLeave={onDragLeave}
     >
       <p className={styles.text}>Перетащите или выберите изображения навыка</p>
-      <input type="file" ref={inputRef} onChange={onChange} className={styles.imageInput} />
-      <button className={styles.uploadButton} onClick={() => inputRef.current?.click()}>
+      <input type="file" accept="image/*" multiple ref={inputRef} onChange={onChange} className={styles.imageInput} />
+      <button type="button" className={styles.uploadButton} onClick={() => inputRef.current?.click()}>
         <GalleryAddIcon color="var(--color-accent)" />
         Выбрать изображения
       </button>
@@ -62,7 +62,7 @@ export const ImageUpload = (props: ImageUploadProps) => {
           {props.value.map((file, i) => (
             <div key={i} className={styles.fileItem}>
               <span className={styles.fileName}>{file.name}</span>
-              <button className={styles.deleteButton} onClick={() => onDelete(i)}>
+              <button type="button" className={styles.deleteButton} onClick={() => onDelete(i)}>
                 х
               </button>
             </div>

@@ -11,7 +11,7 @@
 
 .text {
   font-family: Roboto, sans-serif;
-  color: #69735d;
+  color: var(--color-caption);
   letter-spacing: 0.02em;
 }
 
