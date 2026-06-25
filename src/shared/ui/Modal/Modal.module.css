@@ -1,10 +1,7 @@
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(142, 142, 142, 60%);
+  inset: 0;
+  background-color: rgba(142 142 142 / 60%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +9,7 @@
 }
 
 .modal {
-  background: rgba(255, 255, 255, 1);
+  background: rgb(255 255 255);
   border-radius: 12px;
   padding-left: 60px;
   padding-right: 60px;
@@ -27,6 +24,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
