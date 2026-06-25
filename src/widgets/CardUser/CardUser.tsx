@@ -103,7 +103,9 @@ export function CardUser({
             )}
           </ul>
         </div>
-        <Button children="Подробнее" className={styles.userCardButton} onClick={onDetailsClick} />
+        <Button className={styles.userCardButton} onClick={onDetailsClick}>
+          Подробнее
+        </Button>
       </div>
     </article>
   )
