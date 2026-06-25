@@ -1,0 +1,34 @@
+.modalContainer {
+  width: 556px;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 52px;
+  border-radius: 12px;
+}
+
+.title {
+  font-family: var(--font-jost, Jost, sans-serif);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.011em;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.paragraph {
+  font-family: var(--font-roboto, Roboto, sans-serif);
+  letter-spacing: 0.02em;
+}
