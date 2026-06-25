@@ -1,0 +1,65 @@
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 436px;
+  padding: 20px 16px;
+  border-radius: 12px;
+  border: 1px dashed var(--color-caption);
+}
+
+.text {
+  font-family: Roboto, sans-serif;
+  color: var(--color-caption);
+  letter-spacing: 0.02em;
+}
+
+.imageInput {
+  display: none;
+}
+
+.uploadButton {
+  display: flex;
+  gap: 4px;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background-color: var(--color-disabled);
+}
+
+.fileName {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  color: var(--color-caption);
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-caption);
+  font-size: 16px;
+  padding: 0;
+}
+
+.dragging {
+  border-color: var(--color-accent);
+  background-color: var(--color-disabled);
+}
