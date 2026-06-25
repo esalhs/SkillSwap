@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 80px 60px;
+  width: 556px;
+  min-height: 480px;
+  box-sizing: border-box;
+  font-family: var(--font-jost, Jost, sans-serif);
+  border-radius: 12px;
+}
+
+/* Контейнер-обёртка для центрирования и управления размером */
+.iconWrapper {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Масштабируем  иконку SVG до размеров контейнера */
+.iconWrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Стилизуем внутренние линии колокольчика */
+.iconWrapper svg path {
+  stroke: var(--color-text, #253017);
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.5px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-text, #253017);
+  margin: 52px 0 12px;
+  line-height: 117%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.description {
+  color: var(--color-text, #253017);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.button {
+  width: 100%;
+}
