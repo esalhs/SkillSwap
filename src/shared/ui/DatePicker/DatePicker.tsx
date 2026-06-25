@@ -2,57 +2,66 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { DayPicker } from 'react-day-picker'
 import { ru } from 'react-day-picker/locale'
 import 'react-day-picker/style.css'
-import { format } from 'date-fns'
-import styles from './date-picker.module.css'
+import { Input } from '../Input'
+import styles from './DatePicker.module.css'
 
 interface DatePickerProps {
-  value?: Date | undefined
-  onChange?: (date: Date | undefined) => void
+  value: Date | null
+  onChange: (date: Date | null) => void
   label?: string
-  error?: string
-  className?: string
-  disabled?: boolean
-  id?: string
-  name?: string
   placeholder?: string
-  fromYear?: number
-  toYear?: number
 }
+
+function formatDate(date: Date): string {
+  const d = date.getDate().toString().padStart(2, '0')
+  const m = (date.getMonth() + 1).toString().padStart(2, '0')
+  const y = date.getFullYear()
+  return `${d}.${m}.${y}`
+}
+
+const calendarIcon = (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+    <line x1="16" y1="2" x2="16" y2="6" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="3" y1="10" x2="21" y2="10" />
+  </svg>
+)
 
 export function DatePicker({
   value,
   onChange,
   label,
-  error,
-  className,
-  disabled = false,
-  id,
-  name,
-  placeholder = 'дд.мм.гггг',
-  fromYear = 1900,
-  toYear = new Date().getFullYear(),
+  placeholder = 'ДД.ММ.ГГГГ',
 }: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [draftDate, setDraftDate] = useState<Date | undefined>(value)
+  const [draftDate, setDraftDate] = useState<Date | undefined>(value ?? undefined)
   const containerRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [month, setMonth] = useState<Date>(() => value ?? new Date(toYear, 0, 1))
+  const [month, setMonth] = useState<Date>(value ?? new Date())
 
-  const displayValue = value ? format(value, 'dd.MM.yyyy') : ''
+  const displayValue = value ? formatDate(value) : ''
 
-  const handleOpen = useCallback(() => {
-    if (disabled) return
-    setDraftDate(value)
-    setMonth(value ?? new Date(toYear, 0, 1))
+  const handleFocus = useCallback(() => {
+    setDraftDate(value ?? undefined)
+    setMonth(value ?? new Date())
     setIsOpen(true)
-  }, [disabled, value, toYear])
+  }, [value])
 
   const handleCancel = useCallback(() => {
     setIsOpen(false)
   }, [])
 
   const handleConfirm = useCallback(() => {
-    onChange?.(draftDate)
+    onChange(draftDate ?? null)
     setIsOpen(false)
   }, [draftDate, onChange])
 
@@ -69,7 +78,6 @@ export function DatePicker({
     function handleEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setIsOpen(false)
-        inputRef.current?.focus()
       }
     }
 
@@ -85,76 +93,43 @@ export function DatePicker({
   }, [isOpen])
 
   return (
-    <div
-      ref={containerRef}
-      className={`${styles['date-picker']} ${className ?? ''}`}
-    >
-      {label && (
-        <label
-          htmlFor={id}
-          className={`${styles['date-picker__label']} ${error ? styles['date-picker__label--error'] : ''}`}
-        >
-          {label}
-        </label>
-      )}
-      <div className={styles['date-picker__input-wrapper']}>
-        <input
-          ref={inputRef}
-          type="text"
-          id={id}
-          name={name}
-          value={displayValue}
-          placeholder={placeholder}
-          readOnly
-          disabled={disabled}
-          onFocus={handleOpen}
-          className={`${styles['date-picker__input']} ${error ? styles['date-picker__input--error'] : ''} ${disabled ? styles['date-picker__input--disabled'] : ''}`}
-        />
-        <svg
-          className={styles['date-picker__icon']}
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-          <line x1="16" y1="2" x2="16" y2="6" />
-          <line x1="8" y1="2" x2="8" y2="6" />
-          <line x1="3" y1="10" x2="21" y2="10" />
-        </svg>
-      </div>
-      {error && <span className={styles['date-picker__error']}>{error}</span>}
+    <div ref={containerRef} className={styles.container}>
+      <Input
+        onChange={() => {}}
+        value={displayValue}
+        placeholder={placeholder}
+        type="text"
+        description=""
+        label={label}
+        rightIcon={calendarIcon}
+        readOnly
+        onFocus={handleFocus}
+      />
       {isOpen && (
-        <div className={styles['date-picker__popover']}>
+        <div className={styles.popover}>
           <DayPicker
             mode="single"
             selected={draftDate}
-            onSelect={(date) => setDraftDate(date)}
+            onSelect={setDraftDate}
             month={month}
             onMonthChange={setMonth}
             locale={ru}
-            startMonth={new Date(fromYear, 0)}
-            endMonth={new Date(toYear, 11)}
             captionLayout="dropdown"
             hideNavigation
-            defaultMonth={value ?? new Date(toYear, 0, 1)}
+            defaultMonth={value ?? new Date()}
             weekStartsOn={1}
             footer={
-              <div className={styles['date-picker__footer']}>
+              <div className={styles.footer}>
                 <button
                   type="button"
-                  className={`${styles['date-picker__btn']} ${styles['date-picker__btn--cancel']}`}
+                  className={`${styles.btn} ${styles.btnCancel}`}
                   onClick={handleCancel}
                 >
                   Отменить
                 </button>
                 <button
                   type="button"
-                  className={`${styles['date-picker__btn']} ${styles['date-picker__btn--select']}`}
+                  className={`${styles.btn} ${styles.btnSelect}`}
                   onClick={handleConfirm}
                 >
                   Выбрать

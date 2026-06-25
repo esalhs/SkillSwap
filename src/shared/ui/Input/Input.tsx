@@ -1,5 +1,5 @@
 import styles from './Input.module.css'
-import { FC, ChangeEvent } from 'react'
+import { FC, ChangeEvent, FocusEvent } from 'react'
 import clsx from 'clsx'
 
 type InputProps = {
@@ -13,6 +13,8 @@ type InputProps = {
   rightIcon?: React.ReactElement
   isError?: boolean
   onRightIconClick?: () => void
+  readOnly?: boolean
+  onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 }
 
 export const Input: FC<InputProps> = ({
@@ -26,6 +28,8 @@ export const Input: FC<InputProps> = ({
   rightIcon,
   isError,
   onRightIconClick,
+  readOnly,
+  onFocus,
 }) => {
   const showClearButton = type === 'search' && value
 
@@ -45,6 +49,8 @@ export const Input: FC<InputProps> = ({
           value={value}
           placeholder={placeholder}
           type={type}
+          readOnly={readOnly}
+          onFocus={onFocus}
         />
         {showClearButton && (
           <button
