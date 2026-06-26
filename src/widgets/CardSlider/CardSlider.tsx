@@ -69,7 +69,7 @@ export const CardSlider: FC<CardSliderProps> = ({
 
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}>Похожие предложения</h2>
+      <h2 className={styles.title}>{title}</h2>
 
       <div className={styles.wrapper}>
         {showLeftArrow && (
