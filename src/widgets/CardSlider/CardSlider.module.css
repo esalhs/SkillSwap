@@ -1,0 +1,77 @@
+.container {
+  width: 100%;
+  margin: 0 36px;
+}
+
+.title {
+  font-size: 24px;
+  font-family: var(--font-jost, "Jost", sans-serif);
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: var(--color-text, #253017);
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  
+  /* Скрытие стандартного скроллбара */
+  scrollbar-width: none; /* Firefox */
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.cardItem {
+   width: 324px;  
+  flex: 0 0 324px; /* Предотвращает сжатие карточек внутри флекса */
+  position: relative; 
+}
+
+.cardItem [class*="userCard__bio"] {
+  display: none !important;
+}
+
+.arrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-disabled, #e4e8df);
+  border: 1px solid transparent ;
+  cursor: pointer;
+}
+
+.arrowButton:hover {
+  background-color: var(--color-button-hover, #deebc5)
+}
+
+.arrowLeft {
+  left: -20px;
+}
+
+/* Разворот иконки ChevronRightIcon на 180 градусов для левой кнопки */
+.arrowLeft svg {
+  transform: rotate(180deg);
+}
+
+.arrowRight {
+  right: -20px;
+}
