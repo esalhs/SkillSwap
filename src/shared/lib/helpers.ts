@@ -1,3 +1,5 @@
+import skillsData from '../../../public/db/skills.json'
+import type { TagProps } from '../ui/Tag'
 /** Форматирует дату в читаемый вид */
 export function formatDate(dateString: string): string {
   return new Intl.DateTimeFormat('ru-RU', {
@@ -16,4 +18,97 @@ export function truncate(str: string, maxLength: number): string {
 /** Генерирует уникальный id */
 export function generateId(): string {
   return crypto.randomUUID()
+}
+
+/** Получает возраст, используя дату рождения */
+export function getAge(birthday: string): number {
+  const birthDate = new Date(birthday)
+  const today = new Date()
+  let age = today.getFullYear() - birthDate.getFullYear()
+  const monthDiff = today.getMonth() - birthDate.getMonth()
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--
+  }
+  return age
+}
+
+/** Фильтрует скиллы по id */
+export function getSkillName(id: string) {
+  return (
+    skillsData.skillDomains
+      .flatMap((domain) => domain.categories.flatMap((cat) => cat.skills))
+      .find((skill) => skill.id === id)?.name || 'Нет данных'
+  )
+}
+
+/** Фильтрует категории по id */
+export function getCategoryNames(ids: string[]) {
+  return ids.map(
+    (id) =>
+      skillsData.skillDomains.flatMap((domain) => domain.categories).find((cat) => cat.id === id)
+        ?.name || 'Нет данных',
+  )
+}
+
+/** Склоняет слово "год" в зависимости от возраста */
+export function getYearDeclension(age: number): string {
+  const lastDigit = age % 10
+  const lastTwoDigits = age % 100
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
+    return 'лет'
+  }
+
+  switch (lastDigit) {
+    case 1:
+      return 'год'
+    case 2:
+    case 3:
+    case 4:
+      return 'года'
+    default:
+      return 'лет'
+  }
+}
+
+// Преобразование скиллов в категории
+const categoryMap: Record<string, TagProps['category']> = {
+  Фотография: 'art',
+  'Музыка и звук': 'art',
+  Дизайн: 'art',
+  Рукоделие: 'art',
+
+  'Иностранные языки': 'languages',
+  'Программирование и IT': 'plus',
+  'Логика и критическое мышление': 'education',
+  'Публичные выступления': 'education',
+
+  'Йога и медитация': 'health',
+  'Водные виды спорта': 'health',
+  'Походы и туризм': 'health',
+
+  Кулинария: 'home',
+  Садоводство: 'home',
+  'Ремонт и мастерство': 'home',
+
+  'Маркетинг и SMM': 'business',
+  'Тайм-менеджмент': 'business',
+
+  'Ролевые игры и фэнтези': 'plus',
+}
+
+export function getCategoryByCategoryName(categoryName: string): TagProps['category'] {
+  return categoryMap[categoryName] || 'plus'
+}
+
+export function getSkillCategoryBySkillName(skillName: string): TagProps['category'] {
+  const domain = skillsData.skillDomains.find((d) =>
+    d.categories.some((cat) => cat.skills.some((skill) => skill.name === skillName)),
+  )
+
+  const category = domain?.categories.find((cat) =>
+    cat.skills.some((skill) => skill.name === skillName),
+  )?.name
+
+  return categoryMap[category || ''] || 'plus'
 }
