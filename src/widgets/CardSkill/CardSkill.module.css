@@ -1,0 +1,70 @@
+.overallWrapper {
+  padding: 32px 52px 40px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg);
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-block-end: 24px;
+}
+
+.contentWrapper {
+  display: flex;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  max-inline-size: 90%;
+}
+
+.mainButton,
+.secondaryButton {
+  flex: 1;
+}
+
+.categories {
+  display: flex;
+  color: var(--color-caption);
+  font-family: var(--font-roboto), sans-serif;
+  margin-block-start: 4px;
+}
+
+.description {
+  margin-block-start: 20px;
+  max-inline-size: 90%;
+}
+
+.registerTitle {
+  text-align: center;
+  margin-block-end: 40px;
+}
+
+.registerText {
+  font-family: var(--font-roboto), sans-serif;
+}
+
+.registerHeading {
+  margin-block-end: 8px;
+  font-family: var(--font-jost), sans-serif;
+}
+
+.category + .category::before {
+  content: "\00a0/\00a0";
+}
+
+.skillPageTitle {
+  font-size: var(--font-size-2xl);
+  font-family: var(--font-jost), sans-serif;
+  font-weight: 500;
+  color: var(--color-text);
+}
