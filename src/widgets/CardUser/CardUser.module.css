@@ -51,6 +51,13 @@
   right: 0;
 }
 
+.userCard__bio {
+  font-family: var(--font-roboto, Roboto, sans-serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
 .userCard__skills {
   display: flex;
   flex-direction: column;
