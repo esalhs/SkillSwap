@@ -1,0 +1,71 @@
+.header {
+  width: 100%;
+  min-height: 104px;
+  background-color: var(--color-background,#f9faf7);
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px 36px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.leftSection, .rightSection {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; 
+  gap: 32px;
+}
+
+.centerSection {
+   display: flex;
+  flex-grow: 1;
+  margin: 0 32px;
+  max-width: 100%;
+}
+
+.centerSection > * {
+  width: 100%;
+}
+
+.container .searchWrapper input {
+  border-color: transparent;
+}
+
+.iconSection {
+  display: flex;
+  gap: 20px; 
+}
+
+.buttonSection {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text, #253017);
+  white-space: nowrap;
+}
+
+.userAvatar {
+  width: 48px !important;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+  .headerLogo {
+  color: var(--color-accent, #abd27a);
+}
+
+.textLogo
+{
+  color: var(--color-text, #253017);
+}
