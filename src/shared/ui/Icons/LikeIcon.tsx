@@ -1,9 +1,10 @@
 type LikeIconProps = {
   color?: string
+  activeColor?: string
   active?: boolean
 }
 
-export function LikeIcon({ color = '#253017', active = false }: LikeIconProps) {
+export function LikeIcon({ color = '#253017', activeColor = '#abd27a', active = false }: LikeIconProps) {
   return (
     <>
       {!active && (
@@ -30,8 +31,8 @@ export function LikeIcon({ color = '#253017', active = false }: LikeIconProps) {
           viewBox="0 0 24 24"
         >
           <path
-            fill={color}
-            stroke={color}
+            fill={activeColor}
+            stroke={activeColor}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"

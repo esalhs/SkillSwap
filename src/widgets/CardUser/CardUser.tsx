@@ -10,6 +10,7 @@ import {
   getCategoryByCategoryName,
 } from '../../shared/lib/helpers'
 import { Tag } from '@/shared/ui/Tag'
+import { ClockIcon } from '@/shared/ui/Icons'
 
 export type CardUserProps = {
   avatarUrl: string | null
@@ -18,9 +19,11 @@ export type CardUserProps = {
   age: number
   skillCan: string
   skillWant: string[]
+  bio?: string                    // описание пользователя
   isLiked?: boolean
-  onLikeClick?: () => void
-  onDetailsClick?: () => void
+  onLikeClick?: () => void        // если нет — лайк не рендерится
+  onDetailsClick?: () => void     // если нет — кнопка не рендерится
+  isOfferSent?: boolean           // меняет кнопку на "Обмен предложен"
 }
 
 export function CardUser({
@@ -30,9 +33,11 @@ export function CardUser({
   age, // Для возраста есть функция getAge в helpers.ts, которая преобразует birthday в возраст, пропс возраста ожидает извне age = getAge(user.birthday)
   skillCan, // Работает также как и для возраста, ожидает пропс извне skillCan = getSkillName(user.idSkill), где getSkillName - функция из helpers.ts
   skillWant, // Работает также как и для возраста, ожидает пропс извне skillWant = getCategoryNames(user.favoriteCategories), где getCategoryNames - функция из helpers.ts
+  bio,
   isLiked,
   onLikeClick,
   onDetailsClick,
+  isOfferSent,
 }: CardUserProps) {
   // Элемент отвечает за количество видимых навыков
   const visibleSkills = useMemo(() => {
@@ -63,12 +68,14 @@ export function CardUser({
   return (
     <article className={`${styles.userCard}`}>
       <div className={styles.userCard__info}>
-        <IconButton
-          className={styles.iconLike}
-          icon={<LikeIcon active={isLiked} />}
-          ariaLabel="Лайк"
-          onClick={onLikeClick}
-        />
+        {onLikeClick && (
+          <IconButton
+            className={styles.iconLike}
+            icon={<LikeIcon active={isLiked} />}
+            ariaLabel="Лайк"
+            onClick={onLikeClick}
+          />
+        )}
         <div className={styles.userCard__avatarWrapper}>
           <UserIcon avatarUrl={avatarUrl} name={name} className={styles.userCard__avatar} />
         </div>
@@ -79,6 +86,7 @@ export function CardUser({
           </p>
         </div>
       </div>
+      {bio && <p className={styles.userCard__bio}>{bio}</p>}
       <div className={styles.userCard__skills}>
         <div className={styles.userCard__skills__option}>
           <h4 className={styles.userCard__skill__heading}>Может научить:</h4>
@@ -106,9 +114,25 @@ export function CardUser({
             )}
           </ul>
         </div>
-        <Button className={styles.userCardButton} onClick={onDetailsClick} variant="primary">
-          Подробнее
-        </Button>
+        {onDetailsClick && !isOfferSent && (
+          <Button
+            className={styles.userCardButton}
+            onClick={onDetailsClick}
+            variant="primary"
+          >
+            Подробнее
+          </Button>
+        )}
+        {isOfferSent && (
+          <Button
+            className={styles.userCardButton}
+            variant="secondary"
+            icon={<ClockIcon />}
+            iconPosition="before"
+          >
+            Обмен предложен
+          </Button>
+        )}
       </div>
     </article>
   )
