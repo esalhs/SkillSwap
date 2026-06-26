@@ -1,0 +1,63 @@
+.containerModal {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--font-jost, Jost, sans-serif);
+  background-color: var(--color-bg, #fff);
+  min-height: 420px;
+  padding: 62px;
+  width: 556px;
+  border-radius: 12px;
+  gap: 52px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  
+}
+
+.descriptionWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.iconWrapper svg {
+  width: 75%;
+  height: 75%;
+}
+
+.iconWrapper svg path {
+  stroke: var(--color-text, #253017);
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.5px;
+}
+
+.titleModal {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-text, #253017);
+  margin-bottom: 12px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.descriptionModal {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-text, #253017);
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.button {
+  width: 100%;
+}
