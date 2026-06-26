@@ -42,7 +42,7 @@
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
-  font-family: var(--font-jost, Jost, sans-serif);
+  font-family: var(--font-roboto, Roboto, sans-serif);
 }
 
 .iconLike {
@@ -80,7 +80,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
-  font-family: var(--font-jost, Jost, sans-serif);
+  font-family: var(--font-roboto, Roboto, sans-serif);
 }
 
 .userCardButton {
