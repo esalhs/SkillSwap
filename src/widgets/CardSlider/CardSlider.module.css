@@ -5,7 +5,7 @@
 
 .title {
   font-size: 24px;
-  font-family: var(--font-jost, "Jost", sans-serif);
+  font-family: var(--font-jost, 'Jost', sans-serif);
   font-weight: 500;
   margin-bottom: 32px;
   color: var(--color-text, #253017);
@@ -24,22 +24,22 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   width: 100%;
-  
+
   /* Скрытие стандартного скроллбара */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;   /* Firefox */
 }
 
 .slider::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;   /* Chrome, Safari, Opera */
 }
 
 .cardItem {
-   width: 324px;  
-  flex: 0 0 324px; /* Предотвращает сжатие карточек внутри флекса */
-  position: relative; 
+  width: 324px;
+  flex: 0 0 324px;   /* Предотвращает сжатие карточек внутри флекса */
+  position: relative;
 }
 
-.cardItem [class*="userCard__bio"] {
+.cardItem [class*='userCard__bio'] {
   display: none !important;
 }
 
@@ -55,12 +55,12 @@
   height: 32px;
   border-radius: 50%;
   background-color: var(--color-disabled, #e4e8df);
-  border: 1px solid transparent ;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
 .arrowButton:hover {
-  background-color: var(--color-button-hover, #deebc5)
+  background-color: var(--color-button-hover, #deebc5);
 }
 
 .arrowLeft {

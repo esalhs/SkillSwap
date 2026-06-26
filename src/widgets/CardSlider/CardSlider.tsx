@@ -1,5 +1,5 @@
 import { FC, useRef, useState, useEffect } from 'react'
-import { User } from '@/shared/types' 
+import { User } from '@/shared/types'
 import { CardUser } from '@/widgets/CardUser'
 import { ChevronRightIcon } from '@/shared/ui/Icons/ChevronRightIcon'
 import { getAge, getSkillName, getCategoryNames } from '../../shared/lib/helpers'
@@ -49,10 +49,10 @@ export const CardSlider: FC<CardSliderProps> = ({
     }
   }, [users])
 
-  /* функция прокрутки карточек */
+  /*функция прокрутки карточек */
   const handleScroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
-      const scrollAmount = 348 
+      const scrollAmount = 348
       const newScrollPosition =
         direction === 'left'
           ? sliderRef.current.scrollLeft - scrollAmount
@@ -69,7 +69,7 @@ export const CardSlider: FC<CardSliderProps> = ({
 
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={styles.title}>Похожие предложения</h2>
 
       <div className={styles.wrapper}>
         {showLeftArrow && (
@@ -93,20 +93,19 @@ export const CardSlider: FC<CardSliderProps> = ({
 
             return (
               <div key={user.id} className={styles.cardItem}>
-                
-        <CardUser
-          avatarUrl={user.avatarUrl}
-          name={user.name} // Безопасное чтение имени
-          location={user.location || user.city || 'Не указан'}
-          age={age}
-          skillCan={skillCan}
-          skillWant={skillWant}
-          bio={user.bio ?? undefined}
-          isLiked={isLiked}
-          onLikeClick={onLikeClick ? () => onLikeClick(user.id) : undefined}
-          onDetailsClick={onDetailsClick ? () => onDetailsClick(user.id) : undefined}
-          isOfferSent={user.isOfferSent}
-        />
+                <CardUser
+                  avatarUrl={user.avatarUrl}
+                  name={user.name}
+                  location={user.location || user.city || 'Не указан'}
+                  age={age}
+                  skillCan={skillCan}
+                  skillWant={skillWant}
+                  bio={user.bio ?? undefined}
+                  isLiked={isLiked}
+                  onLikeClick={onLikeClick ? () => onLikeClick(user.id) : undefined}
+                  onDetailsClick={onDetailsClick ? () => onDetailsClick(user.id) : undefined}
+                  isOfferSent={user.isOfferSent}
+                />
               </div>
             )
           })}
