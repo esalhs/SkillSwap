@@ -11,6 +11,7 @@ import {
 } from '../../shared/lib/helpers'
 import { Tag } from '@/shared/ui/Tag'
 import { ClockIcon } from '@/shared/ui/Icons'
+import { SkillDomain } from '@/shared/types'
 
 export type CardUserProps = {
   avatarUrl: string | null
@@ -19,6 +20,7 @@ export type CardUserProps = {
   age: number
   skillCan: string
   skillWant: string[]
+  domains: SkillDomain[]
   bio?: string                    // описание пользователя
   isLiked?: boolean
   onLikeClick?: () => void        // если нет — лайк не рендерится
@@ -33,6 +35,7 @@ export function CardUser({
   age, // Для возраста есть функция getAge в helpers.ts, которая преобразует birthday в возраст, пропс возраста ожидает извне age = getAge(user.birthday)
   skillCan, // Работает также как и для возраста, ожидает пропс извне skillCan = getSkillName(user.idSkill), где getSkillName - функция из helpers.ts
   skillWant, // Работает также как и для возраста, ожидает пропс извне skillWant = getCategoryNames(user.favoriteCategories), где getCategoryNames - функция из helpers.ts
+  domains,
   bio,
   isLiked,
   onLikeClick,
@@ -92,7 +95,7 @@ export function CardUser({
           <h4 className={styles.userCard__skill__heading}>Может научить:</h4>
           <ul className={styles.userCard__skill__list}>
             <li className={`${styles.userCard__skill__list__item} ${styles.userCard__textStyle}`}>
-              <Tag category={getSkillCategoryBySkillName(skillCan)}>{skillCan}</Tag>
+              <Tag category={getSkillCategoryBySkillName(domains, skillCan)}>{skillCan}</Tag>
             </li>
           </ul>
         </div>
