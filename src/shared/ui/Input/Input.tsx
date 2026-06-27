@@ -1,13 +1,14 @@
 import styles from './Input.module.css'
 import { FC, ChangeEvent, FocusEvent } from 'react'
 import clsx from 'clsx'
+import { CrossIcon } from '../Icons'
 
 type InputProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   value: string
   placeholder: string
   type: string
-  description: string
+  description?: string
   label?: string
   leftIcon?: React.ReactElement
   rightIcon?: React.ReactElement
@@ -15,6 +16,7 @@ type InputProps = {
   onRightIconClick?: () => void
   readOnly?: boolean
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void
+  className?: string
 }
 
 export const Input: FC<InputProps> = ({
@@ -30,19 +32,21 @@ export const Input: FC<InputProps> = ({
   onRightIconClick,
   readOnly,
   onFocus,
+  className,
 }) => {
   const showClearButton = type === 'search' && value
 
   return (
-    <div className={styles.input_container}>
+    <div className={clsx(styles.input_container, className)}>
       <span>{label}</span>
       <div className={styles.input_wrapper}>
-        {leftIcon && <div className={`${styles.left_icon} ${styles.icon}`}>{leftIcon}</div>}
+        {leftIcon && <div className={clsx(styles.left_icon, styles.icon)}>{leftIcon}</div>}
         <input
           className={clsx(
             styles.input,
             leftIcon && styles.is_left_icon,
             rightIcon && styles.is_right_icon,
+            showClearButton && styles.is_right_icon,
             isError && styles.input_incorrect,
           )}
           onChange={onChange}
@@ -58,11 +62,13 @@ export const Input: FC<InputProps> = ({
             type="button"
             onClick={onRightIconClick}
             aria-label="Удалить введенный запрос"
-          />
+          >
+            <CrossIcon />
+          </button>
         )}
         {rightIcon && (
           <button
-            className={`${styles.right_icon} ${styles.icon}`}
+            className={clsx(styles.right_icon, styles.icon)}
             onClick={onRightIconClick}
             type="button"
             aria-label="Показать/скрыть пароль"
