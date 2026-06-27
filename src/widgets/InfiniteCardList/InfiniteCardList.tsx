@@ -91,6 +91,7 @@ export function InfiniteCardList({
 
           return (
             <CardUser
+              domains={domains}
               key={user.id}
               name={user.fullName}
               avatarUrl={user.avatarUrl}
