@@ -25,10 +25,18 @@ export interface SkillDomain {
 // ─── User ────────────────────────────────────────────────
 export interface User {
   id: string
-  name: string
+  fullName: string
   email: string
+  password: string
   avatarUrl: string | null
   createdAt: string
+  sex: 'male' | 'female' | 'not_specified'
+  birthday: string
+  location: string
+  bio: string
+  idSkill: string
+  favoriteCategories: string[]
+  role: 'user' | 'admin'
 }
 
 // ─── Request ─────────────────────────────────────────────
