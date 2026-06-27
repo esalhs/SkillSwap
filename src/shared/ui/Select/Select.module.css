@@ -1,5 +1,5 @@
 .container {
-  width: 500px;
+  width: 100%;
   position: relative;
   height: 80px;
   z-index: 1;
@@ -16,6 +16,7 @@
   top: 30px;
   left: -1px;
   right: -1px;
+  width: 100%;
 }
 
 .init_option {
@@ -34,7 +35,7 @@
 
 .button {
   position: absolute;
-  right: 20px;
+  right: 12px;
   width: 24px;
   height: 24px;
 }
