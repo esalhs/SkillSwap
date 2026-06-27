@@ -3,11 +3,11 @@
   flex-direction: column;
   gap: 24px;
   width: 100%;
-  font-family: var(--font-roboto, "Roboto", sans-serif);
-  color: var(   --color-text, #253017);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
+  color: var(--color-text, #253017);
   font-size: 16px;
-line-height: 150%;
-letter-spacing: 0.02em;
+  line-height: 150%;
+  letter-spacing: 0.02em;
 }
 
 .socialButtonContainer {
@@ -18,12 +18,7 @@ letter-spacing: 0.02em;
 }
 
 .socialButton {
-border-color: var(--color-caption,#69735d);
-}
-
-.socialIcon {
-  height: 24px;
-  width: 100%;
+  border-color: var(--color-caption, #69735d);
 }
 
 .dividerContainer {
@@ -37,5 +32,5 @@ border-color: var(--color-caption,#69735d);
 .line {
   flex: 1;
   height: 1px;
-  background-color: var( --color-disabled, #e4e8df);
+  background-color: var(--color-disabled, #e4e8df);
 }
