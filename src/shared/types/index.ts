@@ -31,21 +31,6 @@ export interface User {
   createdAt: string
 }
 
-export interface CatalogUser {
-  id: string
-  fullName: string
-  email: string
-  password?: string
-  sex: 'male' | 'female'
-  birthday: string
-  avatarUrl: string | null
-  location: string
-  role: 'user' | 'admin'
-  createdAt: string
-  bio?: string
-  idSkill: string
-  favoriteCategories: string[]
-}
 // ─── Request ─────────────────────────────────────────────
 export type RequestStatus = 'pending' | 'accepted' | 'rejected' | 'inProgress' | 'done'
 

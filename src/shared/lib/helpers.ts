@@ -1,5 +1,6 @@
 import skillsData from '../../../public/db/skills.json'
 import type { TagProps } from '../ui/Tag'
+import type { SkillDomain, SkillCategory, Skill } from '@/shared/types'
 /** Форматирует дату в читаемый вид */
 export function formatDate(dateString: string): string {
   return new Intl.DateTimeFormat('ru-RU', {
@@ -30,24 +31,6 @@ export function getAge(birthday: string): number {
     age--
   }
   return age
-}
-
-/** Фильтрует скиллы по id */
-export function getSkillName(id: string) {
-  return (
-    skillsData.skillDomains
-      .flatMap((domain) => domain.categories.flatMap((cat) => cat.skills))
-      .find((skill) => skill.id === id)?.name || 'Нет данных'
-  )
-}
-
-/** Фильтрует категории по id */
-export function getCategoryNames(ids: string[]) {
-  return ids.map(
-    (id) =>
-      skillsData.skillDomains.flatMap((domain) => domain.categories).find((cat) => cat.id === id)
-        ?.name || 'Нет данных',
-  )
 }
 
 /** Склоняет слово "год" в зависимости от возраста */
@@ -111,4 +94,23 @@ export function getSkillCategoryBySkillName(skillName: string): TagProps['catego
   )?.name
 
   return categoryMap[category || ''] || 'plus'
+}
+
+export function getSkillsFromDomains(domains: SkillDomain[]): Skill[] {
+  return domains.flatMap((d) => d.categories.flatMap((cat) => cat.skills))
+}
+
+export function getCategoriesFromDomains(domains: SkillDomain[]): SkillCategory[] {
+  return domains.flatMap((d) => d.categories)
+}
+
+export function getSkillName(skills: Skill[], skillId: string): string {
+  return skills.find((s) => s.id === skillId)?.name || 'Нет данных'
+}
+
+export function getCategoryNames(categories: SkillCategory[], categoryIds: string[]): string[] {
+  return categoryIds.map((id) => {
+    const cat = categories.find((c) => c.id === id)
+    return cat?.name || 'Нет данных'
+  })
 }

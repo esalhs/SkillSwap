@@ -1,6 +1,12 @@
-import { CardUser } from '../CardUser'
-import type { CatalogUser } from '@/shared/types'
-import { getAge, getCategoryNames, getSkillName } from '../../shared/lib/helpers'
+import { CardUser } from '@/widgets/CardUser'
+import type { User, SkillDomain } from '@/shared/types'
+import {
+  getAge,
+  getCategoryNames,
+  getSkillName,
+  getSkillsFromDomains,
+  getCategoriesFromDomains,
+} from '../../shared/lib/helpers'
 import styles from './InfiniteCardList.module.css'
 import { Button } from '@/shared/ui/Button'
 import { SortIcon } from '@/shared/ui/Icons'
@@ -8,7 +14,8 @@ import { useEffect, useRef, useState } from 'react'
 
 export type InfiniteCardListProps = {
   title: string
-  users: CatalogUser[]
+  domains: SkillDomain[]
+  users: User[]
   totalCount?: number // если передан — показывает "Подходящие предложения: N"
   likedUserIds?: string[]
   onSortClick?: () => void // реализует сортировку при фильтрации (другая задача)
@@ -19,6 +26,7 @@ export type InfiniteCardListProps = {
 
 export function InfiniteCardList({
   title,
+  domains,
   users,
   totalCount,
   likedUserIds,
@@ -33,6 +41,9 @@ export function InfiniteCardList({
   const sentinelRef = useRef<HTMLDivElement>(null)
 
   const visibleUsers = users.slice(0, visibleCount)
+
+  const skills = getSkillsFromDomains(domains)
+  const categories = getCategoriesFromDomains(domains)
 
   useEffect(() => {
     const sentinel = sentinelRef.current
@@ -59,7 +70,12 @@ export function InfiniteCardList({
         <div className={styles.cardList__header}>
           <h2>Подходящие предложения: {totalCount}</h2>
           {onSortClick && (
-            <Button icon={<SortIcon />} iconPosition="before" variant="secondary">
+            <Button
+              icon={<SortIcon />}
+              iconPosition="before"
+              variant="tertiary"
+              onClick={onSortClick}
+            >
               Сначала новые
             </Button>
           )}
@@ -69,8 +85,8 @@ export function InfiniteCardList({
       )}
       <div className={styles.cardList__users}>
         {visibleUsers.map((user) => {
-          const skillCan = getSkillName(user.idSkill)
-          const skillWant = getCategoryNames(user.favoriteCategories)
+          const skillCan = getSkillName(skills, user.idSkill)
+          const skillWant = getCategoryNames(categories, user.favoriteCategories)
           const age = getAge(user.birthday)
 
           return (
