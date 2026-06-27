@@ -1,4 +1,4 @@
-import skillsData from '../../../public/db/skills.json'
+import type { Skill, SkillCategory, SkillDomain } from '@/shared/types'
 import type { TagProps } from '../ui/Tag'
 import type { SkillDomain, SkillCategory, Skill } from '@/shared/types'
 /** Форматирует дату в читаемый вид */
@@ -84,8 +84,8 @@ export function getCategoryByCategoryName(categoryName: string): TagProps['categ
   return categoryMap[categoryName] || 'plus'
 }
 
-export function getSkillCategoryBySkillName(skillName: string): TagProps['category'] {
-  const domain = skillsData.skillDomains.find((d) =>
+export function getSkillCategoryBySkillName(domains: SkillDomain[], skillName: string): TagProps['category'] {
+  const domain = domains.find((d) =>
     d.categories.some((cat) => cat.skills.some((skill) => skill.name === skillName)),
   )
 
