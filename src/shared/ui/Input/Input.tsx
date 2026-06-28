@@ -38,7 +38,7 @@ export const Input: FC<InputProps> = ({
 
   return (
     <div className={clsx(styles.input_container, className)}>
-      <span>{label}</span>
+      <span className={styles.label}>{label}</span>
       <div className={styles.input_wrapper}>
         {leftIcon && <div className={clsx(styles.left_icon, styles.icon)}>{leftIcon}</div>}
         <input

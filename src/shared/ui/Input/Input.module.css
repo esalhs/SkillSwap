@@ -5,12 +5,16 @@
   gap: var(--space-xs, 4px);
 }
 
+.label {
+  font-size: var(--font-size-base, 1rem);
+}
+
 .input {
   padding: 12px 20px;
   border-radius: var(--radius-lg, 12px);
   background-color: var(--color-bg, #fff);
   height: 48px;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-base, 1rem);
   border: 1px solid var(--color-caption, #69735d);
   caret-color: var(--color-success, #22c55e);
   outline: none;
