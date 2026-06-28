@@ -25,7 +25,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding-top: var(--space-sm, 8px);
+  padding-top: var(--space-xs, 4px);
 }
 
 .icon {
