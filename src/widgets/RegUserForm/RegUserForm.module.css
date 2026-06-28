@@ -1,0 +1,77 @@
+.registerForm__fieldset {
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
+  font-weight: 400;
+  font-size: var(--font-size-base, 16px);
+  line-height: 1.5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  margin: 0;
+  gap: 16px;
+}
+
+.registerForm {
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  min-height: 692px;
+  min-width: 556px;
+  flex-direction: column;
+  padding: 40px 60px;
+  gap: 16px;
+  align-items: center;
+}
+
+.registerForm__fieldset__block {
+  display: flex;
+  gap: 24px;
+}
+
+.registerForm__fieldset__block input[type='date'] {
+  color: var(--color-caption);
+}
+
+.registerForm__fieldset__block input[type='date']:first-of-type::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.select_for_form {
+  top: -2px;
+}
+
+.select_in_flow {
+  position: static;
+  margin-top: 10px;
+}
+
+.select_in_flow_setting {
+  margin-top: 0;
+}
+
+.registerForm__controls {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.registerForm__controls__button {
+  width: 100%;
+}
+
+.registerForm__fieldset__legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.registerForm__avatar {
+  padding: 0;
+}
