@@ -1,13 +1,20 @@
 import { FC, useRef, useState, useEffect } from 'react'
-import { User } from '@/shared/types'
+import { User, SkillDomain } from '@/shared/types'
 import { CardUser } from '@/widgets/CardUser'
 import { ChevronRightIcon } from '@/shared/ui/Icons/ChevronRightIcon'
-import { getAge, getSkillName, getCategoryNames } from '../../shared/lib/helpers'
+import {
+  getAge,
+  getSkillName,
+  getCategoryNames,
+  getSkillsFromDomains,
+  getCategoriesFromDomains,
+} from '../../shared/lib/helpers'
 import styles from './CardSlider.module.css'
 
 type CardSliderProps = {
   title: string
   users: User[]
+  domains: SkillDomain[]
   onLikeClick?: (userId: string) => void
   onDetailsClick?: (userId: string) => void
   likedUserIds?: string[]
@@ -16,10 +23,13 @@ type CardSliderProps = {
 export const CardSlider: FC<CardSliderProps> = ({
   title,
   users,
+  domains = [],
   onLikeClick,
   onDetailsClick,
   likedUserIds = [],
 }) => {
+  const skills = getSkillsFromDomains(domains)
+  const categories = getCategoriesFromDomains(domains)
   const sliderRef = useRef<HTMLDivElement>(null)
   const [showLeftArrow, setShowLeftArrow] = useState(false)
   const [showRightArrow, setShowRightArrow] = useState(false)
@@ -28,31 +38,53 @@ export const CardSlider: FC<CardSliderProps> = ({
   const checkScrollPosition = () => {
     if (sliderRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current
+
+      // Левая стрелка: показываем, если ушли от начала дальше 10px
       setShowLeftArrow(scrollLeft > 10)
-      setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 10)
+
+      // Математическое округление для надежного скрытия правой стрелки на любых мониторах
+      const isEndReached = Math.ceil(scrollLeft + clientWidth) >= Math.floor(scrollWidth - 10)
+      const hasScrollableContent = scrollWidth > clientWidth
+
+      setShowRightArrow(hasScrollableContent && !isEndReached)
     }
   }
 
   useEffect(() => {
     const slider = sliderRef.current
+
+    checkScrollPosition()
+
     if (slider) {
-      checkScrollPosition()
       slider.addEventListener('scroll', checkScrollPosition)
-      window.addEventListener('resize', checkScrollPosition)
     }
+    window.addEventListener('resize', checkScrollPosition)
+
+    // Отслеживаем динамическое появление карточек в DOM через ResizeObserver
+    const resizeObserver = new ResizeObserver(() => {
+      checkScrollPosition()
+    })
+    if (slider) resizeObserver.observe(slider)
 
     return () => {
       if (slider) {
         slider.removeEventListener('scroll', checkScrollPosition)
+        resizeObserver.unobserve(slider)
       }
-      window.removeEventListener('resize', checkScrollPosition)
+      window.removeEventListener('resize', checkScrollPosition) // Безопасное удаление глобального события
+      resizeObserver.disconnect()
     }
-  }, [users])
+  }, [users, domains])
 
   /*функция прокрутки карточек */
   const handleScroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
-      const scrollAmount = 348
+      // Замеряем реальную ширину карточки на экране + gap (24px)
+      const firstCard = sliderRef.current.querySelector(`.${styles.cardItem}`) as HTMLElement
+      const cardWidth = firstCard ? firstCard.offsetWidth : 324
+      const gap = 24
+      const scrollAmount = cardWidth + gap
+
       const newScrollPosition =
         direction === 'left'
           ? sliderRef.current.scrollLeft - scrollAmount
@@ -84,27 +116,23 @@ export const CardSlider: FC<CardSliderProps> = ({
         )}
 
         <div className={styles.slider} ref={sliderRef}>
-          {users.map((baseUser) => {
-            const user = baseUser as any
+          {users.map((user) => {
             const age = getAge(user.birthday)
-            const skillCan = getSkillName(user.idSkill)
-            const skillWant = getCategoryNames(user.favoriteCategories || [])
             const isLiked = likedUserIds.includes(user.id)
 
             return (
               <div key={user.id} className={styles.cardItem}>
                 <CardUser
                   avatarUrl={user.avatarUrl}
-                  name={user.name}
-                  location={user.location || user.city || 'Не указан'}
+                  name={user.fullName}
+                  location={user.location}
                   age={age}
-                  skillCan={skillCan}
-                  skillWant={skillWant}
-                  bio={user.bio ?? undefined}
+                  skillCan={getSkillName(skills, user.idSkill)}
+                  skillWant={getCategoryNames(categories, user.favoriteCategories)}
+                  domains={domains}
                   isLiked={isLiked}
                   onLikeClick={onLikeClick ? () => onLikeClick(user.id) : undefined}
                   onDetailsClick={onDetailsClick ? () => onDetailsClick(user.id) : undefined}
-                  isOfferSent={user.isOfferSent}
                 />
               </div>
             )

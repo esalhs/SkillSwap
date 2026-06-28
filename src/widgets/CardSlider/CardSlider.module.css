@@ -1,11 +1,12 @@
 .container {
-  width: 100%;
-  margin: 0 36px;
+  width: calc(100% - 72px);
+  margin: 0 auto; /* Центрируем слайдер на странице */
+  box-sizing: border-box;
 }
 
 .title {
   font-size: 24px;
-  font-family: var(--font-jost, 'Jost', sans-serif);
+  font-family: var(--font-jost, Jost, sans-serif);
   font-weight: 500;
   margin-bottom: 32px;
   color: var(--color-text, #253017);
@@ -24,6 +25,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   width: 100%;
+  scroll-snap-type: x mandatory; 
 
   /* Скрытие стандартного скроллбара */
   scrollbar-width: none;   /* Firefox */
@@ -37,10 +39,8 @@
   width: 324px;
   flex: 0 0 324px;   /* Предотвращает сжатие карточек внутри флекса */
   position: relative;
-}
-
-.cardItem [class*='userCard__bio'] {
-  display: none !important;
+  scroll-snap-align: start; 
+  padding: 20px; 
 }
 
 .arrowButton {
