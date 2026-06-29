@@ -49,6 +49,32 @@
   gap: 40px;
 }
 
+.sectionStub {
+  background: var(--color-card, #fff);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.sectionTitle {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.011em;
+  color: var(--color-text, #253017);
+  margin-bottom: 24px;
+}
+
+.sectionContent {
+  font-family: var(--font-roboto, Roboto, sans-serif);
+  font-size: 14px;
+  color: var(--color-caption, #69735d);
+  padding: 20px;
+  text-align: center;
+  background: var(--color-background, #f9faf7);
+  border-radius: 12px;
+}
+
 .loading {
   display: flex;
   align-items: center;

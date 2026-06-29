@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import styles from './CatalogPage.module.css';
-import { CardSection } from '@/widgets/CardSection';
-import type { User } from '@/widgets/CardSection';
 
 // TODO: Заменить на реальный компонент после реализации
 const ActiveFiltersBar = () => (
@@ -17,14 +15,21 @@ const SidebarPanel = () => (
   </aside>
 );
 
+// TODO: Заменить на CardSection после мержа виджета
+const CardSectionStub = ({ title }: { title: string }) => (
+  <section className={styles.sectionStub}>
+    <h2 className={styles.sectionTitle}>{title}</h2>
+    <div className={styles.sectionContent}>
+      TODO: Секция «{title}» — заменить на CardSection после мержа feature/card-section
+    </div>
+  </section>
+);
+
+// Состояние фильтров будет использоваться после реализации SidebarPanel и ActiveFiltersBar
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type FiltersState = {
   skills: string[];
   cities: string[];
-};
-
-const DEFAULT_FILTERS: FiltersState = {
-  skills: [],
-  cities: [],
 };
 
 type SkillDomain = {
@@ -44,11 +49,10 @@ type SkillDomain = {
   }[];
 };
 
-export const CatalogPage = () => {
-  const [users, setUsers] = useState<User[]>([]);
+const CatalogPage = () => {
+  const [users, setUsers] = useState<any[]>([]);
   const [domains, setDomains] = useState<SkillDomain[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
 
   useEffect(() => {
     const loadData = async () => {
@@ -58,7 +62,7 @@ export const CatalogPage = () => {
           fetch('/db/skills.json'),
         ]);
 
-        const usersData: User[] = await usersRes.json();
+        const usersData = await usersRes.json();
         const skillsData = await skillsRes.json();
 
         setUsers(usersData);
@@ -72,12 +76,6 @@ export const CatalogPage = () => {
 
     loadData();
   }, []);
-
-  const filteredUsers = users;
-
-  const popularUsers = filteredUsers.slice(0, 6);
-  const newUsers = filteredUsers.slice(6, 12);
-  const recommendedUsers = filteredUsers.slice(12, 18);
 
   if (loading) {
     return (
@@ -94,24 +92,14 @@ export const CatalogPage = () => {
         <main className={styles.main}>
           <ActiveFiltersBar />
           <div className={styles.sections}>
-            <CardSection
-              title="Популярное"
-              users={popularUsers}
-              domains={domains}
-            />
-            <CardSection
-              title="Новое"
-              users={newUsers}
-              domains={domains}
-            />
-            <CardSection
-              title="Рекомендуем"
-              users={recommendedUsers}
-              domains={domains}
-            />
+            <CardSectionStub title="Популярное" />
+            <CardSectionStub title="Новое" />
+            <CardSectionStub title="Рекомендуем" />
           </div>
         </main>
       </div>
     </div>
   );
 };
+
+export default CatalogPage;
