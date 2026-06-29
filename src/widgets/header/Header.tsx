@@ -23,8 +23,8 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
 
   if (isAuthPage) {
     return (
-      <header className={styles.header}>
-        <div className={styles.container}>
+      <header className={styles.header + ' ' + styles.headerIsAuthPage}>
+        <div className={styles.container + ' ' + styles.containerIsAuthPage}>
           <Logo className={styles.headerLogo}>
             <span className={styles.textLogo}>SkillSwap</span>
           </Logo>
