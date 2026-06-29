@@ -104,3 +104,13 @@ export function getSkillCategoryBySkillName(domains: SkillDomain[], skillName: s
 
   return categoryMap[category || ''] || 'plus'
 }
+
+// Возвращает плоский массив всех навыков из доменов
+export function getSkillsFromDomains(domains: SkillDomain[]): Skill[] {
+  return domains.flatMap(d => d.categories.flatMap(c => c.skills))
+}
+
+// Возвращает плоский массив всех категорий из доменов
+export function getCategoriesFromDomains(domains: SkillDomain[]): SkillCategory[] {
+  return domains.flatMap(d => d.categories)
+}
