@@ -32,16 +32,6 @@ export function getAge(birthday: string): number {
   return age
 }
 
-/** Фильтрует скиллы по id */
-export function getSkillName(skills: Skill[], id: string) {
-  return skills.find(s => s.id === id)?.name ?? 'Нет данных'
-}
-
-/** Фильтрует категории по id */
-export function getCategoryNames(categories: SkillCategory[], ids: string[]) {
-  return ids.map(id => categories.find(c => c.id === id)?.name ?? 'Нет данных')
-}
-
 /** Склоняет слово "год" в зависимости от возраста */
 export function getYearDeclension(age: number): string {
   const lastDigit = age % 10
@@ -93,7 +83,10 @@ export function getCategoryByCategoryName(categoryName: string): TagProps['categ
   return categoryMap[categoryName] || 'plus'
 }
 
-export function getSkillCategoryBySkillName(domains: SkillDomain[], skillName: string): TagProps['category'] {
+export function getSkillCategoryBySkillName(
+  domains: SkillDomain[],
+  skillName: string,
+): TagProps['category'] {
   const domain = domains.find((d) =>
     d.categories.some((cat) => cat.skills.some((skill) => skill.name === skillName)),
   )
@@ -105,12 +98,21 @@ export function getSkillCategoryBySkillName(domains: SkillDomain[], skillName: s
   return categoryMap[category || ''] || 'plus'
 }
 
-// Возвращает плоский массив всех навыков из доменов
 export function getSkillsFromDomains(domains: SkillDomain[]): Skill[] {
-  return domains.flatMap(d => d.categories.flatMap(c => c.skills))
+  return domains.flatMap((d) => d.categories.flatMap((cat) => cat.skills))
 }
 
-// Возвращает плоский массив всех категорий из доменов
 export function getCategoriesFromDomains(domains: SkillDomain[]): SkillCategory[] {
-  return domains.flatMap(d => d.categories)
+  return domains.flatMap((d) => d.categories)
+}
+
+export function getSkillName(skills: Skill[], skillId: string): string {
+  return skills.find((s) => s.id === skillId)?.name || 'Нет данных'
+}
+
+export function getCategoryNames(categories: SkillCategory[], categoryIds: string[]): string[] {
+  return categoryIds.map((id) => {
+    const cat = categories.find((c) => c.id === id)
+    return cat?.name || 'Нет данных'
+  })
 }
