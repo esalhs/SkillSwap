@@ -1,0 +1,31 @@
+.textarea_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-xs, 4px);
+}
+
+.textarea {
+  padding: 15px 20px;
+  border-radius: var(--radius-lg, 12px);
+  background-color: var(--color-bg, #fff);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  border: 1px solid #69735d;
+  caret-color: var(--color-success, #22c55e);
+  outline: none;
+  width: 100%;
+  letter-spacing: 2%;
+}
+
+textarea::placeholder {
+  color: #69735d;
+}
+
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: #253017;
+}
