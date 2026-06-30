@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+  width: 460px;
+  background-color: var(--color-bg, #fff);
+}
+
+.password {
+  font-size: var(--font-size-base, 1rem);
+  color: var(--color-text-link, #508826);
+  font-weight: 500;
+}
+
+.credentials_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.date_sex_wrapper {
+  display: flex;
+  gap: var(--space-lg, 24px);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date_sex_wrapper > * {
+  flex: 1;
+}
+
+.textarea_wrapper {
+  position: relative;
+  height: 120px;
+  width: 100%;
+  padding: 12px 46px 12px 20px;
+  border-radius: var(--radius-lg, 12px);
+  background-color: var(--color-bg, #fff);
+  border: 1px solid #69735d;
+}
+
+.textarea {
+  font: inherit;
+  resize: none;
+  height: 100%;
+  width: 100%;
+  caret-color: var(--color-success, #22c55e);
+  outline: none;
+  border: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-disabled, #e4e8df) transparent;
+  overflow-y: auto;
+}
+
+.textarea_button {
+  position: absolute;
+  right: 12px;
+  bottom: calc(50% - 12px);
+}
+
+.textarea_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea_label {
+  padding-bottom: 4px;
+}
+
+.textarea_button:focus-visible {
+  outline-color: var(--color-caption, #69735d);
+}
+
+.textarea::-webkit-scrollbar {
+  width: 4px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background: var(--color-disabled, #e4e8df);
+  border-radius: 999px;
+}
+
+.select {
+  margin-bottom: 4px;
+}
