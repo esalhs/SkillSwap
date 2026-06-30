@@ -2,20 +2,8 @@ import { useState } from 'react';
 import styles from './CardSection.module.css';
 import { CardUser } from '../CardUser';
 import { Button } from '@/shared/ui/Button';
-import { SkillDomain } from '@/shared/types';
-import { getSkillsFromDomains, getCategoriesFromDomains } from '@/shared/lib/helpers';
-import { getAge, getSkillName, getCategoryNames } from '@/shared/lib/helpers';
-
-export type User = {
-  id: string;
-  avatarUrl: string | null;
-  fullName: string;
-  location: string;
-  birthday: string;
-  idSkill: number;
-  favoriteCategories: string[];
-  bio?: string;
-};
+import { User, SkillDomain } from '@/shared/types';
+import { getSkillsFromDomains, getCategoriesFromDomains, getAge, getSkillName, getCategoryNames } from '@/shared/lib/helpers';
 
 type CardSectionProps = {
   title: string;
@@ -65,7 +53,7 @@ export const CardSection = ({
             name={user.fullName}
             location={user.location}
             age={getAge(user.birthday)}
-            skillCan={getSkillName(skills, String(user.idSkill))}
+            skillCan={getSkillName(skills, user.idSkill)}
             skillWant={getCategoryNames(categories, user.favoriteCategories)}
             bio={user.bio}
             domains={domains}
