@@ -77,9 +77,11 @@ export const Input: FC<InputProps> = ({
           </button>
         )}
       </div>
-      <div className={clsx(styles.description, isError && styles.description_incorrect)}>
-        {description}
-      </div>
+      {description && (
+        <div className={clsx(styles.description, isError && styles.description_incorrect)}>
+          {description}
+        </div>
+      )}
     </div>
   )
 }
