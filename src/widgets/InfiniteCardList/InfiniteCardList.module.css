@@ -1,0 +1,17 @@
+.cardList__users {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cardList__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

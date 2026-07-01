@@ -1,0 +1,1 @@
+export { RegAccountPage } from './RegAccountPage'

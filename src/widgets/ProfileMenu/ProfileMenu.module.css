@@ -1,0 +1,29 @@
+.container {
+  background-color: var(--color-bg, #fff);
+  border-radius: 24px;
+  padding: 40px;
+  height: 100%;
+  width: 100%;
+}
+
+.list_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+}
+
+.button {
+  width: 100%;
+  display: inline-flex;
+  justify-content: left;
+}
+
+.buttonActive {
+  background-color: var(--button-hover, #deebc5);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

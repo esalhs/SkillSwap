@@ -1,0 +1,131 @@
+.container {
+  width: 100%;
+  position: relative;
+  height: 76px;
+  z-index: 1;
+}
+
+.container_open {
+  z-index: 9999;
+}
+
+.select_wrapper {
+  border: 1px solid var(--color-caption, #69735d);
+  border-radius: var(--radius-lg, 12px);
+  position: absolute;
+  top: 28px;
+  left: -1px;
+  right: -1px;
+  width: 100%;
+}
+
+.init_option {
+  color: var(--color-caption, #69735d);
+}
+
+.select {
+  padding: 12px 20px;
+  background-color: var(--color-bg, #fff);
+  height: 46.4px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  border-radius: var(--radius-lg, 12px);
+}
+
+.button {
+  position: absolute;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+.button:focus-visible,
+.button_category:focus-visible {
+  outline-color: var(--color-caption, #69735d);
+}
+
+svg {
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs, 4px);
+  padding: 8px 0;
+  background: var(--color-bg, #fff);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.dropdown_search {
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-disabled, #e4e8df) transparent;
+  margin-right: 2px;
+}
+
+.dropdown_search::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dropdown_search::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown_search::-webkit-scrollbar-thumb {
+  background: var(--color-disabled, #e4e8df);
+  border-radius: 999px;
+}
+
+.dropdown_open {
+  border-bottom: 1px solid var(--color-disabled, #e4e8df);
+}
+
+.search_input {
+  font: inherit;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding-right: 35px;
+  font-size: var(--font-size-base);
+  caret-color: var(--color-success, #22c55e);
+}
+
+.search_input:focus {
+  outline: none;
+}
+
+.no_results {
+  padding: 12px 20px;
+  pointer-events: none;
+  background-color: var(--color-bg, #fff);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.option {
+  cursor: pointer;
+  padding: 4px 20px;
+}
+
+.option_selected {
+  color: var(--color-text-link, #508826);
+}
+
+.option:hover {
+  background-color: var(--color-disabled, #e4e8df);
+}
+
+.select_category {
+  display: flex;
+  gap: 10px;
+  padding-left: 10px;
+}
+
+input[type='search']::-webkit-search-cancel-button {
+  appearance: none;
+  display: none;
+}
