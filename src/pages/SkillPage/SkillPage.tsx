@@ -1,6 +1,6 @@
 import { Header } from '@/widgets/header'
 import { CardUser } from '@/widgets/CardUser'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import users from '../../../public/db/users.json';
 import skills from '../../../public/db/skills.json';
 import { getAge, getCategoryNames, getSkillName } from '@/shared/lib/helpers.ts'
@@ -16,6 +16,7 @@ const allCategories = skills.skillDomains.flatMap((domain) => domain.categories)
 const allSkills = allCategories.flatMap((category) => category.skills);
 
 export default function SkillPage() {
+  const navigate = useNavigate()
   const { id } = useParams()
   const user = users.find((u) => u.id === id)
   const favoriteDomains = useMemo(() => {
@@ -102,11 +103,7 @@ export default function SkillPage() {
             // TODO: лайк будет обрабатывать слайс
             console.log('Лайк поставлен')
           }}
-          onDetailsClick={() => {
-            // правильно ли я понял, что у нас здесь заглушка,
-            // в макете не было найдено, что эта кнопка что-либо делает
-            console.log('Подробнее')
-          }}
+          onDetailsClick={(userId) => navigate(`/skill/${userId}`)}
           title="Похожие предложения"
           users={similarUsers}
           domains={skills.skillDomains}
