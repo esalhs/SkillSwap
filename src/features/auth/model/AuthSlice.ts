@@ -2,9 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import type { AuthUser, User } from '@/shared/types'
 import { getAuthUser, saveAuthUser, clearAuthUser } from './authUtils'
 
-const res = await fetch("/db/users.json");
-const users = await res.json();
-
 interface ILogin {
   email: string
   password: string
@@ -37,6 +34,9 @@ export const loginUser = createAsyncThunk<AuthUser, ILogin, { rejectValue: strin
       if (!email || !password) {
         return rejectWithValue('Заполните все поля')
       }
+
+      const res = await fetch('/db/users.json')
+      const users: User[] = await res.json()
 
       const foundUser = users.find((u: User) => u.email === email && u.password === password)
 
