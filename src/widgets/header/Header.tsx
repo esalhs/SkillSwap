@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
             variant="tertiary"
             icon={<CrossIcon />}
             iconPosition="after"
-            onClick={() => console.log('Закрыть кликнуто')}
+            onClick={() => navigate(ROUTES.HOME)}
           >
             Закрыть
           </Button>
