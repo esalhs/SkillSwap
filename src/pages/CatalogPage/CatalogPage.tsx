@@ -104,9 +104,9 @@ const CatalogPage = () => {
             <main className={styles.main}>
               <ActiveFiltersBar />
               <div className={styles.sections}>
-                <CardSectionStub title="Рекомендации" />
-                <CardSectionStub title="Дизайн" />
-                <CardSectionStub title="Образование" />
+                <CardSectionStub title="Популярное" />
+                <CardSectionStub title="Новое" />
+                <CardSectionStub title="Рекомендуем" />
               </div>
             </main>
           </>

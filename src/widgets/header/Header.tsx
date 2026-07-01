@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
           >
             <Input
               type="search"
-              placeholder="Найти навыки"
+              placeholder="Искать навык"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               leftIcon={
