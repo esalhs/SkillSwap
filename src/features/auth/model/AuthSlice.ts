@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import type { AuthUser } from '@/shared/types'
+import type { AuthUser, User } from '@/shared/types'
 import { getAuthUser, saveAuthUser, clearAuthUser } from './authUtils'
-import users from 'public/db/users.json'
+
+const res = await fetch("/db/users.json");
+const users = await res.json();
 
 interface ILogin {
   email: string
@@ -36,7 +38,7 @@ export const loginUser = createAsyncThunk<AuthUser, ILogin, { rejectValue: strin
         return rejectWithValue('Заполните все поля')
       }
 
-      const foundUser = users.find((u) => u.email === email && u.password === password)
+      const foundUser = users.find((u: User) => u.email === email && u.password === password)
 
       if (!foundUser) {
         return rejectWithValue('Неверный email или пароль')
