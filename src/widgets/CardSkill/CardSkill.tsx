@@ -1,44 +1,59 @@
-import { Button } from '@/shared/ui/Button'
+import { Button, ButtonVariant } from '@/shared/ui/Button'
 import { IconButton } from '@/shared/ui/IconAction'
-import { EditIcon, LikeIcon, MoreSquareIcon, ShareIcon } from '@/shared/ui/Icons'
+import { ClockIcon, EditIcon, LikeIcon, MoreSquareIcon, ShareIcon } from '@/shared/ui/Icons'
 import { GallerySlider } from '@/widgets/GallerySlider'
+import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+// import { useAppDispatch, useAppSelector} from '@/store/hooks.ts'
+
 import styles from './CardSkill.module.css'
 
 type CardSkillProps = {
-  variant: 'home' | 'register' // добавил пропс, чтобы указывать, где находится компонент
+  pageVariant: 'home' | 'register' // добавил пропс, чтобы указывать, где находится компонент
+  skillId?: string
+  buttonVariant?: ButtonVariant
   title: string
   domain: string // "Творчество и искусство"
   category: string // "Музыка и звук"
   description: string
   images: string[] // массив путей к фото
-  // иконки действий на странице навыка (variant: 'home')
-  isLiked?: boolean
-  onLikeClick?: () => void
-  onShareClick?: () => void
-  onMoreClick?: () => void
-  // кнопки
-  mainButtonLabel: string // текст основной кнопки
-  onMainClick: () => void
-  secondaryButtonLabel?: string // текст второй кнопки (variant: 'register' – "Редактировать")
-  onSecondaryClick?: () => void
 }
 
 export const CardSkill = (props: CardSkillProps) => {
+  // TODO: на будущее для работы с редаксом
+  const isOffered = false // useAppSelector();
+  const isLiked = false // useAppSelector();
+  //
+  const handleMainClick = useCallback(() => {
+    console.log('Предложить обмен')
+    // dispatch(offer(props.skillId))
+  }, [
+    // props.skillId
+  ])
+
+  const navigate = useNavigate();
+
+  const onSecondaryButtonHandler = useCallback(() => {
+    navigate(-1) // переходим на шаг назад в регистрацию
+  }, [navigate])
+
   return (
     <article className={styles.overallWrapper}>
-      {props.variant === 'home' ? (
+      {props.pageVariant === 'home' ? (
         <div className={styles.icons}>
           <IconButton
-            icon={<LikeIcon active={props.isLiked} />}
+            icon={
+              <LikeIcon
+                active={isLiked}
+              />
+            }
             ariaLabel="Кнопка лайка"
-            onClick={props.onLikeClick}
+            onClick={() => {
+              // TODO: будет делать редакс
+            }}
           />
-          <IconButton icon={<ShareIcon />} ariaLabel="Поделиться" onClick={props.onShareClick} />
-          <IconButton
-            icon={<MoreSquareIcon />}
-            ariaLabel="Узнать больше"
-            onClick={props.onMoreClick}
-          />
+          <IconButton icon={<ShareIcon />} ariaLabel="Поделиться" />
+          <IconButton icon={<MoreSquareIcon />} ariaLabel="Узнать больше" />
         </div>
       ) : (
         <div className={styles.registerTitle}>
@@ -59,19 +74,27 @@ export const CardSkill = (props: CardSkillProps) => {
             <p className={styles.description}>{props.description}</p>
           </div>
           <div className={styles.buttons}>
-            {props.variant === 'register' && (
+            {props.pageVariant === 'register' && (
               <Button
                 className={styles.secondaryButton}
                 variant="secondary"
                 iconPosition="after"
                 icon={<EditIcon />}
-                onClick={props.onSecondaryClick}
+                onClick={onSecondaryButtonHandler}
               >
-                {props.secondaryButtonLabel}
+                Редактировать
               </Button>
             )}
-            <Button className={styles.mainButton} onClick={props.onMainClick}>
-              {props.mainButtonLabel}
+            <Button
+              variant={props.buttonVariant}
+              className={styles.mainButton}
+              onClick={handleMainClick}
+              {...(isOffered
+                ? { icon: <ClockIcon />, iconPosition: 'before', }
+                : {}
+              )}
+            >
+              {props.pageVariant === 'home' ? 'Предложить обмен' : 'Готово'}
             </Button>
           </div>
         </div>
