@@ -68,10 +68,7 @@ export const CatalogPage = () => {
   };
 
   const handleDetailsClick = (userId: string) => {
-    const user = users.find((u: User) => u.id === userId);
-    if (user) {
-      navigate(ROUTES.SKILL.replace(':id', user.idSkill));
-    }
+      navigate(ROUTES.SKILL.replace(':id', userId));
   };
 
   const handleResetFilters = () => {
@@ -90,34 +87,12 @@ export const CatalogPage = () => {
     });
   };
 
-  const getSectionTitles = () => {
-    if (hasActiveFilters) {
-      return {
-        first: 'Подходящие предложения',
-        second: 'Рекомендуем',
-        third: null as string | null,
-      };
-    }
-    if (isAuth) {
-      return {
-        first: 'Точное совпадение',
-        second: 'Новые идеи',
-        third: 'Рекомендуем',
-      };
-    }
-    return {
-      first: 'Популярное',
-      second: 'Новое',
-      third: 'Рекомендуем',
-    };
-  };
-
-  const sectionTitles = getSectionTitles();
+  const firstTitle = isAuth ? 'Точное совпадение' : 'Популярное';
+  const secondTitle = isAuth ? 'Новые идеи' : 'Новое';
 
   const firstSectionUsers = users.slice(0, 6);
   const secondSectionUsers = users.slice(6, 12);
   const thirdSectionUsers = users.slice(12, 18);
-  const remainingUsers = users.slice(18);
 
   if (loading) {
     return (
@@ -132,17 +107,30 @@ export const CatalogPage = () => {
   return (
     <div className={styles.page}>
       <Header />
+      <div className={styles.wrapper}>
+      <ActiveFiltersBar
+        filters={filters}
+        onReset={handleResetFilters}
+        onRemoveFilter={handleRemoveFilter}
+      />
       <div className={styles.content}>
         <SidebarPanel filters={filters} onChange={setFilters} />
         <main className={styles.main}>
-          <ActiveFiltersBar
-            filters={filters}
-            onReset={handleResetFilters}
-            onRemoveFilter={handleRemoveFilter}
-          />
-          <div className={styles.sections}>
+          {hasActiveFilters ? (
+            <InfiniteCardList
+              title="Подходящие предложения"
+              totalCount={users.length}
+              users={users}
+              domains={domains}
+              likedUserIds={likedUserIds}
+              onLikeClick={handleLikeClick}
+              onDetailsClick={handleDetailsClick}
+              onSortClick={() => {}} // TODO: логика сортировки
+            />
+          ) : (
+            <div className={styles.sections}>
             <CardSection
-              title={sectionTitles.first}
+              title={firstTitle}
               users={firstSectionUsers}
               domains={domains}
               likedUserIds={likedUserIds}
@@ -150,35 +138,25 @@ export const CatalogPage = () => {
               onDetailsClick={handleDetailsClick}
             />
             <CardSection
-              title={sectionTitles.second}
+              title={secondTitle}
               users={secondSectionUsers}
               domains={domains}
               likedUserIds={likedUserIds}
               onLikeClick={handleLikeClick}
               onDetailsClick={handleDetailsClick}
             />
-            {sectionTitles.third && (
               <CardSection
-                title={sectionTitles.third}
+                title="Рекомендуем"
                 users={thirdSectionUsers}
                 domains={domains}
                 likedUserIds={likedUserIds}
                 onLikeClick={handleLikeClick}
                 onDetailsClick={handleDetailsClick}
               />
-            )}
           </div>
-          {remainingUsers.length > 0 && (
-            <InfiniteCardList
-              title="Все пользователи"
-              users={remainingUsers}
-              domains={domains}
-              likedUserIds={likedUserIds}
-              onLikeClick={handleLikeClick}
-              onDetailsClick={handleDetailsClick}
-            />
           )}
         </main>
+        </div>
       </div>
       <Footer />
     </div>

@@ -1,8 +1,10 @@
 .filterBar {
   display: flex;
-  flex-direction: row;
-  width: fit-content;
+  flex-flow: row wrap;
+  width: 100%;
   align-items: center;
+  gap: 12px;
+  margin-left:52px;
 }
 
 .filtersParagraph {
@@ -34,6 +36,5 @@
   line-height: 24px;
   letter-spacing: 2%;
   border-radius: 12px;
-  padding: 12px 24px;
   margin-left: 12px;
 }

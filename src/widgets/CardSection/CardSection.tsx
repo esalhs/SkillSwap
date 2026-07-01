@@ -55,7 +55,6 @@ export const CardSection = ({
             age={getAge(user.birthday)}
             skillCan={getSkillName(skills, user.idSkill)}
             skillWant={getCategoryNames(categories, user.favoriteCategories)}
-            bio={user.bio}
             domains={domains}
             isLiked={likedUserIds.includes(user.id)}
             isOfferSent={sentOfferUserIds.includes(user.id)}
