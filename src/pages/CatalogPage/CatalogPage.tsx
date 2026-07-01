@@ -1,5 +1,14 @@
-import { useState, useEffect } from 'react';
-import styles from './CatalogPage.module.css';
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useDebounce } from '@/shared/hooks/useDebounce'
+import { fetchUsers } from '@/api/users'
+import { fetchSkillDomains } from '@/api/skills'
+import { InfiniteCardList } from '@/widgets/InfiniteCardList'
+import { getSkillsFromDomains } from '@/shared/lib/helpers'
+import type { User, SkillDomain } from '@/shared/types'
+import styles from './CatalogPage.module.css'
+
+
 
 // TODO: Заменить на реальный компонент после реализации
 const ActiveFiltersBar = () => (
@@ -26,25 +35,44 @@ const CardSectionStub = ({ title }: { title: string }) => (
 );
 
 const CatalogPage = () => {
-  const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState<User[]>([])
+  const [domains, setDomains] = useState<SkillDomain[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const [searchParams] = useSearchParams()
+  const searchFromUrl = searchParams.get('search') || ''
+  const debouncedSearch = useDebounce(searchFromUrl, 300)
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        await Promise.all([
-          fetch('/db/users.json'),
-          fetch('/db/skills.json'),
-        ]);
-        // Данные загружены, в будущем будут использоваться в CardSection и фильтрах
+        const [usersData, domainsData] = await Promise.all([
+          fetchUsers(),
+          fetchSkillDomains(),
+        ])
+        setUsers(usersData)
+        setDomains(domainsData)
       } catch (error) {
-        console.error('Ошибка загрузки данных:', error);
+        console.error('Ошибка загрузки данных:', error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
+    loadData()
+  }, [])
 
-    loadData();
-  }, []);
+  const filteredUsers = users.filter((user) => {
+    if (!debouncedSearch) return false
+    const query = debouncedSearch.toLowerCase()
+
+    const nameMatch = user.fullName.toLowerCase().includes(query)
+
+    const skills = getSkillsFromDomains(domains)
+    const userSkill = skills.find((s) => s.id === user.idSkill)
+    const skillMatch = userSkill?.name?.toLowerCase().includes(query) ?? false
+
+    return nameMatch || skillMatch
+  })
 
   if (loading) {
     return (
@@ -54,18 +82,35 @@ const CatalogPage = () => {
     );
   }
 
+
   return (
     <div className={styles.page}>
       <div className={styles.content}>
-        <SidebarPanel />
-        <main className={styles.main}>
-          <ActiveFiltersBar />
-          <div className={styles.sections}>
-            <CardSectionStub title="Популярное" />
-            <CardSectionStub title="Новое" />
-            <CardSectionStub title="Рекомендуем" />
-          </div>
-        </main>
+        {debouncedSearch ? (
+          <main className={styles.main}>
+            {filteredUsers.length > 0 ? (
+              <InfiniteCardList
+                title="Результаты поиска"
+                domains={domains}
+                users={filteredUsers}
+              />
+            ) : (
+              <div className={styles.loading}>Ничего не найдено</div>
+            )}
+          </main>
+        ) : (
+          <>
+            <SidebarPanel />
+            <main className={styles.main}>
+              <ActiveFiltersBar />
+              <div className={styles.sections}>
+                <CardSectionStub title="Рекомендации" />
+                <CardSectionStub title="Дизайн" />
+                <CardSectionStub title="Образование" />
+              </div>
+            </main>
+          </>
+        )}
       </div>
     </div>
   );
