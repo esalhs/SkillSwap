@@ -1,5 +1,5 @@
 import styles from './ImageUpload.module.css'
-import { GalleryAddIcon } from '../../ui/Icons/GalleryAdd'
+import { GalleryAddIcon, CrossIcon } from '@/shared/ui/Icons'
 import { useRef, useState } from 'react'
 
 type ImageUploadProps = {
@@ -21,17 +21,17 @@ export const ImageUpload = (props: ImageUploadProps) => {
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     setIsDragging(false)
     e.preventDefault()
-    if (props.maxFiles && props.value.length === props.maxFiles) return
+    if (props.maxFiles && props.value.length >= props.maxFiles) return
     props.onChange([...props.value, ...Array.from(e.dataTransfer.files)])
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (props.maxFiles && props.value.length === props.maxFiles) return
+    if (props.maxFiles && props.value.length >= props.maxFiles) return
     props.onChange([...props.value, ...Array.from(e.target.files ?? [])])
   }
 
-  const onDelete = (i: number) => {
-    props.onChange(props.value.filter((_, index) => index !== i))
+  const onDelete = (file: File) => {
+    props.onChange(props.value.filter((f) => !(f.name === file.name && f.size === file.size)))
   }
 
   const onDragEnter = () => {
@@ -59,11 +59,11 @@ export const ImageUpload = (props: ImageUploadProps) => {
       </button>
       {props.value.length > 0 && (
         <div className={styles.fileList}>
-          {props.value.map((file, i) => (
-            <div key={i} className={styles.fileItem}>
+          {props.value.map((file) => (
+            <div key={`${file.name}-${file.size}`} className={styles.fileItem}>
               <span className={styles.fileName}>{file.name}</span>
-              <button type="button" className={styles.deleteButton} onClick={() => onDelete(i)}>
-                х
+              <button type="button" className={styles.deleteButton} onClick={() => onDelete(file)}>
+                <CrossIcon />
               </button>
             </div>
           ))}
