@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { toggleLike, selectFavoriteUserIds } from '@/store/favoritesSlice';
@@ -10,16 +10,10 @@ import { CardSection } from '@/widgets/CardSection';
 import { InfiniteCardList } from '@/widgets/InfiniteCardList';
 import { SidebarPanel } from '@/widgets/SidebarFilters/SidebarPanel';
 import { ActiveFiltersBar } from '@/widgets/SidebarFilters/ActiveFiltersBar';
-import type { User, SkillDomain } from '@/shared/types';
+import { filterUsers, hasActiveFilters } from '@/shared/lib/helpers';
+import type { User, SkillDomain, FiltersState } from '@/shared/types';
 import { ROUTES } from '@/shared/lib/constants';
 import styles from './CatalogPage.module.css';
-
-type FiltersState = {
-  type: 'all' | 'want' | 'can';
-  sex: 'any' | 'male' | 'female';
-  categories: string[];
-  cities: string[];
-};
 
 const DEFAULT_FILTERS: FiltersState = {
   type: 'all',
@@ -39,11 +33,7 @@ export const CatalogPage = () => {
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
 
   const isAuth = false;
-  const hasActiveFilters =
-    filters.categories.length > 0 ||
-    filters.cities.length > 0 ||
-    filters.type !== 'all' ||
-    filters.sex !== 'any';
+  const isFiltered = hasActiveFilters(filters);
 
   useEffect(() => {
     const loadData = async () => {
@@ -63,12 +53,20 @@ export const CatalogPage = () => {
     loadData();
   }, []);
 
+  const filteredUsers = useMemo(
+    () => filterUsers(users, filters, domains),
+    [users, filters, domains]
+  );
+
   const handleLikeClick = (userId: string) => {
     dispatch(toggleLike(userId));
   };
 
   const handleDetailsClick = (userId: string) => {
-      navigate(ROUTES.SKILL.replace(':id', userId));
+    const user = users.find((u: User) => u.id === userId);
+    if (user) {
+      navigate(ROUTES.SKILL.replace(':id', user.idSkill));
+    }
   };
 
   const handleResetFilters = () => {
@@ -90,9 +88,9 @@ export const CatalogPage = () => {
   const firstTitle = isAuth ? 'Точное совпадение' : 'Популярное';
   const secondTitle = isAuth ? 'Новые идеи' : 'Новое';
 
-  const firstSectionUsers = users.slice(0, 6);
-  const secondSectionUsers = users.slice(6, 12);
-  const thirdSectionUsers = users.slice(12, 18);
+  const firstSectionUsers = filteredUsers.slice(0, 6);
+  const secondSectionUsers = filteredUsers.slice(6, 12);
+  const thirdSectionUsers = filteredUsers.slice(12, 18);
 
   if (loading) {
     return (
@@ -107,44 +105,43 @@ export const CatalogPage = () => {
   return (
     <div className={styles.page}>
       <Header />
-      <div className={styles.wrapper}>
-      <ActiveFiltersBar
-        filters={filters}
-        onReset={handleResetFilters}
-        onRemoveFilter={handleRemoveFilter}
-      />
       <div className={styles.content}>
         <SidebarPanel filters={filters} onChange={setFilters} />
         <main className={styles.main}>
-          {hasActiveFilters ? (
+          <ActiveFiltersBar
+            filters={filters}
+            onReset={handleResetFilters}
+            onRemoveFilter={handleRemoveFilter}
+          />
+          {isFiltered ? (
             <InfiniteCardList
               title="Подходящие предложения"
-              totalCount={users.length}
-              users={users}
+              totalCount={filteredUsers.length}
+              users={filteredUsers}
               domains={domains}
               likedUserIds={likedUserIds}
               onLikeClick={handleLikeClick}
               onDetailsClick={handleDetailsClick}
-              onSortClick={() => {}} // TODO: логика сортировки
+              onSortClick={() => {}}
             />
           ) : (
             <div className={styles.sections}>
-            <CardSection
-              title={firstTitle}
-              users={firstSectionUsers}
-              domains={domains}
-              likedUserIds={likedUserIds}
-              onLikeClick={handleLikeClick}
-              onDetailsClick={handleDetailsClick}
-            />
-            <CardSection
-              title={secondTitle}
-              users={secondSectionUsers}
-              domains={domains}
-              likedUserIds={likedUserIds}
-              onLikeClick={handleLikeClick}
-              onDetailsClick={handleDetailsClick}
-            />
+              <CardSection
+                title={firstTitle}
+                users={firstSectionUsers}
+                domains={domains}
+                likedUserIds={likedUserIds}
+                onLikeClick={handleLikeClick}
+                onDetailsClick={handleDetailsClick}
+              />
+              <CardSection
+                title={secondTitle}
+                users={secondSectionUsers}
+                domains={domains}
+                likedUserIds={likedUserIds}
+                onLikeClick={handleLikeClick}
+                onDetailsClick={handleDetailsClick}
+              />
               <CardSection
                 title="Рекомендуем"
                 users={thirdSectionUsers}
@@ -153,10 +150,9 @@ export const CatalogPage = () => {
                 onLikeClick={handleLikeClick}
                 onDetailsClick={handleDetailsClick}
               />
-          </div>
+            </div>
           )}
         </main>
-        </div>
       </div>
       <Footer />
     </div>
