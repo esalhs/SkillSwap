@@ -14,33 +14,9 @@
   gap: 32px;
 }
 
-.sidebar {
-  width: 280px;
-  flex-shrink: 0;
-  background: var(--color-card, #fff);
-  border-radius: 20px;
-  padding: 24px;
-  font-family: var(--font-roboto, Roboto, sans-serif);
-  font-size: 14px;
-  color: var(--color-text, #253017);
-  align-self: flex-start;
-  position: sticky;
-  top: 20px;
-}
-
 .main {
   flex: 1;
   min-width: 0;
-}
-
-.filterBar {
-  background: var(--color-card, #fff);
-  border-radius: 12px;
-  padding: 16px 24px;
-  margin-bottom: 32px;
-  font-family: var(--font-roboto, Roboto, sans-serif);
-  font-size: 14px;
-  color: var(--color-text, #253017);
 }
 
 .sections {
@@ -49,37 +25,11 @@
   gap: 40px;
 }
 
-.sectionStub {
-  background: var(--color-card, #fff);
-  border-radius: 20px;
-  padding: 24px;
-}
-
-.sectionTitle {
-  font-family: Jost, sans-serif;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 40px;
-  letter-spacing: -0.011em;
-  color: var(--color-text, #253017);
-  margin-bottom: 24px;
-}
-
-.sectionContent {
-  font-family: var(--font-roboto, Roboto, sans-serif);
-  font-size: 14px;
-  color: var(--color-caption, #69735d);
-  padding: 20px;
-  text-align: center;
-  background: var(--color-background, #f9faf7);
-  border-radius: 12px;
-}
-
 .loading {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 400px;
+  flex: 1;
   font-size: 18px;
   color: var(--color-caption, #69735d);
 }
