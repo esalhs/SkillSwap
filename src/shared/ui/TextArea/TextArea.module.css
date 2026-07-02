@@ -29,3 +29,17 @@ textarea:-webkit-autofill:active {
   box-shadow: 0 0 0 1000px #fff inset;
   -webkit-text-fill-color: #253017;
 }
+
+
+.textarea_incorrect {
+  border-color: var(--color-error, #d32f2f);
+}
+
+.description {
+  font-size: var(--font-size-small, 12px);
+  color: var(--color-caption, #69735d);
+}
+
+.description_incorrect {
+  color: var(--color-error, #d32f2f);
+}

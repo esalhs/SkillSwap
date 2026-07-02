@@ -10,6 +10,7 @@ type InputProps = {
   type: string
   description?: string
   label?: string
+  id?: string
   leftIcon?: React.ReactElement
   rightIcon?: React.ReactElement
   isError?: boolean
@@ -26,6 +27,7 @@ export const Input: FC<InputProps> = ({
   label,
   type,
   description,
+  id,
   leftIcon,
   rightIcon,
   isError,
@@ -42,6 +44,7 @@ export const Input: FC<InputProps> = ({
       <div className={styles.input_wrapper}>
         {leftIcon && <div className={clsx(styles.left_icon, styles.icon)}>{leftIcon}</div>}
         <input
+          id={id}
           className={clsx(
             styles.input,
             leftIcon && styles.is_left_icon,

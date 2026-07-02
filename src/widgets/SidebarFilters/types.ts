@@ -1,17 +1,12 @@
-export type ActiveFilters = {
-type: 'all' | 'want' | 'can'
-categories: string[] // id категорий
-sex: 'any' | 'male' | 'female'
-cities: string[] // id городов
-}
+import type { FiltersState } from '@/shared/types'
 
 export type SidebarPanelProps = {
-filters: ActiveFilters
-onChange: (filters: ActiveFilters) => void
+filters: FiltersState
+onChange: (filters: FiltersState) => void
 }
 
 export type ActiveFiltersBarProps = {
-filters: ActiveFilters
+filters: FiltersState
 onReset: () => void
-onRemoveFilter: (type: keyof ActiveFilters, value: string) => void
+onRemoveFilter: (type: keyof FiltersState, value: string) => void
 }

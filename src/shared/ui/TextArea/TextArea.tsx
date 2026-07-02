@@ -1,6 +1,7 @@
 import styles from './TextArea.module.css'
 import { FC } from 'react'
 import { TextAreaProps } from './type'
+import clsx from 'clsx'
 
 export const TextArea: FC<TextAreaProps> = ({
   onChange,
@@ -11,12 +12,14 @@ export const TextArea: FC<TextAreaProps> = ({
   onFocus,
   rows = 4,
   maxLength,
+  isError,
+  description,
 }) => {
-  return ( 
+  return (
     <div className={styles.textarea_container}>
       {label && <span>{label}</span>}
         <textarea
-          className={styles.textarea}
+          className={clsx(styles.textarea, isError && styles.textarea_incorrect)}
           onChange={onChange}
           value={value}
           placeholder={placeholder}
@@ -25,6 +28,11 @@ export const TextArea: FC<TextAreaProps> = ({
           rows={rows}
           maxLength={maxLength}
         />
+      {description && (
+        <div className={clsx(styles.description, isError && styles.description_incorrect)}>
+          {description}
+        </div>
+      )}
     </div>
   )
 }

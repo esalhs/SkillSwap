@@ -17,27 +17,37 @@ type CardSkillProps = {
   images: string[] // массив путей к фото
   isLiked?: boolean
   onLikeClick?: () => void // если не передан — иконка лайка не рендерится
+  onMainClick?: () => void // обработчик клика на основную кнопку
+  onSecondaryClick?: () => void // обработчик клика на кнопку "Редактировать"
 }
 
-export const CardSkill = (props: CardSkillProps) => {
-
+export const CardSkill = ({
+  onMainClick,
+  onSecondaryClick,
+  ...props
+}: CardSkillProps) => {
+  const navigate = useNavigate()
   const isOffered = false // TODO: подключить requestsSlice
 
   const handleMainClick = useCallback(
     () => {
-      console.log('Предложить обмен')
-      // dispatch(offer(props.skillId))
+      if (onMainClick) {
+        onMainClick()
+      } else {
+        console.log('Предложить обмен')
+        // dispatch(offer(props.skillId))
+      }
     },
-    [
-      // props.skillId
-    ],
+    [onMainClick],
   )
 
-  const navigate = useNavigate()
-
   const onSecondaryButtonHandler = useCallback(() => {
-    navigate(-1) // переходим на шаг назад в регистрацию
-  }, [navigate])
+    if (onSecondaryClick) {
+      onSecondaryClick()
+    } else {
+      navigate(-1) // переходим на шаг назад в регистрацию
+    }
+  }, [onSecondaryClick, navigate])
 
   return (
     <article className={styles.overallWrapper}>

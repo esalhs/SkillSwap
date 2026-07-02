@@ -17,3 +17,10 @@
 .button {
     inline-size: 100%;
 }
+
+.error_text {
+    color: var(--color-error, #d32f2f);
+    font-size: var(--font-size-small, 12px);
+    margin-top: 4px;
+    display: block;
+}

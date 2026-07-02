@@ -78,4 +78,37 @@
 
 .registerForm__avatar {
   padding: 0;
+  cursor: pointer;
+}
+
+.avatar_figure {
+  margin: 0;
+}
+
+.avatar_image {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.calendar_button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar_button:hover {
+  opacity: 0.8;
+}
+
+.error_text {
+  color: var(--color-error, #d32f2f);
+  font-size: var(--font-size-small, 12px);
+  margin-top: 4px;
+  display: block;
 }

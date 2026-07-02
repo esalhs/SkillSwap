@@ -110,3 +110,10 @@
   color: var(--color-disabled-text,#9ca197);
   cursor: not-allowed;
 }
+
+/* Класс для disabled состояния через prop */
+.disabled {
+  color: var(--color-caption,#69735d);
+  background-color: var(--color-disabled, #e4e8df);
+  cursor: not-allowed;
+}

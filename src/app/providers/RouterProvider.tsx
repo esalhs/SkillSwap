@@ -10,9 +10,10 @@ const SkillPage = lazy(() => import('@/pages/SkillPage'))
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'))
 const FavoritesPage = lazy(() => import('@/pages/FavoritesPage'))
 const CreateSkillPage = lazy(() => import('@/pages/CreateSkillPage'))
-// const LoginPage = lazy(() => import('@/pages/LoginPage'))
+
 const LoginPage = lazy(() => import('@/pages/WelcomePage'))
 const RegistrationPage = lazy(() => import('@/pages/RegAccountPage'))
+const RegUserPage = lazy(() => import('@/pages/RegUserPage'))
 const RegSkillPage = lazy(() => import('@/pages/RegSkillPage'))
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'))
 
@@ -24,6 +25,7 @@ export function AppRouter() {
           <Routes>
             <Route path={ROUTES.HOME} element={<CatalogPage />} />
             <Route path={ROUTES.SKILL} element={<SkillPage />} />
+
             <Route
               path={ROUTES.FAVORITES}
               element={
@@ -32,11 +34,13 @@ export function AppRouter() {
                 </PrivateRoute>
               }
             />
+
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.REGISTER} element={<RegistrationPage />} />
+            <Route path={ROUTES.REG_USER} element={<RegUserPage />} />
             <Route path={ROUTES.REG_SKILL} element={<RegSkillPage />} />
 
-            {/* Защищённые маршруты — добавь PrivateRoute обёртку */}
+            {/* Защищённые маршруты */}
             <Route
               path={ROUTES.PROFILE}
               element={

@@ -6,6 +6,7 @@ export const ROUTES = {
   CREATE: '/create',
   LOGIN: '/login',
   REGISTER: '/register',
+  REG_USER: '/register/user',
   REG_SKILL: '/register/skill',
 } as const
 

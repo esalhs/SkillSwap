@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent, FormEvent } from 'react'
+import React, { FC, useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { Input } from '@/shared/ui/Input'
 import { ButtonLink } from '@/shared/ui/Button'
 import { EyeIcon } from '@/shared/ui/Icons/EyeIcon'
@@ -9,12 +9,31 @@ export type AuthFormMode = 'login' | 'register'
 export type AuthFormProps = {
   mode: AuthFormMode
   onSubmit: (email: string, password: string) => void
+  email?: string
+  password?: string
+  emailError?: string
+  passwordError?: string
 }
 
-export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+export const AuthForm: FC<AuthFormProps> = ({
+  mode,
+  onSubmit,
+  email: propEmail = '',
+  password: propPassword = '',
+  emailError,
+  passwordError,
+}) => {
+  const [email, setEmail] = useState(propEmail)
+  const [password, setPassword] = useState(propPassword)
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+
+  useEffect(() => {
+    setEmail(propEmail)
+  }, [propEmail])
+
+  useEffect(() => {
+    setPassword(propPassword)
+  }, [propPassword])
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -53,7 +72,8 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit }) => {
           placeholder="Введите email"
           value={email}
           onChange={handleEmailChange}
-          description=""
+          description={emailError || ''}
+          isError={!!emailError}
         />
 
         <Input
@@ -62,7 +82,8 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit }) => {
           placeholder={passwordPlaceholder}
           value={password}
           onChange={handlePasswordChange}
-          description={passwordDescription}
+          description={passwordError || passwordDescription}
+          isError={!!passwordError}
           rightIcon={<EyeIcon visibility={isPasswordVisible} />}
           onRightIconClick={togglePasswordVisibility}
         />
