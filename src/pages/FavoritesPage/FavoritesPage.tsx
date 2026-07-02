@@ -39,7 +39,6 @@ export const FavoritesPage = () => {
     loadData();
   }, []);
 
-  // Фильтруем только лайкнутых пользователей
   const favoriteUsers = useMemo(
     () => allUsers.filter((user: User) => likedUserIds.includes(user.id)),
     [allUsers, likedUserIds]
