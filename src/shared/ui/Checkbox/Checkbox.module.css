@@ -98,7 +98,7 @@
 
 .labelText {
   font-size: 16px;
-  color: var(--color-text, #253017); 
+  color: var(--color-text, #253017);
   font-family: var(--font-roboto, "Roboto", sans-serif);
   line-height: 150%;
   letter-spacing: 0.02em;

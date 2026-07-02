@@ -1,13 +1,19 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { toggleLike, selectFavoriteUserIds } from '@/store/favoritesSlice';
+
+import { useDebounce } from '@/shared/hooks/useDebounce';
 import { fetchUsers } from '@/api/users';
 import { fetchSkillDomains } from '@/api/skills';
+import { getSkillsFromDomains } from '@/shared/lib/helpers';
+import { ROUTES } from '@/shared/lib/constants';
+
+import { InfiniteCardList } from '@/widgets/InfiniteCardList';
 import { Header } from '@/widgets/header';
 import { Footer } from '@/widgets/Footer';
 import { CardSection } from '@/widgets/CardSection';
-import { InfiniteCardList } from '@/widgets/InfiniteCardList';
 import { SidebarPanel } from '@/widgets/SidebarFilters/SidebarPanel';
 import { ActiveFiltersBar } from '@/widgets/SidebarFilters/ActiveFiltersBar';
 import { filterUsers, hasActiveFilters } from '@/shared/lib/helpers';
@@ -76,11 +82,16 @@ export const CatalogPage = () => {
   const handleRemoveFilter = (key: string, value: string) => {
     setFilters((prev: FiltersState) => {
       if (key === 'type' || key === 'sex') {
-        return { ...prev, [key]: key === 'type' ? 'all' as const : 'any' as const };
+        return {
+          ...prev,
+          [key]: key === 'type' ? ('all' as const) : ('any' as const),
+        };
       }
       return {
         ...prev,
-        [key]: (prev[key as keyof FiltersState] as string[]).filter((id: string) => id !== value),
+        [key]: (prev[key as keyof FiltersState] as string[]).filter(
+          (id: string) => id !== value
+        ),
       };
     });
   };
@@ -149,6 +160,7 @@ export const CatalogPage = () => {
                 likedUserIds={likedUserIds}
                 onLikeClick={handleLikeClick}
                 onDetailsClick={handleDetailsClick}
+                onSortClick={() => {}} // TODO: логика сортировки
               />
             </div>
           )}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { HeaderProps } from './types.ts'
 import styles from './Header.module.css'
 import { Logo } from '@/shared/ui/logo'
@@ -20,11 +20,21 @@ import { ROUTES } from '@/shared/lib/constants'
 export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) => {
   const [searchQuery, setSearchQuery] = useState('')
   // const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handleSearch = () => {
+    const query = searchQuery.trim()
+    if (query) {
+      navigate(`${ROUTES.HOME}?search=${encodeURIComponent(query)}`)
+    } else {
+      navigate(ROUTES.HOME)
+    }
+  }
 
   if (isAuthPage) {
     return (
-      <header className={styles.header}>
-        <div className={styles.container}>
+      <header className={styles.header + ' ' + styles.headerIsAuthPage}>
+        <div className={styles.container + ' ' + styles.containerIsAuthPage}>
           <Logo className={styles.headerLogo}>
             <span className={styles.textLogo}>SkillSwap</span>
           </Logo>
@@ -32,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
             variant="tertiary"
             icon={<CrossIcon />}
             iconPosition="after"
-            onClick={() => console.log('Закрыть кликнуто')}
+            onClick={() => navigate(ROUTES.HOME)}
           >
             Закрыть
           </Button>
@@ -52,13 +62,25 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
         </div>
 
         <div className={styles.centerSection}>
-          <div className={styles.searchWrapper}>
+          <div
+            className={styles.searchWrapper}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
+          >
             <Input
               type="search"
               placeholder="Искать навык"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              leftIcon={<SearchIcon />}
+              leftIcon={
+                <button
+                  type="button"
+                  onClick={handleSearch}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', padding: 0, pointerEvents: 'auto' }}
+                  aria-label="Поиск"
+                >
+                  <SearchIcon />
+                </button>
+              }
               onRightIconClick={() => setSearchQuery('')}
               description=""
             />

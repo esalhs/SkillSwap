@@ -18,6 +18,10 @@
   justify-content: left;
 }
 
+.buttonActive {
+  background-color: var(--button-hover, #deebc5);
+}
+
 ul {
   list-style-type: none;
   padding: 0;
