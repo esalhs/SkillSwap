@@ -124,7 +124,8 @@ export default function SkillPage() {
           category={skillMeta.categoryName}
           description={currentSkill?.description ?? 'Описание отсутствует'}
           images={currentSkill?.skillImages ?? []}
-          authorId={user.id}
+          isLiked={likedUserIds.includes(user.id)}
+          onLikeClick={() => handleLikeClick(user.id)}
         />
       </div>
       <div className={styles.sliderWrapper}>

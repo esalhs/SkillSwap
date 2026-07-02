@@ -10,7 +10,6 @@ import { selectFavoriteUserIds, toggleLike } from '@/store/favoritesSlice'
 
 type CardSkillProps = {
   pageVariant: 'home' | 'register' // добавил пропс, чтобы указывать, где находится компонент
-  authorId?: string
   skillId?: string
   buttonVariant?: ButtonVariant
   title: string
@@ -18,12 +17,11 @@ type CardSkillProps = {
   category: string // "Музыка и звук"
   description: string
   images: string[] // массив путей к фото
+  isLiked?: boolean
+  onLikeClick?: () => void // если не передан — иконка лайка не рендерится
 }
 
 export const CardSkill = (props: CardSkillProps) => {
-  const dispatch = useAppDispatch()
-  const likedUserIds = useAppSelector(selectFavoriteUserIds)
-  const isLiked = props.authorId ? likedUserIds.includes(props.authorId) : false
 
   const isOffered = false // TODO: подключить requestsSlice
 
@@ -43,20 +41,14 @@ export const CardSkill = (props: CardSkillProps) => {
     navigate(-1) // переходим на шаг назад в регистрацию
   }, [navigate])
 
-  const handleLikeClick = () => {
-    if (props.authorId) {
-      dispatch(toggleLike(props.authorId))
-    }
-  }
-
   return (
     <article className={styles.overallWrapper}>
       {props.pageVariant === 'home' ? (
         <div className={styles.icons}>
           <IconButton
-            icon={<LikeIcon active={isLiked} />}
+            icon={<LikeIcon active={props.isLiked} />}
             ariaLabel="Кнопка лайка"
-            onClick={handleLikeClick}
+            onClick={props.onLikeClick}
           />
           <IconButton icon={<ShareIcon />} ariaLabel="Поделиться" />
           <IconButton icon={<MoreSquareIcon />} ariaLabel="Узнать больше" />
