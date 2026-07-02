@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME: '/',
+  CATALOG: '/catalog',
   SKILL: '/skill/:id',
   PROFILE: '/profile',
   FAVORITES: '/favorites',

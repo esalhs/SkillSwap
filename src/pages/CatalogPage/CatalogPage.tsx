@@ -49,6 +49,7 @@ export const CatalogPage = () => {
   // Логика поиска (из feature/search)
   const [searchParams] = useSearchParams();
   const searchFromUrl = searchParams.get('search') || '';
+  const categoryFromUrl = searchParams.get('category') || '';
   const debouncedSearch = useDebounce(searchFromUrl, 300);
 
   const isAuth = false; // TODO: заменить на реальную проверку авторизации
@@ -75,6 +76,16 @@ export const CatalogPage = () => {
     };
     loadData();
   }, []);
+
+  // Установка категории из URL в фильтры
+  useEffect(() => {
+    if (categoryFromUrl) {
+      setFilters((prev) => ({
+        ...prev,
+        categories: [categoryFromUrl],
+      }));
+    }
+  }, [categoryFromUrl]);
 
   // Фильтрация по фильтрам и поиску
   const filteredUsers = users.filter((user) => {

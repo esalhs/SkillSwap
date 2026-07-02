@@ -2,8 +2,10 @@
 
 import { createPortal } from 'react-dom';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './SkillsMenu.module.css';
 import { domainConfig } from '@/shared/lib/domainConfig';
+import { ROUTES } from '@/shared/lib/constants';
 import { Skill } from '@/shared/types';
 
 interface SkillDomain {
@@ -19,12 +21,20 @@ interface SkillDomain {
 interface SkillsMenuProps {
   isOpen: boolean;
   onClose?: () => void;
+  onCategoryClick?: (categoryId: string) => void;
 }
 
-export const SkillsMenu: React.FC<SkillsMenuProps> = ({ isOpen, onClose }) => {
+export const SkillsMenu: React.FC<SkillsMenuProps> = ({ isOpen, onClose, onCategoryClick }) => {
+  const navigate = useNavigate();
   const [domains, setDomains] = useState<SkillDomain[]>([]);
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  const handleCategoryClick = (categoryId: string) => {
+    onClose?.();
+    onCategoryClick?.(categoryId);
+    navigate(`${ROUTES.CATALOG}?category=${categoryId}`);
+  };
 
   useEffect(() => {
     if (isOpen && !loaded && !loading) {
@@ -73,7 +83,7 @@ export const SkillsMenu: React.FC<SkillsMenuProps> = ({ isOpen, onClose }) => {
                   <li
                     key={category.id}
                     className={styles.subcategoryItem}
-                    onClick={onClose}
+                    onClick={() => handleCategoryClick(category.id)}
                   >
                     {category.name}
                   </li>
