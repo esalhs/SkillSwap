@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { fn } from 'storybook/test'
+import { MemoryRouter } from 'react-router-dom'
 import { CardSkill } from './CardSkill'
 
 const meta = {
@@ -8,6 +8,13 @@ const meta = {
   parameters: {
     layout: 'padded',
   },
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
   args: {
     title: 'Игра на гитаре',
     domain: 'Творчество и искусство',
@@ -19,8 +26,6 @@ const meta = {
       'https://placehold.co/640x480?text=Photo+2',
       'https://placehold.co/640x480?text=Photo+3',
     ],
-    mainButtonLabel: 'Предложить обмен',
-    onMainClick: fn(),
   },
 } satisfies Meta<typeof CardSkill>
 
@@ -29,25 +34,20 @@ type Story = StoryObj<typeof meta>
 
 export const Home: Story = {
   args: {
-    variant: 'home',
-    isLiked: false,
-    onLikeClick: fn(),
-    onShareClick: fn(),
-    onMoreClick: fn(),
+    pageVariant: 'home',
+    buttonVariant: 'primary',
   },
 }
 
 export const HomeLiked: Story = {
   args: {
     ...Home.args,
-    isLiked: true,
   },
 }
 
 export const Register: Story = {
   args: {
-    variant: 'register',
-    secondaryButtonLabel: 'Редактировать',
-    onSecondaryClick: fn(),
+    pageVariant: 'register',
+    buttonVariant: 'primary',
   },
 }
