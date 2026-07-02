@@ -20,6 +20,7 @@ import { ActiveFiltersBar } from '@/widgets/SidebarFilters/ActiveFiltersBar';
 
 import type { User, SkillDomain } from '@/shared/types';
 import styles from './CatalogPage.module.css';
+import cities from '../../../public/db/cities.json';
 
 type FiltersState = {
   type: 'all' | 'want' | 'can';
@@ -75,18 +76,58 @@ export const CatalogPage = () => {
     loadData();
   }, []);
 
-  // Фильтрация по текстовому поиску (из feature/search)
+  // Фильтрация по фильтрам и поиску
   const filteredUsers = users.filter((user) => {
-    if (!debouncedSearch) return false;
-    const query = debouncedSearch.toLowerCase();
+    // 1. Фильтрация по типу (want/can/all)
+    if (filters.type !== 'all') {
+      const userHasSkill = domains.some((domain) =>
+        domain.categories.some((category) =>
+          category.skills.some((skill) => skill.id === user.idSkill),
+        ),
+      );
 
-    const nameMatch = user.fullName.toLowerCase().includes(query);
+      if (filters.type === 'can' && !userHasSkill) return false;
 
-    const skills = getSkillsFromDomains(domains);
-    const userSkill = skills.find((s) => s.id === user.idSkill);
-    const skillMatch = userSkill?.name?.toLowerCase().includes(query) ?? false;
+      if (filters.type === 'want') {
+        const userWantsSkill = user.favoriteCategories.some((catId) =>
+          domains.some((domain) =>
+            domain.categories.some((category) => category.id === catId),
+          ),
+        );
+        if (!userWantsSkill) return false;
+      }
+    }
 
-    return nameMatch || skillMatch;
+    // 2. Фильтрация по полу
+    if (filters.sex !== 'any' && user.sex !== filters.sex) return false;
+
+    // 3. Фильтрация по категориям
+    if (filters.categories.length > 0) {
+      const hasMatchingCategory = user.favoriteCategories.some((catId) =>
+        filters.categories.includes(catId),
+      );
+      if (!hasMatchingCategory) return false;
+    }
+
+    // 4. Фильтрация по городам (filters.cities содержит id, user.location — название)
+    if (filters.cities.length > 0) {
+      const cityNames = filters.cities
+        .map((id) => cities.find((c) => c.id === id)?.name)
+        .filter(Boolean) as string[];
+      if (!cityNames.includes(user.location)) return false;
+    }
+
+    // 5. Текстовый поиск
+    if (debouncedSearch) {
+      const query = debouncedSearch.toLowerCase();
+      const nameMatch = user.fullName.toLowerCase().includes(query);
+      const skills = getSkillsFromDomains(domains);
+      const userSkill = skills.find((s) => s.id === user.idSkill);
+      const skillMatch = userSkill?.name?.toLowerCase().includes(query) ?? false;
+      if (!nameMatch && !skillMatch) return false;
+    }
+
+    return true;
   });
 
   const handleLikeClick = (userId: string) => {
@@ -147,23 +188,12 @@ export const CatalogPage = () => {
         <div className={styles.content}>
           <SidebarPanel filters={filters} onChange={setFilters} />
           <main className={styles.main}>
-            {debouncedSearch ? (
-              // Режим поиска: показываем только результаты поиска
+            {hasActiveFilters || debouncedSearch ? (
+              // Режим поиска и/или фильтров: показываем отфильтрованные результаты
               <InfiniteCardList
-                title="Результаты поиска"
+                title={debouncedSearch ? 'Результаты поиска' : 'Подходящие предложения'}
                 totalCount={filteredUsers.length}
                 users={filteredUsers}
-                domains={domains}
-                likedUserIds={likedUserIds}
-                onLikeClick={handleLikeClick}
-                onDetailsClick={handleDetailsClick}
-              />
-            ) : hasActiveFilters ? (
-              // Есть активные фильтры (но без текстового поиска)
-              <InfiniteCardList
-                title="Подходящие предложения"
-                totalCount={users.length}
-                users={users}
                 domains={domains}
                 likedUserIds={likedUserIds}
                 onLikeClick={handleLikeClick}
