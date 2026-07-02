@@ -10,6 +10,7 @@ export type NotificationProps = {
   variant: NotificationVariant
   buttonLink?: string
   showButton?: boolean
+  date?: string
 }
 
 export const Notification: React.FC<NotificationProps> = ({
@@ -17,6 +18,7 @@ export const Notification: React.FC<NotificationProps> = ({
   variant,
   buttonLink = '',
   showButton = true,
+  date = 'сегодня',
 }) => {
   const isAccepted = variant === 'accepted'
   
@@ -37,7 +39,7 @@ export const Notification: React.FC<NotificationProps> = ({
             <h3 className={styles.title}>{title}</h3>
             <p className={styles.subtitle}>{subtitle}</p>
           </div>
-          <span className={styles.date}>сегодня</span>
+          <span className={styles.date}>{date}</span>
         </div>
       </div>
       {showButton && buttonLink && (
