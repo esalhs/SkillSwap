@@ -1,12 +1,8 @@
 import { Error500 } from '@/shared/ui/Illustrations/Error500'
 import styles from './ServerErrorPage.module.css'
 import { Button } from '@/shared/ui/Button'
-
-// TODO: заменить на реальный Header после мерджа feature/header
-const Header = () => <header>Header — в разработке</header>
-
-// TODO: заменить на реальный Footer после мерджа feature/footer
-const Footer = () => <footer>Footer — в разработке</footer>
+import { Header } from '@/widgets/header'
+import { Footer } from '@/widgets/Footer'
 
 export const ServerErrorPage = () => {
   return (
