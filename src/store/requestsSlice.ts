@@ -65,7 +65,7 @@ const requestSlice = createSlice({
       saveRequestsToStorage(state.requests)
     },
     removeRequest(state, action: PayloadAction<string>) {
-      state.requests = state.requests.filter((el) => el.id != action.payload)
+      state.requests = state.requests.filter((el) => el.id !== action.payload)
       saveRequestsToStorage(state.requests)
     },
   },
