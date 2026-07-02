@@ -1,51 +1,55 @@
 .footer {
-    display: grid;
-    gap:16px;
-    padding: 32px 36px;
+  display: grid;
+  gap: 16px;
+  padding: 32px 36px;
 }
 
 .copyright {
-    color: var(--color-caption);
-    font-size: 0.750rem;
-    letter-spacing: 6%;
-    margin: 13px 0 0;
+  color: var(--color-caption);
+  font-size: 0.75rem;
+  letter-spacing: 6%;
+  margin: 13px 0 0;
 }
 
 .nav {
-    display:grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr 3fr;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 3fr;
 }
 
 .nav > :first-child {
-    grid-column: 2;
+  grid-column: 2;
 }
 
 .columns {
-    display:grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    list-style: none;
-    gap: 12px 24px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  list-style: none;
+  gap: 12px 24px;
 }
 
 .columns > li:nth-child(1),
 .columns > li:nth-child(2) {
-    list-style: disc;
-    list-style-position: inside;
-    padding-left: 15px;
+  list-style: disc;
+  list-style-position: inside;
+  padding-left: 15px;
 }
 
 .columns > li:nth-child(1)::marker,
 .columns > li:nth-child(2)::marker {
-    font-size: 0.7em;
+  font-size: 0.7em;
 }
 
-.link{
-    font-size: var(--font-size-base);
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-    letter-spacing: 4%;
+.link {
+  font-size: var(--font-size-base);
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  letter-spacing: 4%;
+}
+
+.logo {
+  justify-self: start;
 }

@@ -15,6 +15,7 @@ const allCategories = skills.skillDomains.flatMap((domain) => domain.categories)
 const allSkills = allCategories.flatMap((category) => category.skills);
 
 export default function SkillPage() {
+  const navigate = useNavigate()
   const { id } = useParams()
   const navigate = useNavigate();
   const user = users.find((u) => u.id === id)

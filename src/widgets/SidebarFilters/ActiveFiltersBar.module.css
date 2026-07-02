@@ -1,8 +1,10 @@
 .filterBar {
   display: flex;
-  flex-direction: row;
-  width: fit-content;
+  flex-flow: row wrap;
+  width: 100%;
   align-items: center;
+  gap: 12px;
+  margin-left:52px;
 }
 
 .filtersParagraph {
@@ -14,6 +16,9 @@
 }
 
 .resetSpan {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -23,11 +28,13 @@
   margin-left: 40px;
   margin-right: 50px;
   cursor: pointer;
+  width: fit-content;
 }
 
 .filetsActive {
-  gap: 14px;
-  display: flex;
+  gap: 8px;
+  display: inline-flex;
+  align-items: center;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -35,5 +42,5 @@
   letter-spacing: 2%;
   border-radius: 12px;
   padding: 12px 24px;
-  margin-left: 12px;
+  background-color: var(--color-card, #fff);
 }
