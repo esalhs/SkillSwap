@@ -4,12 +4,13 @@ import { ClockIcon, EditIcon, LikeIcon, MoreSquareIcon, ShareIcon } from '@/shar
 import { GallerySlider } from '@/widgets/GallerySlider'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { useAppDispatch, useAppSelector} from '@/store/hooks.ts'
-
 import styles from './CardSkill.module.css'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { selectFavoriteUserIds, toggleLike } from '@/store/favoritesSlice'
 
 type CardSkillProps = {
   pageVariant: 'home' | 'register' // добавил пропс, чтобы указывать, где находится компонент
+  authorId?: string
   skillId?: string
   buttonVariant?: ButtonVariant
   title: string
@@ -20,10 +21,12 @@ type CardSkillProps = {
 }
 
 export const CardSkill = (props: CardSkillProps) => {
-  // TODO: на будущее для работы с редаксом
-  const isOffered = false // useAppSelector();
-  const isLiked = false // useAppSelector();
-  //
+  const dispatch = useAppDispatch()
+  const likedUserIds = useAppSelector(selectFavoriteUserIds)
+  const isLiked = props.authorId ? likedUserIds.includes(props.authorId) : false
+
+  const isOffered = false // TODO: подключить requestsSlice
+
   const handleMainClick = useCallback(
     () => {
       console.log('Предложить обмен')
@@ -40,6 +43,12 @@ export const CardSkill = (props: CardSkillProps) => {
     navigate(-1) // переходим на шаг назад в регистрацию
   }, [navigate])
 
+  const handleLikeClick = () => {
+    if (props.authorId) {
+      dispatch(toggleLike(props.authorId))
+    }
+  }
+
   return (
     <article className={styles.overallWrapper}>
       {props.pageVariant === 'home' ? (
@@ -47,9 +56,7 @@ export const CardSkill = (props: CardSkillProps) => {
           <IconButton
             icon={<LikeIcon active={isLiked} />}
             ariaLabel="Кнопка лайка"
-            onClick={() => {
-              // TODO: будет делать редакс
-            }}
+            onClick={handleLikeClick}
           />
           <IconButton icon={<ShareIcon />} ariaLabel="Поделиться" />
           <IconButton icon={<MoreSquareIcon />} ariaLabel="Узнать больше" />
