@@ -21,11 +21,13 @@ export type CardUserProps = {
   skillCan: string
   skillWant: string[]
   domains: SkillDomain[]
-  bio?: string                    // описание пользователя
+  bio?: string // описание пользователя
   isLiked?: boolean
-  onLikeClick?: () => void        // если нет — лайк не рендерится
-  onDetailsClick?: () => void     // если нет — кнопка не рендерится
-  isOfferSent?: boolean           // меняет кнопку на "Обмен предложен"
+  onLikeClick?: () => void // если нет — лайк не рендерится
+  onDetailsClick?: () => void // если нет — кнопка не рендерится
+  isOfferSent?: boolean
+  onAcceptClick?: () => void
+  onDeclineClick?: () => void
 }
 
 export function CardUser({
@@ -41,6 +43,8 @@ export function CardUser({
   onLikeClick,
   onDetailsClick,
   isOfferSent,
+  onAcceptClick,
+  onDeclineClick,
 }: CardUserProps) {
   // Элемент отвечает за количество видимых навыков
   const visibleSkills = useMemo(() => {
@@ -117,24 +121,33 @@ export function CardUser({
             )}
           </ul>
         </div>
-        {onDetailsClick && !isOfferSent && (
-          <Button
-            className={styles.userCardButton}
-            onClick={onDetailsClick}
-            variant="primary"
-          >
-            Подробнее
-          </Button>
-        )}
-        {isOfferSent && (
-          <Button
-            className={styles.userCardButton}
-            variant="secondary"
-            icon={<ClockIcon />}
-            iconPosition="before"
-          >
-            Обмен предложен
-          </Button>
+        {onAcceptClick && onDeclineClick ? (
+          <div className={styles.userCard__requestActions}>
+            <Button className={styles.userCardButton} variant="secondary" onClick={onDeclineClick}>
+              Отклонить
+            </Button>
+            <Button className={styles.userCardButton} variant="primary" onClick={onAcceptClick}>
+              Принять
+            </Button>
+          </div>
+        ) : (
+          <>
+            {onDetailsClick && !isOfferSent && (
+              <Button className={styles.userCardButton} onClick={onDetailsClick} variant="primary">
+                Подробнее
+              </Button>
+            )}
+            {isOfferSent && (
+              <Button
+                className={styles.userCardButton}
+                variant="secondary"
+                icon={<ClockIcon />}
+                iconPosition="before"
+              >
+                Обмен предложен
+              </Button>
+            )}
+          </>
         )}
       </div>
     </article>

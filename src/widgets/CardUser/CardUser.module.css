@@ -109,3 +109,13 @@
   height: 100%;
   object-fit: cover;
 }
+
+.userCard__requestActions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.userCard__requestActions .userCardButton {
+  flex: 1;
+}
