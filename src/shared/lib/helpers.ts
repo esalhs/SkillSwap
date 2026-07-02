@@ -131,60 +131,63 @@ export function hasActiveFilters(filters: FiltersState): boolean {
 
 /**
  * Фильтрует массив пользователей по всем заданным критериям одновременно.
- * Критерии: тип навыка, пол, категории, города.
  */
 export function filterUsers(
   users: User[],
   filters: FiltersState,
   domains: SkillDomain[],
+  cityIdToName?: Map<string, string>,
 ): User[] {
-  return users.filter((user) => {
-    // 1. Фильтр по типу навыка (может научить / хочет научиться)
+  return users.filter((user: User) => {
+    // 1. Фильтр по типу навыка
     if (filters.type !== 'all') {
-      const userHasSkill = domains.some((domain) =>
+      const userHasSkill = domains.some((domain: SkillDomain) =>
         domain.categories.some((category) =>
           category.skills.some((skill) => skill.id === user.idSkill),
         ),
-      )
+      );
 
       if (filters.type === 'can' && !userHasSkill) {
-        return false
+        return false;
       }
 
       if (filters.type === 'want') {
-        const userWantsSkill = user.favoriteCategories.some((catId) =>
-          domains.some((domain) =>
+        const userWantsSkill = user.favoriteCategories.some((catId: string) =>
+          domains.some((domain: SkillDomain) =>
             domain.categories.some((category) => category.id === catId),
           ),
-        )
+        );
         if (!userWantsSkill) {
-          return false
+          return false;
         }
       }
     }
 
     // 2. Фильтр по полу
     if (filters.sex !== 'any' && user.sex !== filters.sex) {
-      return false
+      return false;
     }
 
     // 3. Фильтр по категориям навыков
     if (filters.categories.length > 0) {
-      const hasMatchingCategory = user.favoriteCategories.some((catId) =>
+      const hasMatchingCategory = user.favoriteCategories.some((catId: string) =>
         filters.categories.includes(catId),
-      )
+      );
       if (!hasMatchingCategory) {
-        return false
+        return false;
       }
     }
 
-    // 4. Фильтр по городам
-    if (filters.cities.length > 0) {
-      if (!filters.cities.includes(user.location)) {
-        return false
+    // 4. Фильтр по городам — преобразуем id в название
+    if (filters.cities.length > 0 && cityIdToName) {
+      const cityNames = filters.cities
+        .map((id: string) => cityIdToName.get(id))
+        .filter(Boolean);
+      if (!cityNames.includes(user.location)) {
+        return false;
       }
     }
 
-    return true
-  })
+    return true;
+  });
 }
