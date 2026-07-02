@@ -17,3 +17,14 @@
 .footerWrapper {
   background-color: var(--color-bg);
 }
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(142 142 142 / 60%);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}

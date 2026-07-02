@@ -22,6 +22,9 @@ export type InfiniteCardListProps = {
   sentOfferUserIds?: string[]
   onLikeClick?: (userId: string) => void
   onDetailsClick?: (userId: string) => void
+  onAcceptClick?: (userId: string) => void
+  onDeclineClick?: (userId: string) => void
+  showRequestActions?: boolean
 }
 
 export function InfiniteCardList({
@@ -34,6 +37,9 @@ export function InfiniteCardList({
   sentOfferUserIds,
   onLikeClick,
   onDetailsClick,
+  onAcceptClick,
+  onDeclineClick,
+  showRequestActions,
 }: InfiniteCardListProps) {
   // Реализация бесконечной подгрузки
   const [visibleCount, setVisibleCount] = useState(3)
@@ -101,8 +107,14 @@ export function InfiniteCardList({
               skillWant={skillWant}
               isLiked={likedUserIds?.includes(user.id)}
               onLikeClick={() => onLikeClick?.(user.id)}
-              onDetailsClick={() => onDetailsClick?.(user.id)}
+              onDetailsClick={showRequestActions ? undefined : () => onDetailsClick?.(user.id)}
               isOfferSent={sentOfferUserIds?.includes(user.id)}
+              onAcceptClick={
+                showRequestActions && onAcceptClick ? () => onAcceptClick(user.id) : undefined
+              }
+              onDeclineClick={
+                showRequestActions && onDeclineClick ? () => onDeclineClick(user.id) : undefined
+              }
             />
           )
         })}
