@@ -15,6 +15,12 @@ import type { User, SkillDomain, FiltersState } from '@/shared/types';
 import { ROUTES } from '@/shared/lib/constants';
 import styles from './CatalogPage.module.css';
 
+type City = {
+  id: string;
+  name: string;
+  country: string;
+};
+
 const DEFAULT_FILTERS: FiltersState = {
   type: 'all',
   sex: 'any',
@@ -29,6 +35,7 @@ export const CatalogPage = () => {
 
   const [users, setUsers] = useState<User[]>([]);
   const [domains, setDomains] = useState<SkillDomain[]>([]);
+  const [cityIdToName, setCityIdToName] = useState<Map<string, string>>(new Map());
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
 
@@ -38,12 +45,21 @@ export const CatalogPage = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [usersData, domainsData] = await Promise.all([
+        const [usersData, domainsData, citiesRes] = await Promise.all([
           fetchUsers(),
           fetchSkillDomains(),
+          fetch('/db/cities.json'),
         ]);
+
+        const citiesData: City[] = await citiesRes.json();
+        const citiesMap = new Map<string, string>();
+        citiesData.forEach((city: City) => {
+          citiesMap.set(city.id, city.name);
+        });
+
         setUsers(usersData);
         setDomains(domainsData);
+        setCityIdToName(citiesMap);
       } catch (error) {
         console.error('Ошибка загрузки данных:', error);
       } finally {
@@ -54,8 +70,8 @@ export const CatalogPage = () => {
   }, []);
 
   const filteredUsers = useMemo(
-    () => filterUsers(users, filters, domains),
-    [users, filters, domains]
+    () => filterUsers(users, filters, domains, cityIdToName),
+    [users, filters, domains, cityIdToName]
   );
 
   const handleLikeClick = (userId: string) => {
@@ -122,7 +138,6 @@ export const CatalogPage = () => {
               likedUserIds={likedUserIds}
               onLikeClick={handleLikeClick}
               onDetailsClick={handleDetailsClick}
-              onSortClick={() => {}}
             />
           ) : (
             <div className={styles.sections}>
