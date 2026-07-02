@@ -1,1 +1,1 @@
-export { RegAccountPage } from './RegAccountPage'
+export { RegAccountPage as default } from './RegAccountPage'

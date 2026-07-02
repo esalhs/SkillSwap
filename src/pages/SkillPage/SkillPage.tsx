@@ -1,22 +1,22 @@
 import { Header } from '@/widgets/header'
 import { CardUser } from '@/widgets/CardUser'
-import { useParams } from 'react-router-dom'
-import users from '../../../public/db/users.json';
-import skills from '../../../public/db/skills.json';
+import { useNavigate, useParams } from 'react-router-dom'
+import users from '../../../public/db/users.json'
+import skills from '../../../public/db/skills.json'
 import { getAge, getCategoryNames, getSkillName } from '@/shared/lib/helpers.ts'
 import { useMemo } from 'react'
 import { CardSkill } from '@/widgets/CardSkill'
-
-import styles from './SkillPage.module.css'
 import { CardSlider } from '@/widgets/CardSlider'
 import { User } from '@/shared/types'
 import { Footer } from '@/widgets/Footer'
+import styles from './SkillPage.module.css'
 
-const allCategories = skills.skillDomains.flatMap((domain) => domain.categories);
-const allSkills = allCategories.flatMap((category) => category.skills);
+const allCategories = skills.skillDomains.flatMap((domain) => domain.categories)
+const allSkills = allCategories.flatMap((category) => category.skills)
 
 export default function SkillPage() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const user = users.find((u) => u.id === id)
   const favoriteDomains = useMemo(() => {
     if (!user || !user.favoriteCategories) return []
@@ -31,33 +31,63 @@ export default function SkillPage() {
   }, [user])
 
   const currentSkill = useMemo(() => {
-    if (!user) return null;
-    return allSkills.find((s) => s.id === user.idSkill);
-  }, [user]);
+    if (!user) return null
+    return allSkills.find((s) => s.id === user.idSkill)
+  }, [user])
 
   const skillMeta = useMemo(() => {
-    if (!currentSkill) return { domainName: 'Нет данных', categoryName: 'Нет данных' };
-    let domainName = 'Нет данных';
-    let categoryName = 'Нет данных';
+    if (!currentSkill) return { domainName: 'Нет данных', categoryName: 'Нет данных' }
+    let domainName = 'Нет данных'
+    let categoryName = 'Нет данных'
     for (const domain of skills.skillDomains) {
       for (const cat of domain.categories) {
         if (cat.skills.some((s) => s.id === currentSkill.id)) {
-          domainName = domain.name;
-          categoryName = cat.name;
-          break;
+          domainName = domain.name
+          categoryName = cat.name
+          break
         }
       }
     }
-    return { domainName, categoryName };
-  }, [currentSkill]);
+    return { domainName, categoryName }
+  }, [currentSkill])
+
   const similarUsers = useMemo(() => {
     if (!user) return []
 
-    return (users as User[]).filter((u) => u.id !== user.id)
+    let currentDomainId: string | null = null
+
+    for (const domain of skills.skillDomains) {
+      const hasSkill = domain.categories.some((cat) =>
+        cat.skills.some((s) => s.id === user.idSkill),
+      )
+      if (hasSkill) {
+        currentDomainId = domain.id
+        break
+      }
+    }
+
+    const allUsers = users as User[]
+
+    let filteredUsers = allUsers.filter((u) => {
+      if (u.id === user.id) return false
+
+      return skills.skillDomains
+        .find((d) => d.id === currentDomainId)
+        ?.categories.some((cat) => cat.skills.some((s) => s.id === u.idSkill))
+    })
+
+    if (filteredUsers.length === 0) {
+      filteredUsers = allUsers.filter(
+        (u) =>
+          u.id !== user.id &&
+          u.favoriteCategories.some((cat) => user.favoriteCategories.includes(cat)),
+      )
+    }
+    return filteredUsers
   }, [user])
 
   if (!user) {
-    return null;
+    return null
   }
 
   const age = getAge(user.birthday)
@@ -79,22 +109,14 @@ export default function SkillPage() {
           bio={user.bio}
         ></CardUser>
         <CardSkill
-          variant="home"
+          pageVariant="home"
           title={skillCan}
-          onMainClick={() => {
-            // TODO: кнопку будет обрабатывать слайс
-            console.log('Предложить обмен')
-          }}
-          onLikeClick={() => {
-            // TODO: лайк будет обрабатывать слайс
-            console.log('Лайк поставлен')
-          }}
+          skillId={currentSkill?.id}
           domain={skillMeta.domainName}
           category={skillMeta.categoryName}
           description={currentSkill?.description ?? 'Описание отсутствует'}
           images={currentSkill?.skillImages ?? []}
-          mainButtonLabel="Предложить обмен"
-        ></CardSkill>
+        />
       </div>
       <div className={styles.sliderWrapper}>
         <CardSlider
@@ -102,10 +124,8 @@ export default function SkillPage() {
             // TODO: лайк будет обрабатывать слайс
             console.log('Лайк поставлен')
           }}
-          onDetailsClick={() => {
-            // правильно ли я понял, что у нас здесь заглушка,
-            // в макете не было найдено, что эта кнопка что-либо делает
-            console.log('Подробнее')
+          onDetailsClick={(userId) => {
+            navigate(`/skill/${userId}`)
           }}
           title="Похожие предложения"
           users={similarUsers}

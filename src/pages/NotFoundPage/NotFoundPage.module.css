@@ -6,6 +6,7 @@
   min-height: calc(100vh - 160px);
   text-align: center;
   width: 100%;
+  background-color: var(--color-background, #f9faf7);
 }
 
 .title {
@@ -24,6 +25,7 @@
 }
 
 .buttonContainer {
+  padding-bottom: 84px;
   display: flex;
   gap: 24px;
   margin-top: 32px;

@@ -1,5 +1,7 @@
 import type { Skill, SkillCategory, SkillDomain } from '@/shared/types'
 import type { TagProps } from '../ui/Tag'
+import type { User, FiltersState } from '../types'
+
 /** Форматирует дату в читаемый вид */
 export function formatDate(dateString: string): string {
   return new Intl.DateTimeFormat('ru-RU', {
@@ -114,5 +116,75 @@ export function getCategoryNames(categories: SkillCategory[], categoryIds: strin
   return categoryIds.map((id) => {
     const cat = categories.find((c) => c.id === id)
     return cat?.name || 'Нет данных'
+  })
+}
+
+/** Проверяет, есть ли активные фильтры (отличные от значений по умолчанию) */
+export function hasActiveFilters(filters: FiltersState): boolean {
+  return (
+    filters.type !== 'all' ||
+    filters.sex !== 'any' ||
+    filters.categories.length > 0 ||
+    filters.cities.length > 0
+  )
+}
+
+/**
+ * Фильтрует массив пользователей по всем заданным критериям одновременно.
+ * Критерии: тип навыка, пол, категории, города.
+ */
+export function filterUsers(
+  users: User[],
+  filters: FiltersState,
+  domains: SkillDomain[],
+): User[] {
+  return users.filter((user) => {
+    // 1. Фильтр по типу навыка (может научить / хочет научиться)
+    if (filters.type !== 'all') {
+      const userHasSkill = domains.some((domain) =>
+        domain.categories.some((category) =>
+          category.skills.some((skill) => skill.id === user.idSkill),
+        ),
+      )
+
+      if (filters.type === 'can' && !userHasSkill) {
+        return false
+      }
+
+      if (filters.type === 'want') {
+        const userWantsSkill = user.favoriteCategories.some((catId) =>
+          domains.some((domain) =>
+            domain.categories.some((category) => category.id === catId),
+          ),
+        )
+        if (!userWantsSkill) {
+          return false
+        }
+      }
+    }
+
+    // 2. Фильтр по полу
+    if (filters.sex !== 'any' && user.sex !== filters.sex) {
+      return false
+    }
+
+    // 3. Фильтр по категориям навыков
+    if (filters.categories.length > 0) {
+      const hasMatchingCategory = user.favoriteCategories.some((catId) =>
+        filters.categories.includes(catId),
+      )
+      if (!hasMatchingCategory) {
+        return false
+      }
+    }
+
+    // 4. Фильтр по городам
+    if (filters.cities.length > 0) {
+      if (!filters.cities.includes(user.location)) {
+        return false
+      }
+    }
+
+    return true
   })
 }
