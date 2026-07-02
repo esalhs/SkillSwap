@@ -2,49 +2,35 @@ import { Button, ButtonVariant } from '@/shared/ui/Button'
 import { IconButton } from '@/shared/ui/IconAction'
 import { ClockIcon, EditIcon, LikeIcon, MoreSquareIcon, ShareIcon } from '@/shared/ui/Icons'
 import { GallerySlider } from '@/widgets/GallerySlider'
-import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+
 import styles from './CardSkill.module.css'
 
 type CardSkillProps = {
-  pageVariant: 'home' | 'register' // добавил пропс, чтобы указывать, где находится компонент
-  skillId?: string
-  buttonVariant?: ButtonVariant
+  pageVariant: 'home' | 'register'
   title: string
-  domain: string // "Творчество и искусство"
-  category: string // "Музыка и звук"
+  domain: string
+  category: string
   description: string
-  images: string[] // массив путей к фото
+  images: string[]
+  buttonVariant?: ButtonVariant
+  isOffered?: boolean
   isLiked?: boolean
-  onLikeClick?: () => void // если не передан — иконка лайка не рендерится
+  onMainButtonClick?: () => void
+  onSecondaryButtonClick?: () => void
+  onLikeClick?: () => void
+  mainButtonLabel: string
 }
 
 export const CardSkill = (props: CardSkillProps) => {
-
-  const isOffered = false // TODO: подключить requestsSlice
-
-  const handleMainClick = useCallback(
-    () => {
-      console.log('Предложить обмен')
-      // dispatch(offer(props.skillId))
-    },
-    [
-      // props.skillId
-    ],
-  )
-
-  const navigate = useNavigate()
-
-  const onSecondaryButtonHandler = useCallback(() => {
-    navigate(-1) // переходим на шаг назад в регистрацию
-  }, [navigate])
+  const isOffered = props.isOffered ?? false
+  const isLiked = props.isLiked ?? false
 
   return (
     <article className={styles.overallWrapper}>
       {props.pageVariant === 'home' ? (
         <div className={styles.icons}>
           <IconButton
-            icon={<LikeIcon active={props.isLiked} />}
+            icon={<LikeIcon active={isLiked} />}
             ariaLabel="Кнопка лайка"
             onClick={props.onLikeClick}
           />
@@ -76,18 +62,19 @@ export const CardSkill = (props: CardSkillProps) => {
                 variant="secondary"
                 iconPosition="after"
                 icon={<EditIcon />}
-                onClick={onSecondaryButtonHandler}
+                onClick={props.onSecondaryButtonClick}
               >
                 Редактировать
               </Button>
             )}
             <Button
-              variant={props.buttonVariant}
               className={styles.mainButton}
-              onClick={handleMainClick}
-              {...(isOffered ? { icon: <ClockIcon />, iconPosition: 'before' } : {})}
+              onClick={props.onMainButtonClick}
+              {...(isOffered ? { icon: <ClockIcon />, iconPosition: 'before', variant: 'secondary' } : {})}
             >
-              {props.pageVariant === 'home' ? 'Предложить обмен' : 'Готово'}
+              {props.pageVariant === 'home'
+                ? (props.mainButtonLabel ?? 'Предложить обмен')
+                : 'Готово'}
             </Button>
           </div>
         </div>
