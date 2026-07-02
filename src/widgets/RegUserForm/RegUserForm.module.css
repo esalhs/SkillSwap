@@ -1,3 +1,21 @@
+.registerForm {
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  min-height: 692px;
+  min-width: 556px;
+  flex-direction: column;
+  padding: 40px 60px;
+  gap:32px;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:9px;
+}
+
 .registerForm__fieldset {
   font-family: var(--font-roboto, 'Roboto', sans-serif);
   font-weight: 400;
@@ -9,19 +27,7 @@
   border: none;
   padding: 0;
   margin: 0;
-  gap: 16px;
-}
-
-.registerForm {
-  background-color: #fff;
-  border-radius: 12px;
-  display: flex;
-  min-height: 692px;
-  min-width: 556px;
-  flex-direction: column;
-  padding: 40px 60px;
-  gap: 16px;
-  align-items: center;
+  gap: 14px;
 }
 
 .registerForm__fieldset__block {
@@ -43,7 +49,6 @@
 
 .select_in_flow {
   position: static;
-  margin-top: 10px;
 }
 
 .select_in_flow_setting {
@@ -54,7 +59,6 @@
   display: flex;
   width: 100%;
   gap: 20px;
-  padding-top: 20px;
 }
 
 .registerForm__controls__button {

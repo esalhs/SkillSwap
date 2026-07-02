@@ -14,6 +14,14 @@
   gap: 32px;
 }
 
+.headerIsAuthPage {
+  min-height: 64px;
+}
+
+.containerIsAuthPage {
+  padding: 31px 36px 0;
+}
+
 .leftSection, .rightSection {
   display: flex;
   align-items: center;
