@@ -4,8 +4,6 @@ import { ClockIcon, EditIcon, LikeIcon, MoreSquareIcon, ShareIcon } from '@/shar
 import { GallerySlider } from '@/widgets/GallerySlider'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { useAppDispatch, useAppSelector} from '@/store/hooks.ts'
-
 import styles from './CardSkill.module.css'
 
 type CardSkillProps = {
@@ -17,13 +15,14 @@ type CardSkillProps = {
   category: string // "Музыка и звук"
   description: string
   images: string[] // массив путей к фото
+  isLiked?: boolean
+  onLikeClick?: () => void // если не передан — иконка лайка не рендерится
 }
 
 export const CardSkill = (props: CardSkillProps) => {
-  // TODO: на будущее для работы с редаксом
-  const isOffered = false // useAppSelector();
-  const isLiked = false // useAppSelector();
-  //
+
+  const isOffered = false // TODO: подключить requestsSlice
+
   const handleMainClick = useCallback(
     () => {
       console.log('Предложить обмен')
@@ -45,11 +44,9 @@ export const CardSkill = (props: CardSkillProps) => {
       {props.pageVariant === 'home' ? (
         <div className={styles.icons}>
           <IconButton
-            icon={<LikeIcon active={isLiked} />}
+            icon={<LikeIcon active={props.isLiked} />}
             ariaLabel="Кнопка лайка"
-            onClick={() => {
-              // TODO: будет делать редакс
-            }}
+            onClick={props.onLikeClick}
           />
           <IconButton icon={<ShareIcon />} ariaLabel="Поделиться" />
           <IconButton icon={<MoreSquareIcon />} ariaLabel="Узнать больше" />

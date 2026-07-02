@@ -9,12 +9,16 @@ import { CardSkill } from '@/widgets/CardSkill'
 import { CardSlider } from '@/widgets/CardSlider'
 import { User } from '@/shared/types'
 import { Footer } from '@/widgets/Footer'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { toggleLike, selectFavoriteUserIds } from '@/store/favoritesSlice'
 import styles from './SkillPage.module.css'
 
 const allCategories = skills.skillDomains.flatMap((domain) => domain.categories)
 const allSkills = allCategories.flatMap((category) => category.skills)
 
 export default function SkillPage() {
+  const dispatch = useAppDispatch()
+  const likedUserIds = useAppSelector(selectFavoriteUserIds)
   const { id } = useParams()
   const navigate = useNavigate()
   const user = users.find((u) => u.id === id)
@@ -94,6 +98,10 @@ export default function SkillPage() {
   const skillCan = getSkillName(allSkills, user.idSkill)
   const skillWant = getCategoryNames(allCategories, user.favoriteCategories)
 
+  const handleLikeClick = (userId: string) => {
+    dispatch(toggleLike(userId))
+  }
+
   return (
     <section className={styles.skillPage}>
       <Header />
@@ -116,14 +124,14 @@ export default function SkillPage() {
           category={skillMeta.categoryName}
           description={currentSkill?.description ?? 'Описание отсутствует'}
           images={currentSkill?.skillImages ?? []}
+          isLiked={likedUserIds.includes(user.id)}
+          onLikeClick={() => handleLikeClick(user.id)}
         />
       </div>
       <div className={styles.sliderWrapper}>
         <CardSlider
-          onLikeClick={() => {
-            // TODO: лайк будет обрабатывать слайс
-            console.log('Лайк поставлен')
-          }}
+          onLikeClick={handleLikeClick}
+          likedUserIds={likedUserIds}
           onDetailsClick={(userId) => {
             navigate(`/skill/${userId}`)
           }}
