@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import requestsSlice from './requestsSlice'
 import favoritesReducer from './favoritesSlice'
 // Импортируй свои slice'ы здесь по мере их создания:
 // import skillsReducer from '@/entities/skill/model/skillsSlice'
@@ -8,6 +9,8 @@ export const store = configureStore({
   reducer: {
     favorites: favoritesReducer,
     // skills: skillsReducer,
+    // auth: authReducer,
+    requests: requestsSlice,
     auth: authReducer,
   },
 })
