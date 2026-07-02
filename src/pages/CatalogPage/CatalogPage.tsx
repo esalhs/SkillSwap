@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { toggleLike, selectFavoriteUserIds } from '@/store/favoritesSlice';
 
-import { useDebounce } from '@/shared/hooks/useDebounce';
 import { fetchUsers } from '@/api/users';
 import { fetchSkillDomains } from '@/api/skills';
-import { getSkillsFromDomains } from '@/shared/lib/helpers';
 import { ROUTES } from '@/shared/lib/constants';
 
 import { InfiniteCardList } from '@/widgets/InfiniteCardList';
@@ -18,7 +16,6 @@ import { SidebarPanel } from '@/widgets/SidebarFilters/SidebarPanel';
 import { ActiveFiltersBar } from '@/widgets/SidebarFilters/ActiveFiltersBar';
 import { filterUsers, hasActiveFilters } from '@/shared/lib/helpers';
 import type { User, SkillDomain, FiltersState } from '@/shared/types';
-import { ROUTES } from '@/shared/lib/constants';
 import styles from './CatalogPage.module.css';
 
 const DEFAULT_FILTERS: FiltersState = {
@@ -160,7 +157,6 @@ export const CatalogPage = () => {
                 likedUserIds={likedUserIds}
                 onLikeClick={handleLikeClick}
                 onDetailsClick={handleDetailsClick}
-                onSortClick={() => {}} // TODO: логика сортировки
               />
             </div>
           )}
