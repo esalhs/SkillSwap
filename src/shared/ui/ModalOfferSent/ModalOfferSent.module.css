@@ -9,6 +9,7 @@
   box-sizing: border-box;
   font-family: var(--font-jost, Jost, sans-serif);
   border-radius: 12px;
+  background-color: var(--color-bg);
 }
 
 /* Контейнер-обёртка для центрирования и управления размером */

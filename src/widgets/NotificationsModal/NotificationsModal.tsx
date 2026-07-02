@@ -3,124 +3,105 @@ import React from 'react'
 import { Notification } from '@/widgets/Notification'
 import { Button } from '@/shared/ui/Button'
 import styles from './NotificationsModal.module.css'
+import {
+  clearReadNotifications,
+  markAllAsRead,
+  selectReadNotifications,
+  selectUnreadNotifications,
+} from '@/store/notificationSlice.ts'
+import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
 
 export type NotificationsModalProps = {
   isOpen?: boolean
 }
 
+function getRelativeDateLabel(isoDate: string): string {
+  const date = new Date(isoDate)
+  const now = new Date()
+
+  const isSameDay = (a: Date, b: Date) =>
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+
+  const yesterday = new Date(now)
+  yesterday.setDate(now.getDate() - 1)
+
+  if (isSameDay(date, now)) return 'сегодня'
+  if (isSameDay(date, yesterday)) return 'вчера'
+
+  return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })
+}
+
 export const NotificationsModal: React.FC<NotificationsModalProps> = ({
   isOpen = true,
 }) => {
-
-
-type NotificationMock = {
-  id: string
-  userName: string
-  variant: 'accepted' | 'offered'
-  buttonLink: string
-  date: string
-  showButton?: boolean
-}
-
-const newNotifications: NotificationMock[] = [
-  {
-    id: '1',
-    userName: 'Николай',
-    variant: 'accepted',
-    buttonLink: '/profile/nikolay',
-    date: 'сегодня',
-  },
-  {
-    id: '2',
-    userName: 'Татьяна',
-    variant: 'offered',
-    buttonLink: '/exchange/accept/2',
-    date: 'сегодня',
-  },
-]
-
-const viewedNotifications: NotificationMock[] = [
-  {
-    id: '3',
-    userName: 'Олег',
-    variant: 'offered',
-    buttonLink: '',
-    date: 'вчера',
-    showButton: false,
-  },
-  {
-    id: '4',
-    userName: 'Игорь',
-    variant: 'accepted',
-    buttonLink: '',
-    date: '23 мая',
-    showButton: false,
-  },
-]
+  const dispatch = useAppDispatch()
+  const unread = useAppSelector(selectUnreadNotifications)
+  const read = useAppSelector(selectReadNotifications)
 
   const handleReadAll = () => {
-    console.log('Прочитать все')
+    dispatch(markAllAsRead())
   }
 
   const handleClear = () => {
-    console.log('Очистить')
+    dispatch(clearReadNotifications())
   }
 
   if (!isOpen) return null
 
   return (
-      <div className={styles.content}>
-        {/* Новые уведомления */}
-        <section className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Новые уведомления</h2>
-            <Button
-              variant="tertiary"
-              onClick={handleReadAll}
-              className={styles.actionButton}
-            >
-              Прочитать все
-            </Button>
-          </div>
-          <div className={styles.notificationsList}>
-            {newNotifications.map((notification) => (
+    <div className={styles.content}>
+      {/* Новые уведомления */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Новые уведомления</h2>
+          <Button variant="tertiary" onClick={handleReadAll} className={styles.actionButton}>
+            Прочитать все
+          </Button>
+        </div>
+        <div className={styles.notificationsList}>
+          {unread.length === 0 ? (
+            <p className={styles.emptyText}>Новых уведомлений нет</p>
+          ) : (
+            unread.map((notification) => (
               <Notification
                 key={notification.id}
                 userName={notification.userName}
                 variant={notification.variant}
                 buttonLink={notification.buttonLink}
-                showButton={notification.showButton !== false}
-                date={notification.date}
+                date={getRelativeDateLabel(notification.createdAt)}
               />
-            ))}
-          </div>
-        </section>
+            ))
+          )}
+        </div>
+      </section>
 
-        {/* Просмотренные */}
-        <section className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Просмотренные</h2>
-            <Button
-              variant="tertiary"
-              onClick={handleClear}
-              className={styles.actionButton}
-            >
-              Очистить
-            </Button>
-          </div>
-          <div className={styles.notificationsList}>
-            {viewedNotifications.map((notification) => (
+      {/* Просмотренные */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Просмотренные</h2>
+          <Button variant="tertiary" onClick={handleClear} className={styles.actionButton}>
+            Очистить
+          </Button>
+        </div>
+        <div className={styles.notificationsList}>
+          {read.length === 0 ? (
+            <p className={styles.emptyText}>Просмотренных уведомлений нет</p>
+          ) : (
+            read.map((notification) => (
               <Notification
                 key={notification.id}
                 userName={notification.userName}
                 variant={notification.variant}
                 buttonLink={notification.buttonLink}
-                showButton={notification.showButton}
-                date={notification.date}
+                showButton={false}
+                date={getRelativeDateLabel(notification.createdAt)}
               />
-            ))}
-          </div>
-        </section>
-      </div>
+            ))
+          )}
+        </div>
+      </section>
+    </div>
   )
 }

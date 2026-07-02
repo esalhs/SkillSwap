@@ -10,7 +10,7 @@ export type NotificationProps = {
   variant: NotificationVariant
   buttonLink?: string
   showButton?: boolean
-  date?: string
+  date?: string // добавили
 }
 
 export const Notification: React.FC<NotificationProps> = ({
@@ -18,13 +18,11 @@ export const Notification: React.FC<NotificationProps> = ({
   variant,
   buttonLink = '',
   showButton = true,
-  date = 'сегодня',
+  date = 'сегодня', // добавили
 }) => {
   const isAccepted = variant === 'accepted'
-  
-  const title = isAccepted
-    ? `${userName} принял ваш обмен`
-    : `${userName} предлагает вам обмен`
+
+  const title = isAccepted ? `${userName} принял ваш обмен` : `${userName} предлагает вам обмен`
 
   const subtitle = isAccepted
     ? 'Перейдите в профиль, чтобы обсудить детали'

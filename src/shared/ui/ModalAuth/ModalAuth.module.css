@@ -1,12 +1,9 @@
 .modalContainer {
   width: 556px;
   height: 420px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 52px;
   border-radius: 12px;
+  background-color: var(--color-bg);
+  padding: 60px 62px;
 }
 
 .title {
@@ -19,8 +16,10 @@
 
 .contentContainer {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 12px;
+  margin-block-start: 52px;
 }
 
 .btnContainer {
