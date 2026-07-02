@@ -4,6 +4,7 @@ import favoritesReducer from './favoritesSlice'
 // Импортируй свои slice'ы здесь по мере их создания:
 // import skillsReducer from '@/entities/skill/model/skillsSlice'
 import authReducer from '@/features/auth/model/AuthSlice'
+import notificationsReducer from './notificationSlice'
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     // auth: authReducer,
     requests: requestsSlice,
     auth: authReducer,
+    notifications: notificationsReducer,
   },
 })
 
