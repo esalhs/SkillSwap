@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { toggleLike, selectFavoriteUserIds } from '@/store/favoritesSlice';
 
-import { useDebounce } from '@/shared/hooks/useDebounce';
 import { fetchUsers } from '@/api/users';
 import { fetchSkillDomains } from '@/api/skills';
-import { getSkillsFromDomains } from '@/shared/lib/helpers';
 import { ROUTES } from '@/shared/lib/constants';
 
 import { InfiniteCardList } from '@/widgets/InfiniteCardList';
@@ -17,16 +14,9 @@ import { Footer } from '@/widgets/Footer';
 import { CardSection } from '@/widgets/CardSection';
 import { SidebarPanel } from '@/widgets/SidebarFilters/SidebarPanel';
 import { ActiveFiltersBar } from '@/widgets/SidebarFilters/ActiveFiltersBar';
-
-import type { User, SkillDomain } from '@/shared/types';
+import { filterUsers, hasActiveFilters } from '@/shared/lib/helpers';
+import type { User, SkillDomain, FiltersState } from '@/shared/types';
 import styles from './CatalogPage.module.css';
-
-type FiltersState = {
-  type: 'all' | 'want' | 'can';
-  sex: 'any' | 'male' | 'female';
-  categories: string[];
-  cities: string[];
-};
 
 const DEFAULT_FILTERS: FiltersState = {
   type: 'all',
@@ -45,17 +35,8 @@ export const CatalogPage = () => {
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
 
-  // Логика поиска (из feature/search)
-  const [searchParams] = useSearchParams();
-  const searchFromUrl = searchParams.get('search') || '';
-  const debouncedSearch = useDebounce(searchFromUrl, 300);
-
-  const isAuth = false; // TODO: заменить на реальную проверку авторизации
-  const hasActiveFilters =
-    filters.categories.length > 0 ||
-    filters.cities.length > 0 ||
-    filters.type !== 'all' ||
-    filters.sex !== 'any';
+  const isAuth = false;
+  const isFiltered = hasActiveFilters(filters);
 
   useEffect(() => {
     const loadData = async () => {
@@ -75,26 +56,20 @@ export const CatalogPage = () => {
     loadData();
   }, []);
 
-  // Фильтрация по текстовому поиску (из feature/search)
-  const filteredUsers = users.filter((user) => {
-    if (!debouncedSearch) return false;
-    const query = debouncedSearch.toLowerCase();
-
-    const nameMatch = user.fullName.toLowerCase().includes(query);
-
-    const skills = getSkillsFromDomains(domains);
-    const userSkill = skills.find((s) => s.id === user.idSkill);
-    const skillMatch = userSkill?.name?.toLowerCase().includes(query) ?? false;
-
-    return nameMatch || skillMatch;
-  });
+  const filteredUsers = useMemo(
+    () => filterUsers(users, filters, domains),
+    [users, filters, domains]
+  );
 
   const handleLikeClick = (userId: string) => {
     dispatch(toggleLike(userId));
   };
 
   const handleDetailsClick = (userId: string) => {
-    navigate(ROUTES.SKILL.replace(':id', userId));
+    const user = users.find((u: User) => u.id === userId);
+    if (user) {
+      navigate(ROUTES.SKILL.replace(':id', user.idSkill));
+    }
   };
 
   const handleResetFilters = () => {
@@ -121,9 +96,9 @@ export const CatalogPage = () => {
   const firstTitle = isAuth ? 'Точное совпадение' : 'Популярное';
   const secondTitle = isAuth ? 'Новые идеи' : 'Новое';
 
-  const firstSectionUsers = users.slice(0, 6);
-  const secondSectionUsers = users.slice(6, 12);
-  const thirdSectionUsers = users.slice(12, 18);
+  const firstSectionUsers = filteredUsers.slice(0, 6);
+  const secondSectionUsers = filteredUsers.slice(6, 12);
+  const thirdSectionUsers = filteredUsers.slice(12, 18);
 
   if (loading) {
     return (
@@ -138,69 +113,54 @@ export const CatalogPage = () => {
   return (
     <div className={styles.page}>
       <Header />
-      <div className={styles.wrapper}>
-        <ActiveFiltersBar
-          filters={filters}
-          onReset={handleResetFilters}
-          onRemoveFilter={handleRemoveFilter}
-        />
-        <div className={styles.content}>
-          <SidebarPanel filters={filters} onChange={setFilters} />
-          <main className={styles.main}>
-            {debouncedSearch ? (
-              // Режим поиска: показываем только результаты поиска
-              <InfiniteCardList
-                title="Результаты поиска"
-                totalCount={filteredUsers.length}
-                users={filteredUsers}
+      <div className={styles.content}>
+        <SidebarPanel filters={filters} onChange={setFilters} />
+        <main className={styles.main}>
+          <ActiveFiltersBar
+            filters={filters}
+            onReset={handleResetFilters}
+            onRemoveFilter={handleRemoveFilter}
+          />
+          {isFiltered ? (
+            <InfiniteCardList
+              title="Подходящие предложения"
+              totalCount={filteredUsers.length}
+              users={filteredUsers}
+              domains={domains}
+              likedUserIds={likedUserIds}
+              onLikeClick={handleLikeClick}
+              onDetailsClick={handleDetailsClick}
+              onSortClick={() => {}}
+            />
+          ) : (
+            <div className={styles.sections}>
+              <CardSection
+                title={firstTitle}
+                users={firstSectionUsers}
                 domains={domains}
                 likedUserIds={likedUserIds}
                 onLikeClick={handleLikeClick}
                 onDetailsClick={handleDetailsClick}
               />
-            ) : hasActiveFilters ? (
-              // Есть активные фильтры (но без текстового поиска)
-              <InfiniteCardList
-                title="Подходящие предложения"
-                totalCount={users.length}
-                users={users}
+              <CardSection
+                title={secondTitle}
+                users={secondSectionUsers}
                 domains={domains}
                 likedUserIds={likedUserIds}
                 onLikeClick={handleLikeClick}
                 onDetailsClick={handleDetailsClick}
-                onSortClick={() => {}} // TODO: логика сортировки
               />
-            ) : (
-              // Обычный режим: секции карточек
-              <div className={styles.sections}>
-                <CardSection
-                  title={firstTitle}
-                  users={firstSectionUsers}
-                  domains={domains}
-                  likedUserIds={likedUserIds}
-                  onLikeClick={handleLikeClick}
-                  onDetailsClick={handleDetailsClick}
-                />
-                <CardSection
-                  title={secondTitle}
-                  users={secondSectionUsers}
-                  domains={domains}
-                  likedUserIds={likedUserIds}
-                  onLikeClick={handleLikeClick}
-                  onDetailsClick={handleDetailsClick}
-                />
-                <CardSection
-                  title="Рекомендуем"
-                  users={thirdSectionUsers}
-                  domains={domains}
-                  likedUserIds={likedUserIds}
-                  onLikeClick={handleLikeClick}
-                  onDetailsClick={handleDetailsClick}
-                />
-              </div>
-            )}
-          </main>
-        </div>
+              <CardSection
+                title="Рекомендуем"
+                users={thirdSectionUsers}
+                domains={domains}
+                likedUserIds={likedUserIds}
+                onLikeClick={handleLikeClick}
+                onDetailsClick={handleDetailsClick}
+              />
+            </div>
+          )}
+        </main>
       </div>
       <Footer />
     </div>
