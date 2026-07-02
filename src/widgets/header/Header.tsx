@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { HeaderProps } from './types.ts'
 import styles from './Header.module.css'
@@ -16,11 +16,27 @@ import {
 } from '@/shared/ui/Icons'
 import { UserIcon } from '@/shared/ui/UserIcon'
 import { ROUTES } from '@/shared/lib/constants'
+import { useAppSelector } from '@/store/hooks'
+import {
+  selectHasUnreadNotifications,
+} from '@/store/notificationSlice.ts'
+import { selectUser } from '@/features/auth/model/AuthSlice.ts'
+import { NotificationsModal } from '@/widgets/NotificationsModal'
 
-export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) => {
+export const Header: React.FC<HeaderProps> = ({ isAuthPage = false }) => {
   const [searchQuery, setSearchQuery] = useState('')
-  // const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const userData = useAppSelector(selectUser) ?? {
+    id: '1',
+    name: 'Анна',
+    email: 'anna.volkova@mail.ru',
+    token: 'mock_token_1',
+    avatarUrl: '/avatars/01-anna-volkova.jpg',
+  } // фоллбек для теста видимости авторизованного пользователя
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const notificationsRef = useRef<HTMLDivElement>(null)
+
   const navigate = useNavigate()
+  const hasUnread = useAppSelector(selectHasUnreadNotifications)
 
   const handleSearch = () => {
     const query = searchQuery.trim()
@@ -30,6 +46,21 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
       navigate(ROUTES.HOME)
     }
   }
+
+  const handleToggleNotifications = () => {
+    setIsNotificationsOpen((prev) => !prev)
+  }
+
+  useEffect(() => {
+    if (!isNotificationsOpen) return
+    const handleClickOutside = (e: MouseEvent) => {
+      if (notificationsRef.current && !notificationsRef.current.contains(e.target as Node)) {
+        setIsNotificationsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isNotificationsOpen])
 
   if (isAuthPage) {
     return (
@@ -64,7 +95,9 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
         <div className={styles.centerSection}>
           <div
             className={styles.searchWrapper}
-            onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleSearch()
+            }}
           >
             <Input
               type="search"
@@ -75,7 +108,14 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
                 <button
                   type="button"
                   onClick={handleSearch}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', padding: 0, pointerEvents: 'auto' }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    padding: 0,
+                    pointerEvents: 'auto',
+                  }}
                   aria-label="Поиск"
                 >
                   <SearchIcon />
@@ -97,15 +137,18 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
 
             {userData && (
               <>
-                <IconButton
-                  icon={<NotificationActiveIcon />}
-                  ariaLabel="Уведомления"
-                  onClick={() => console.log('Открытие уведомлений: клик зафиксирован')}
-                  // onClick={() => setIsNotificationsOpen(true)}
-                />
-                {/* {isNotificationsOpen && (
-                  <NotificationsModal onClose={() => setIsNotificationsOpen(false)} />
-                )} */}
+                <div className={styles.notificationsWrapper} ref={notificationsRef}>
+                  <IconButton
+                    icon={<NotificationActiveIcon active={hasUnread} />}
+                    ariaLabel="Уведомления"
+                    onClick={handleToggleNotifications}
+                  />
+                  {isNotificationsOpen && (
+                    <div className={styles.notificationsDropdown}>
+                      <NotificationsModal />
+                    </div>
+                  )}
+                </div>
                 <Link to={ROUTES.FAVORITES}>
                   <IconButton icon={<LikeIcon />} ariaLabel="Избранное" />
                 </Link>
@@ -121,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
                 </Link>
                 <Link to={ROUTES.PROFILE} className={styles.profileLink}>
                   <UserIcon
-                    avatarUrl={userData.avatarUrl}
+                    avatarUrl={userData.avatarUrl ?? null}
                     name={userData.name}
                     className={styles.userAvatar}
                   />

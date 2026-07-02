@@ -1,4 +1,4 @@
-import type { AuthUser } from '@/shared/types'
+import type { AuthSliceUser, AuthUser } from '@/shared/types'
 import { LOCAL_STORAGE_KEYS } from '@/shared/lib/constants'
 
 /** Читает текущего авторизованного пользователя из localStorage */
@@ -12,7 +12,7 @@ export function getAuthUser(): AuthUser | null {
 }
 
 /** Сохраняет пользователя и mock-токен в localStorage */
-export function saveAuthUser(user: Omit<AuthUser, 'token'>): AuthUser {
+export function saveAuthUser(user: Omit<AuthSliceUser, 'token'>): AuthUser {
   const authUser: AuthUser = { ...user, token: 'mock_token_' + user.id }
   localStorage.setItem(LOCAL_STORAGE_KEYS.AUTH_USER, JSON.stringify(authUser))
   return authUser

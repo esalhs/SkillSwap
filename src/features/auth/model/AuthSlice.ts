@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import type { AuthUser, User } from '@/shared/types'
+import type { AuthSliceUser, AuthUser, User } from '@/shared/types'
 import { getAuthUser, saveAuthUser, clearAuthUser } from './authUtils'
 
 interface ILogin {
@@ -8,7 +8,7 @@ interface ILogin {
 }
 
 interface AuthState {
-  user: AuthUser | null
+  user: AuthSliceUser | null
   isAuth: boolean
   isLoading: boolean
   error: string | null
@@ -48,6 +48,7 @@ export const loginUser = createAsyncThunk<AuthUser, ILogin, { rejectValue: strin
         id: foundUser.id,
         email: foundUser.email,
         name: foundUser.fullName,
+        avatarUrl: foundUser.avatarUrl ?? undefined,
       })
 
       return authUser

@@ -60,6 +60,10 @@ export interface AuthUser {
   token: string
 }
 
+export interface AuthSliceUser extends AuthUser {
+  avatarUrl?: string
+}
+
 /** Тип для состояния фильтров */
 export type FiltersState = {
   type: 'all' | 'want' | 'can'
