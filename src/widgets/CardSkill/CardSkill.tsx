@@ -5,8 +5,6 @@ import { GallerySlider } from '@/widgets/GallerySlider'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './CardSkill.module.css'
-import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { selectFavoriteUserIds, toggleLike } from '@/store/favoritesSlice'
 
 type CardSkillProps = {
   pageVariant: 'home' | 'register' // добавил пропс, чтобы указывать, где находится компонент
