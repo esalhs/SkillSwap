@@ -86,17 +86,12 @@ export const ProfilePage = () => {
     if (activeTab === 'skills') {
       return (
         <CardSkill
-          variant="home"
+          pageVariant="home"
           title={ownSkill.name}
           domain={ownSkillMeta.domainName}
           category={ownSkillMeta.categoryName}
           description={ownSkill.description}
           images={ownSkill.skillImages}
-          mainButtonLabel="Предложить обмен"
-          onMainClick={() => undefined}
-          onLikeClick={() => undefined}
-          onShareClick={() => undefined}
-          onMoreClick={() => undefined}
         />
       )
     }
