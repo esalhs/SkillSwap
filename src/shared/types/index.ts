@@ -59,3 +59,11 @@ export interface AuthUser {
   email: string
   token: string
 }
+
+/** Тип для состояния фильтров */
+export type FiltersState = {
+  type: 'all' | 'want' | 'can'
+  sex: 'any' | 'male' | 'female'
+  categories: string[]
+  cities: string[]
+}
