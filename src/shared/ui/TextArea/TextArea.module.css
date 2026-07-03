@@ -5,6 +5,14 @@
   gap: var(--space-xs, 4px);
 }
 
+.label {
+  font-size: var(--font-size-base, 1rem);
+}
+
+.label_error {
+  color: var(--color-error, #ef4444);
+}
+
 .textarea {
   padding: 15px 20px;
   border-radius: var(--radius-lg, 12px);
@@ -16,6 +24,20 @@
   outline: none;
   width: 100%;
   letter-spacing: 2%;
+  resize: vertical;
+}
+
+.textarea_error {
+  border-color: var(--color-error, #ef4444);
+}
+
+.description {
+  font-size: 12px;
+}
+
+.description_error {
+  color: var(--color-error, #ef4444);
+  font-size: 12px;
 }
 
 textarea::placeholder {

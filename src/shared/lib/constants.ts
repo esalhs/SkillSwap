@@ -7,6 +7,7 @@ export const ROUTES = {
   CREATE: '/create',
   LOGIN: '/login',
   REGISTER: '/register',
+  REGISTER_USER: '/register/user',
   REG_SKILL: '/register/skill',
 } as const
 
@@ -27,4 +28,7 @@ export const LOCAL_STORAGE_KEYS = {
   FAVORITES: 'skillswap_favorites',
   REQUESTS: 'skillswap_requests',
   THEME: 'skillswap_theme',
+  REGISTRATION_DATA: 'skillswap_registration_data',
+  JWT_TOKEN: 'skillswap_jwt_token',
 } as const
+

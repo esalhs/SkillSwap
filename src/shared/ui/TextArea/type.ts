@@ -9,4 +9,6 @@ export type TextAreaProps = {
   onFocus?: (e: FocusEvent<HTMLTextAreaElement>) => void
   rows?: number
   maxLength?: number
+  isError?: boolean
+  description?: string
 }

@@ -63,3 +63,13 @@
   border-color: var(--color-accent);
   background-color: var(--color-disabled);
 }
+
+.imageContainer_error {
+  border-color: var(--color-error, #ef4444);
+}
+
+.error_message {
+  color: var(--color-error, #ef4444);
+  font-size: 12px;
+  margin-top: 4px;
+}

@@ -7,6 +7,8 @@ type ImageUploadProps = {
   onChange: (files: File[]) => void
   maxFiles?: number
   className?: string
+  isError?: boolean
+  errorMessage?: string
 }
 
 export const ImageUpload = (props: ImageUploadProps) => {
@@ -45,14 +47,21 @@ export const ImageUpload = (props: ImageUploadProps) => {
 
   return (
     <div
-      className={`${styles.imageContainer} ${isDragging && styles.dragging}`}
+      className={`${styles.imageContainer} ${isDragging && styles.dragging} ${props.isError ? styles.imageContainer_error : ''}`}
       onDragOver={onDragOver}
       onDrop={onDrop}
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
     >
       <p className={styles.text}>Перетащите или выберите изображения навыка</p>
-      <input type="file" accept="image/*" multiple ref={inputRef} onChange={onChange} className={styles.imageInput} />
+      <input
+        type="file"
+        accept="image/*"
+        multiple
+        ref={inputRef}
+        onChange={onChange}
+        className={styles.imageInput}
+      />
       <button type="button" className={styles.uploadButton} onClick={() => inputRef.current?.click()}>
         <GalleryAddIcon color="var(--color-accent)" />
         Выбрать изображения
@@ -69,6 +78,7 @@ export const ImageUpload = (props: ImageUploadProps) => {
           ))}
         </div>
       )}
+      {props.errorMessage && <div className={styles.error_message}>{props.errorMessage}</div>}
     </div>
   )
 }

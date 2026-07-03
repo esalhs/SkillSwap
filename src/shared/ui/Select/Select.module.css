@@ -5,6 +5,14 @@
   z-index: 1;
 }
 
+.container_error .select {
+  border-color: var(--color-error, #ef4444);
+}
+
+.container_error span:first-child {
+  color: var(--color-error, #ef4444);
+}
+
 .container_open {
   z-index: 9999;
 }

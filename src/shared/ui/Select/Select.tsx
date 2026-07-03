@@ -25,6 +25,7 @@ type SelectProps = {
   className?: string
   mode?: 'simple' | 'search' | 'multi' // по умолчанию 'simple'
   type?: 'category' | 'subcategory' // для чекбоксов
+  isError?: boolean
 }
 
 export const Select: FC<SelectProps> = ({
@@ -37,6 +38,7 @@ export const Select: FC<SelectProps> = ({
   className,
   mode = 'simple',
   type,
+  isError = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')
@@ -74,7 +76,7 @@ export const Select: FC<SelectProps> = ({
 
   return (
     <>
-      <div className={clsx(styles.container, isOpen && styles.container_open, className)}>
+      <div className={clsx(styles.container, isOpen && styles.container_open, isError && styles.container_error, className)}>
         <span>{label}</span>
         <div ref={wrapperRef} className={styles.select_wrapper}>
           {mode === 'simple' && (
