@@ -81,7 +81,10 @@ export const Header: React.FC<HeaderProps> = ({ userData, isAuthPage = false }) 
                   <SearchIcon />
                 </button>
               }
-              onRightIconClick={() => setSearchQuery('')}
+              onRightIconClick={() => {
+                setSearchQuery('')
+                navigate(ROUTES.HOME)
+              }}
               description=""
             />
           </div>
