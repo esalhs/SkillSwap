@@ -23,6 +23,7 @@ export function AppRouter() {
         <Suspense fallback={<div>Загрузка...</div>}>
           <Routes>
             <Route path={ROUTES.HOME} element={<CatalogPage />} />
+            <Route path={ROUTES.CATALOG} element={<CatalogPage />} />
             <Route path={ROUTES.SKILL} element={<SkillPage />} />
             <Route
               path={ROUTES.FAVORITES}
