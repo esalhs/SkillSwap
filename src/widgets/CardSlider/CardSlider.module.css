@@ -1,5 +1,6 @@
 .container {
-  width: calc(100% - 72px);
+  /* width: calc(100% - 72px); */
+  width: calc(4 * 324px + 3 * 24px);
   margin: 0 auto; /* Центрируем слайдер на странице */
   box-sizing: border-box;
 }
@@ -16,6 +17,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
