@@ -79,8 +79,8 @@ export const registerUser = createAsyncThunk<
   { rejectValue: string }
 >('auth/register', async (_, { rejectWithValue, getState }) => {
   try {
-    const state = getState() as { auth?: { registration?: RegistrationState } }
-    const registration = state.auth?.registration
+    const state = getState() as { registration?: RegistrationState }
+    const registration = state.registration
 
     if (!registration) {
       return rejectWithValue('Ошибка состояния регистрации')

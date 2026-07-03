@@ -17,6 +17,8 @@ type CardSkillProps = {
   images: string[] // массив путей к фото
   isLiked?: boolean
   onLikeClick?: () => void // если не передан — иконка лайка не рендерится
+  onEditClick?: () => void // обработчик кнопки "Редактировать"
+  onDoneClick?: () => void // обработчик кнопки "Готово"
 }
 
 export const CardSkill = (props: CardSkillProps) => {
@@ -25,19 +27,25 @@ export const CardSkill = (props: CardSkillProps) => {
 
   const handleMainClick = useCallback(
     () => {
-      console.log('Предложить обмен')
-      // dispatch(offer(props.skillId))
+      if (props.pageVariant === 'register' && props.onDoneClick) {
+        props.onDoneClick()
+      } else {
+        console.log('Предложить обмен')
+        // dispatch(offer(props.skillId))
+      }
     },
-    [
-      // props.skillId
-    ],
+    [props.pageVariant, props.onDoneClick],
   )
 
   const navigate = useNavigate()
 
   const onSecondaryButtonHandler = useCallback(() => {
-    navigate(-1) // переходим на шаг назад в регистрацию
-  }, [navigate])
+    if (props.pageVariant === 'register' && props.onEditClick) {
+      props.onEditClick()
+    } else {
+      navigate(-1)
+    }
+  }, [navigate, props.pageVariant, props.onEditClick])
 
   return (
     <article className={styles.overallWrapper}>

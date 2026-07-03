@@ -17,6 +17,8 @@ import { Footer } from '@/widgets/Footer';
 import { CardSection } from '@/widgets/CardSection';
 import { SidebarPanel } from '@/widgets/SidebarFilters/SidebarPanel';
 import { ActiveFiltersBar } from '@/widgets/SidebarFilters/ActiveFiltersBar';
+import { Modal } from '@/shared/ui/Modal';
+import { ModalOfferCreated } from '@/shared/ui/ModalOfferCreated';
 
 import type { User, SkillDomain } from '@/shared/types';
 import styles from './CatalogPage.module.css';
@@ -45,6 +47,7 @@ export const CatalogPage = () => {
   const [domains, setDomains] = useState<SkillDomain[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
+  const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
 
   // Логика поиска (из feature/search)
   const [searchParams] = useSearchParams();
@@ -75,6 +78,15 @@ export const CatalogPage = () => {
       }
     };
     loadData();
+  }, []);
+
+  // Проверка флага успешной регистрации в sessionStorage
+  useEffect(() => {
+    const showOfferModal = sessionStorage.getItem('showOfferModal');
+    if (showOfferModal === 'true') {
+      setIsOfferModalOpen(true);
+      sessionStorage.removeItem('showOfferModal');
+    }
   }, []);
 
   // Установка категории из URL в фильтры
@@ -244,6 +256,11 @@ export const CatalogPage = () => {
         </div>
       </div>
       <Footer />
+
+      {/* Модальное окно успешного создания предложения */}
+      <Modal isOpen={isOfferModalOpen} onClose={() => setIsOfferModalOpen(false)}>
+        <ModalOfferCreated onClose={() => setIsOfferModalOpen(false)} />
+      </Modal>
     </div>
   );
 };

@@ -60,3 +60,9 @@
   padding: 60px;
   background: var(--color-card, #fff);
 }
+
+/* Стили для модального окна предпросмотра */
+.previewModal :global(.modal) {
+  max-width: 556px;
+  padding: 40px 60px;
+}

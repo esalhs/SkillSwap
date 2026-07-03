@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch } from '@/store'
@@ -7,6 +7,8 @@ import { RegSkillForm } from '@/widgets/RegSkillForm'
 import { StepIndicator } from '@/shared/ui/StepIndicator'
 import { IllustratedGuide } from '@/widgets/IllustratedGuide'
 import { SchoolBoard } from '@/shared/ui/Illustrations'
+import { Modal } from '@/shared/ui/Modal'
+import { CardSkill } from '@/widgets/CardSkill'
 import { ROUTES } from '@/shared/lib/constants'
 import {
   setStep3Data,
@@ -14,13 +16,14 @@ import {
   selectStep2Data,
   selectStep3Data,
   registerUser,
-  selectRegistrationSuccess,
 } from '@/features/auth/model/RegistrationSlice'
 import {
   isValidSkillName,
   isValidDescription,
   isValidImageFile,
 } from '@/shared/lib/validation'
+import { fetchSkillDomains } from '@/api/skills'
+import type { SkillDomain } from '@/shared/types'
 import styles from './RegSkillPage.module.css'
 
 export const RegSkillPage: React.FC = () => {
@@ -30,7 +33,6 @@ export const RegSkillPage: React.FC = () => {
   const step1Data = useSelector(selectStep1Data)
   const step2Data = useSelector(selectStep2Data)
   const prevStep3Data = useSelector(selectStep3Data)
-  const registrationSuccess = useSelector(selectRegistrationSuccess)
 
   const [skillName, setSkillName] = useState(prevStep3Data.skillName || '')
   const [category, setCategory] = useState(prevStep3Data.skillCategory || '')
@@ -46,6 +48,16 @@ export const RegSkillPage: React.FC = () => {
     images?: string
   }>({})
 
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false)
+  const [skillDomains, setSkillDomains] = useState<SkillDomain[]>([])
+
+  // Загружаем домены навыков при монтировании
+  useEffect(() => {
+    fetchSkillDomains()
+      .then(setSkillDomains)
+      .catch((err) => console.error('Failed to load skill domains:', err))
+  }, [])
+
   // Проверяем, что предыдущие шаги заполнены
   useEffect(() => {
     if (!step1Data.email || !step1Data.password) {
@@ -58,12 +70,25 @@ export const RegSkillPage: React.FC = () => {
     }
   }, [step1Data, step2Data, navigate])
 
-  // Если регистрация успешна, перенаправляем на главную
-  useEffect(() => {
-    if (registrationSuccess) {
-      navigate(ROUTES.HOME)
-    }
-  }, [registrationSuccess, navigate])
+  // Находим название домена (категории) для CardSkill
+  const domainName = useMemo(() => {
+    if (!category) return 'Другое'
+    const domain = skillDomains.find((d) => d.id === category)
+    return domain?.name || 'Другое'
+  }, [category, skillDomains])
+
+  // Находим название подкатегории для CardSkill
+  const subcategoryName = useMemo(() => {
+    if (!category || !subcategory) return ''
+    const domain = skillDomains.find((d) => d.id === category)
+    const cat = domain?.categories.find((c) => c.id === subcategory)
+    return cat?.name || ''
+  }, [category, subcategory, skillDomains])
+
+  // Конвертируем File в URL для предпросмотра
+  const imageUrls = useMemo(() => {
+    return images.map((file) => URL.createObjectURL(file))
+  }, [images])
 
   const validateForm = () => {
     const newErrors: {
@@ -131,20 +156,34 @@ export const RegSkillPage: React.FC = () => {
       }),
     )
 
-    // Запускаем регистрацию
-    dispatch(registerUser())
-      .unwrap()
-      .then(() => {
-        // После успешной регистрации перенаправляем на главную
-        navigate(ROUTES.HOME)
-      })
-      .catch((error: unknown) => {
-        console.error('Registration error:', error)
-      })
+    // Открываем модальное окно с предпросмотром
+    setIsPreviewModalOpen(true)
   }
 
   const handleBack = () => {
     navigate(ROUTES.REGISTER_USER)
+  }
+
+  // Закрытие модального окна и возврат к редактированию
+  const handleEdit = () => {
+    setIsPreviewModalOpen(false)
+  }
+
+  // Подтверждение и регистрация
+  const handleDone = () => {
+    console.log('handleDone вызван')
+    // Запускаем регистрацию
+    dispatch(registerUser())
+      .unwrap()
+      .then(() => {
+        console.log('Регистрация успешна, переход на каталог')
+        // После успешной регистрации устанавливаем флаг и перенаправляем на каталог
+        sessionStorage.setItem('showOfferModal', 'true')
+        navigate(ROUTES.CATALOG)
+      })
+      .catch((error: unknown) => {
+        console.error('Registration error:', error)
+      })
   }
 
   return (
@@ -183,6 +222,21 @@ export const RegSkillPage: React.FC = () => {
           </div>
         </div>
       </main>
+
+      {/* Модальное окно с предпросмотром навыка */}
+      <Modal isOpen={isPreviewModalOpen} onClose={handleEdit} className={styles.previewModal}>
+        <CardSkill
+          pageVariant="register"
+          title={skillName}
+          domain={domainName}
+          category={subcategoryName}
+          description={description}
+          images={imageUrls}
+          onLikeClick={() => {}}
+          onEditClick={handleEdit}
+          onDoneClick={handleDone}
+        />
+      </Modal>
     </div>
   )
 }
