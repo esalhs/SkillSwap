@@ -1,6 +1,22 @@
-# SkillSwap — шаблон проекта
+# SkillSwap
 
-Платформа обмена навыками.
+**SkillSwap** is a skill-exchange platform, built as a team capstone project at Yandex Practicum (Jun–Jul 2026). This is a copy of the team repository for my portfolio, with the full commit history.
+
+**Stack:** React, TypeScript, Vite, Redux Toolkit, React Router, CSS Modules, Feature-Sliced Design, GitHub Actions CI.
+
+**Team workflow:** `main`/`develop` branches, feature branches, Conventional Commits, pull requests with code review.
+
+**My role:** deputy team lead. I reviewed code across pull requests, wrote Issues with acceptance criteria, resolved merge conflicts.
+
+---
+
+**SkillSwap** — платформа обмена навыками, командный проект проектного месяца в Яндекс Практикуме (июнь–июль 2026). Это копия командного репозитория для моего портфолио с полной историей коммитов.
+
+**Стек:** React, TypeScript, Vite, Redux Toolkit, React Router, CSS Modules, Feature-Sliced Design, GitHub Actions CI.
+
+**Процесс работы в команде:** ветки `main` и `develop`, feature-ветки, Conventional Commits, pull request с код-ревью.
+
+**Моя роль:** заместитель тимлида. Проводила код-ревью pull request, писала Issues с критериями приема, разрешала конфликты слияния.
 
 ---
 
